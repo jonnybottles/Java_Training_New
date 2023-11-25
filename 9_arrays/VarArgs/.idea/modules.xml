@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/UsingArrays.iml" filepath="$PROJECT_DIR$/UsingArrays.iml" />
+      <module fileurl="file://$PROJECT_DIR$/VarArgs.iml" filepath="$PROJECT_DIR$/VarArgs.iml" />
     </modules>
   </component>
 </project>
