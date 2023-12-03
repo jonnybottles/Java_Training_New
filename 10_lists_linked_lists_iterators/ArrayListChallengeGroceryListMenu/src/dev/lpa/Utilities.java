@@ -7,20 +7,21 @@ import java.io.InputStreamReader;
 public class Utilities {
 
     public static void clearScreen() {
+        // Attempt to clear the screen for terminal environments
         try {
             String operatingSystem = System.getProperty("os.name");
 
-            ProcessBuilder pb;
             if (operatingSystem.contains("Windows")) {
-                pb = new ProcessBuilder("cmd", "/c", "cls");
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
             } else {
-                pb = new ProcessBuilder("clear");
+                new ProcessBuilder("clear").inheritIO().start().waitFor();
             }
-
-            Process startProcess = pb.inheritIO().start();
-            startProcess.waitFor();
         } catch (IOException | InterruptedException e) {
-            System.out.println("Error clearing screen...");
+            // Fallback to printing new lines if the clear screen command fails
+            for (int i = 0; i < 50; i++) {
+                System.out.println();
+            }
+            Thread.currentThread().interrupt(); // Restore interrupted status
         }
     }
 }

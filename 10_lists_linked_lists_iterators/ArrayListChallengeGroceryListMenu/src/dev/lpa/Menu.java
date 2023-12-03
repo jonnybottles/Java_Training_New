@@ -78,7 +78,7 @@ public class Menu {
 
         }
 
-        System.out.print(formattedMenuName); // Prints the centered menu name with dashes
+        System.out.println(formattedMenuName + "\n"); // Prints the centered menu name with dashes
     }
 
 
@@ -93,9 +93,11 @@ public class Menu {
                 if (isValidSelection(userSelection)) {
                     return userSelection;
                 } else {
+                    Utilities.clearScreen();
                     System.out.println("Invalid selection, please try again.");
                 }
             } catch (NumberFormatException e) {
+                Utilities.clearScreen();
                 System.out.println("Please enter a valid integer.");
             } catch (NoSuchElementException e) {
                 exitProgram();

@@ -9,6 +9,7 @@ public class MainMenu extends Menu {
 
     private static final int ADD_GROCERIES = 1;
     private static final int REMOVE_GROCERIES = 2;
+    private static final int EXIT_PROGRAM = 3;
 
     public MainMenu(String programName, String menuName, String... menuItems) {
         super(programName, menuName, menuItems);
@@ -27,6 +28,8 @@ public class MainMenu extends Menu {
             } else if (userSelection == REMOVE_GROCERIES) {
                 System.out.println("Would call remove groceries");
                 break;
+            } else if (userSelection == EXIT_PROGRAM) {
+                exitProgram();
             }
 
         }
