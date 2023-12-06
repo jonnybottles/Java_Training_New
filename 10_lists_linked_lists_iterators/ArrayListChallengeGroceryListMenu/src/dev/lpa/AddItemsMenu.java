@@ -1,48 +1,45 @@
 package dev.lpa;
 
-public class AddItemsMenu extends Menu {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
 
-    private static final int ADD_FRUIT = 1;
-    private static final int ADD_VEGETABLES = 2;
-    private static final int ADD_MEAT = 3;
-    private static final int ADD_DRINKS = 4;
-    private static final int RETURN_TO_MAIN_MENU = 5;
-    private static final int EXIT_PROGRAM = 6;
+public class AddItemsMenu extends MainMenu{
 
+    ArrayList<String> additionalItemsList;
 
     public AddItemsMenu(Menu parentMenu, String menuName, String... menuItems) {
         super(parentMenu, menuName, menuItems);
+        this.additionalItemsList =  new ArrayList<>();
 
     }
 
-    public void addItemsToMenu() {
-        while (true) {
-            int userSelection = makeASelection();
+    public void addItems() {
+        String additionalItemsString = getString("Please enter groceries to add (separated by commas");
+        convertCommaStringToArrayList(additionalItemsString);
 
-            if (userSelection == ADD_FRUIT) {
-                System.out.println("Would call add fruit");
-                break;
 
-            } else if (userSelection == ADD_VEGETABLES) {
-                System.out.println("Would call add vegetables");
-                break;
-            } else if (userSelection == ADD_MEAT) {
-                System.out.println("Would call add meat");
-                break;
-            } else if (userSelection == ADD_DRINKS) {
-                System.out.println("Would call add drinks");
-                break;
-            } else if (userSelection == RETURN_TO_MAIN_MENU) {
-                break;
-            } else if (userSelection == EXIT_PROGRAM) {
-                exitProgram();
-            }
+    }
+
+    private  void convertCommaStringToArrayList(String additionalItemsString) {
+
+        this.additionalItemsList = Arrays.asList(additionalItemsString.split(",");
+    }
+
+    public static void addItems(ArrayList<String> itemsToAdd, ArrayList<String> groceryList) {
+        for (String item : this.additionalItemsList) {
+//            getPar.add(item);
 
         }
     }
 
+
+
     public void start() {
-        addItemsToMenu();
+        addItems();
+
     }
+
+
 
 }

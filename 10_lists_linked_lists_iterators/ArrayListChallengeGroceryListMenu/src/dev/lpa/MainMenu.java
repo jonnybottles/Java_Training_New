@@ -3,7 +3,7 @@ package dev.lpa;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Scanner;
+import java.util.List;
 
 public class MainMenu extends Menu {
 
@@ -11,8 +11,11 @@ public class MainMenu extends Menu {
     private static final int REMOVE_GROCERIES = 2;
     private static final int EXIT_PROGRAM = 3;
 
+    private ArrayList<String> groceryList;
+
     public MainMenu(String programName, String menuName, String... menuItems) {
         super(programName, menuName, menuItems);
+        this.groceryList = new ArrayList<>();
     }
 
     public void addOrRemoveGroceries() {
@@ -22,8 +25,8 @@ public class MainMenu extends Menu {
 
             if (userSelection == ADD_GROCERIES) {
                 System.out.println("Would call add groceries");
-                AddItemsMenu theAddItemsMenu = new AddItemsMenu(this, "Add Items", "Add Fruit", "Add Veggies", "Add Meat", "Add Drinks");
-                theAddItemsMenu.start();
+                AddItemsMenuTest theAddItemsMenuTest = new AddItemsMenuTest(this, "Add Items", "Add Fruit", "Add Veggies", "Add Meat", "Add Drinks");
+                theAddItemsMenuTest.start();
 
             } else if (userSelection == REMOVE_GROCERIES) {
                 System.out.println("Would call remove groceries");
