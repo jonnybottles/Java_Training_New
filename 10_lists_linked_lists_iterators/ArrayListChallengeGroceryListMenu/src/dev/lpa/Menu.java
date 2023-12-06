@@ -3,6 +3,7 @@ package dev.lpa;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 public class Menu {
 
@@ -93,10 +94,11 @@ public class Menu {
 
         printMenuName();
         while (true) {
+
+            displayCustomContent();
             displayMenuOptions();
 
             try {
-//                String inputLine = scanner.nextLine();
                 int userSelection = Integer.parseInt(scanner.nextLine());
                 if (isValidSelection(userSelection)) {
                     return userSelection;
@@ -120,6 +122,11 @@ public class Menu {
 
     }
 
+    // Method that can be overridden by subclasses when there is a need to display custom content
+    // in makeASelection after clearing the screen, but before displaying menu optons
+    protected void displayCustomContent() {
+        // Empty by default
+    }
 
     // Iterates through menuItems and prints off corresponding number selection and item name
     private void displayMenuOptions() {
@@ -155,6 +162,14 @@ public class Menu {
                 if (isValidString(userString)) {
                     return userString;
                 } else {
+                    System.out.println("Please enter a valid response.");
+                    try {
+                        // Sleep for 1 second
+                        TimeUnit.SECONDS.sleep(1);
+                    } catch (InterruptedException e) {
+                        // Handle the exception
+                        e.printStackTrace();
+                    }
                     Utilities.clearScreen();
                     printMenuName();
                 }
@@ -169,9 +184,13 @@ public class Menu {
     }
 
     private static boolean isValidString(String userString) {
-        //TODO identify methods to validate if string is empty or newline and return false if so
-        return 2 > 1;
+        // Trim the string to remove leading and trailing whitespaces to include \n\t\r etc.
+        String trimmedString = userString.trim();
+
+        // Check if the trimmed string is empty
+        return !trimmedString.isEmpty();
     }
+
 
     // Centers text within a specified width by adding padding with dashes '-' on both sides.
     protected String centerText(String text, int width) {

@@ -36,7 +36,6 @@ public class MainMenu extends Menu {
             //TODO modfiy make a selection to allow for printing a custom message off before clearing screen.
             // TODO may need to do this for all other loops that get data from user
             int userSelection = makeASelection();
-            printGroceryList();
 
 
             if (userSelection == ADD_GROCERIES) {
@@ -57,11 +56,21 @@ public class MainMenu extends Menu {
         }
     }
 
+    @Override
+    protected void displayCustomContent() {
+        printGroceryList(); // Call your method to print the grocery list
+    }
+
     private void printGroceryList() {
         Collections.sort(groceryList);
+        System.out.println("*** Grocery List ***");
+        if (groceryList.isEmpty()) {
+            System.out.println("No Items in Grocery List");
+        }
         for (String item : groceryList) {
             System.out.println(item);
         }
+        System.out.println();
 
     }
 
