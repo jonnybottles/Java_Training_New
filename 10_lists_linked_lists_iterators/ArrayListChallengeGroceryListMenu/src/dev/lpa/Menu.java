@@ -19,8 +19,7 @@ public class Menu {
     // Constructor for MainMenu objects
     public Menu(String programName, String menuName, String... menuItems) {
         this.programName = programName.toUpperCase();
-        //TODO modify to use method to capitalize each first letter of menu name.
-        this.menuName = menuName;
+        this.menuName = Utilities.capitalize(menuName);
         this.menuItems = new ArrayList<>(Arrays.asList(menuItems));
         this.isMainMenu = true;
         // Add "Exit Program" as the last item for main menu
@@ -66,7 +65,9 @@ public class Menu {
         return numSelections;
     }
 
-    //TODO Add abstract method "start" to require a start function in all menus.
+
+    // TODO modify code to use printPrompt and inputPrompt from here
+    // https://chat.openai.com/c/00075186-1067-462e-b520-9c4a3b58c148
 
     // Prints menu name centered to the console width with dashes on each side of menu name
     public void printMenuName() {
@@ -112,8 +113,6 @@ public class Menu {
                 Utilities.clearScreen();
                 printMenuName();
                 System.out.println("Please enter a valid selection.\n");
-                // If CTRL D is detected, handle and call exit program
-                // TODO infinite loop here. I believe the buffer needs to be flushed or something
             } catch (NoSuchElementException e) {
                 exitProgram();
             }
@@ -179,10 +178,48 @@ public class Menu {
                 exitProgram();
             }
 
-
         }
 
     }
+
+    // Obtains multiple strings from a user and returns a list of strings
+    public List<String> getStrings(String msg) {
+        Scanner scanner = new Scanner(System.in);
+        List<String> userStrings = new ArrayList<>();
+
+        while (true) {
+            try {
+                System.out.println(msg);
+                String response = scanner.nextLine();
+
+                if (response.isEmpty()) {
+                    break;
+                }
+
+                userStrings.add(response);
+            } catch (NoSuchElementException e) {
+                exitProgram();
+            }
+        }
+
+        return userStrings;
+    }
+
+
+    public int getInt(String msg) {
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            try {
+                System.out.println(msg);
+                return Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter an integer");
+            } catch (NoSuchElementException e) {
+                exitProgram();
+            }
+        }
+    }
+
 
     public void start() {
     }

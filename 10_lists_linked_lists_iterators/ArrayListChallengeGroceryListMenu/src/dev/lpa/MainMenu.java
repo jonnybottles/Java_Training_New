@@ -39,7 +39,7 @@ public class MainMenu extends Menu {
 
 
             if (userSelection == ADD_GROCERIES) {
-                AddItemsMenu theAddItemsMenu = new AddItemsMenu(this, groceryList, "Add Items Menu");
+                AddItemsMenu theAddItemsMenu = new AddItemsMenu(this, groceryList, "add items Menu");
                 theAddItemsMenu.start();
 //                System.out.println("Would call add groceries");
 //                AddItemsMenuTest theAddItemsMenuTest = new AddItemsMenuTest(this, "Add Items", "Add Fruit", "Add Veggies", "Add Meat", "Add Drinks");
