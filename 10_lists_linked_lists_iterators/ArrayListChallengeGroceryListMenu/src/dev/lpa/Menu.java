@@ -13,6 +13,7 @@ public class Menu {
     private List<String> menuItems; // A list of menu items to select from.
     private boolean isMainMenu; // Used to check if the menu is a main or submenu
     private int numSelections; // Size of the menuItems list.
+    private static boolean isAnyMenuRunning;
 
 
     // Constructor for MainMenu objects
@@ -167,13 +168,13 @@ public class Menu {
                         // Sleep for 1 second
                         TimeUnit.SECONDS.sleep(1);
                     } catch (InterruptedException e) {
-                        // Handle the exception
-                        e.printStackTrace();
+                        exitProgram();
+
                     }
                     Utilities.clearScreen();
                     printMenuName();
                 }
-                // TODO infinite loop here. I believe the buffer needs to be flushed or something
+
             } catch (NoSuchElementException e) {
                 exitProgram();
             }
@@ -181,6 +182,9 @@ public class Menu {
 
         }
 
+    }
+
+    public void start() {
     }
 
     private static boolean isValidString(String userString) {
@@ -191,6 +195,21 @@ public class Menu {
         return !trimmedString.isEmpty();
     }
 
+
+    // TODO figure out how to have handleCtrlD work in both sub and parent menus
+    // TODO when Ctrl + D is detected while receiving input (e.g. in make a selection / getString)
+    // TODO it currently identifies a parent / sub menu correctly. When pressing ctrld
+    // TODO from a MainMenu it will exit appropriately. When doing so from a submenu
+    // TODO it returns the previous menu and gets caught in an infinite loop
+    public void handleCtrlD() {
+        if (isMainMenu) {
+            System.out.println("Exiting " + getProgramName());
+            System.exit(0);
+        }
+        getParentMenu().start();
+
+
+    }
 
     // Centers text within a specified width by adding padding with dashes '-' on both sides.
     protected String centerText(String text, int width) {

@@ -25,6 +25,7 @@ public class ExitMenu extends Menu {
         System.exit(0);
     }
 
+    @Override
     public void start() {
         quitOrResume();
     }

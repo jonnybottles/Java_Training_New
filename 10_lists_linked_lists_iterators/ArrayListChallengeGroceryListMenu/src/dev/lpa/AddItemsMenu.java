@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
-public class AddItemsMenu extends MainMenu{
+public class AddItemsMenu extends Menu{
 
     ArrayList<String> additionalItemsList;
     ArrayList<String> groceryList;
@@ -49,7 +49,7 @@ public class AddItemsMenu extends MainMenu{
         }
     }
 
-
+    @Override
     public void start() {
         addItemsMenu();
 
