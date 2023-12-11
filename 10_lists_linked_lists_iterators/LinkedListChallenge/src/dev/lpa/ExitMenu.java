@@ -15,6 +15,7 @@ public class ExitMenu extends Menu {
             String userSelection = makeASelection();
 
             if (userSelection.equals(RETURN_TO_PREVIOUS_MENU)) {
+                getParentMenu().start();
                 break;
             } else if (userSelection.equals(QUIT_PROGRAM)) {
                 actuallyExitProgram();
@@ -27,6 +28,16 @@ public class ExitMenu extends Menu {
         System.out.println("Exiting " + getProgramName() + "...");
         System.exit(0);
     }
+
+    @Override
+    protected void handleSelection(String selection) {
+        if ("Q".equals(selection)) {
+            actuallyExitProgram();
+        } else {
+            super.handleSelection(selection); // Handle other selections normally
+        }
+    }
+
 
     @Override
     public void start() {
