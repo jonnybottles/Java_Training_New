@@ -3,7 +3,7 @@ package dev.lpa;
 public class Destination {
 
     private String town;
-    private Integer distanceFromSydney;
+    private int distanceFromSydney;
 
     public Destination(String town, Integer distanceFromSydney) {
         this.town = town;
@@ -14,7 +14,10 @@ public class Destination {
         return town;
     }
 
-    public Integer getDistanceFromSydney() {
+    public int getDistanceFromSydney() {
         return distanceFromSydney;
     }
+
+
+
 }
