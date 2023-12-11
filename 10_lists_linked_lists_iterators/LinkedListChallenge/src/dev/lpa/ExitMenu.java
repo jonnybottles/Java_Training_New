@@ -3,17 +3,20 @@ package dev.lpa;
 import java.util.NoSuchElementException;
 public class ExitMenu extends Menu {
 
+    private static final String RETURN_TO_PREVIOUS_MENU = "R";
+    private static final String QUIT_PROGRAM = "Q";
+
     public ExitMenu(Menu parentMenu, String menuName) {
         super(parentMenu, menuName);
     }
 
     public void quitOrResume() {
         while (true) {
-            int userSelection = makeASelection();
+            String userSelection = makeASelection();
 
-            if (userSelection == 1) {
+            if (userSelection.equals(RETURN_TO_PREVIOUS_MENU)) {
                 break;
-            } else if (userSelection == 2) {
+            } else if (userSelection.equals(QUIT_PROGRAM)) {
                 actuallyExitProgram();
                 break;
             }
