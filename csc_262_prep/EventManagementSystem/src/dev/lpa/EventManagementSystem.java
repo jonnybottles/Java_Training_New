@@ -2,6 +2,7 @@ package dev.lpa;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class EventManagementSystem {
 
@@ -26,6 +27,28 @@ public class EventManagementSystem {
         return true;
     }
 
+    public void userAddConcert() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Please enter in the event name: ");
+        String eventName = scanner.nextLine();
+
+        System.out.println("Please enter the event date: ");
+        String eventDate = scanner.nextLine();
+
+        System.out.println("Please enter in the band name: ");
+        String bandName = scanner.nextLine();
+
+        System.out.println("Please enter in the music genre: ");
+        String genre = scanner.nextLine();
+
+        addEvent(new Concert(eventName, eventDate, bandName, genre));
+
+
+
+
+
+    }
 
 
     private boolean findEvent (String eventName)  {

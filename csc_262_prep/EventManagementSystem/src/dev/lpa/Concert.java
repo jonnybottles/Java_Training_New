@@ -6,8 +6,10 @@ public class Concert extends Event {
     private String artist;
     private String genre;
 
-    public Concert(String name, String date) {
+    public Concert(String name, String date, String artist, String genre) {
         super(name, date);
+        this.artist = artist;
+        this.genre = genre;
     }
 
     @Override

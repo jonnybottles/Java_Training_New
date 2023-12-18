@@ -7,18 +7,20 @@ public class Main {
     public static void main(String[] args) {
         int theArg;
         theArg = isValidArgs(args);
-        EventManagementSystem theEventManagementSystem = null;
+        EventManagementSystem theEventManagementSystem = new EventManagementSystem();
         if (theArg == 1) {
-            System.out.println("Go interactive when instantiating object");
-        } else {
-            System.out.println("Do not go interactive when instantiating object");
-            theEventManagementSystem = new EventManagementSystem();
-        }
+            theEventManagementSystem.userAddConcert();
 
+        }
 
         Event theNewYearsBash = new Event("New Years 2024 Bash", "30 DEC 2023");
         theNewYearsBash.addAttendee(new Attendee("Jonathan", "xxbutler86xx@gmail.com"));
+
+        Concert theMetalFest = new Concert("MetalFest", "18 JAN 2024", "BearTooth", "Metal");
+        theMetalFest.addAttendee(new Attendee("Amanda", "abutler132@gmail.com"));
+
         theEventManagementSystem.addEvent(theNewYearsBash);
+        theEventManagementSystem.addEvent(theMetalFest);
 
 
         List<Event> theEvents = theEventManagementSystem.getEvents();
@@ -40,14 +42,18 @@ public class Main {
         }
         if (args.length == 1) {
             String userArg = args[0];
-            return 1;
+            if (args[0].equalsIgnoreCase("-c")) {
+                return 1;
+            }
+            return -1;
+
         } else {
             return 0;
         }
     }
 
     private static void usage() {
-        System.out.println("java EventManagementSystem -i");
+        System.out.println("java EventManagementSystem -c");
         System.exit(0);
     }
 
