@@ -1,14 +1,9 @@
 package dev.lpa;
 
-//
-//import java.util.ArrayList;
-//import java.util.Arrays;
-//import java.util.Collections;
-//import java.util.Scanner;
 
 class Main {
     public static void main(String[] args) {
-        MainMenu theMainMenu = new MainMenu("Grocery Shopper", "Main Menu", "Add Groceries",
+        MainMenu theMainMenu = new MainMenu("Grocery Shopper", "main menu", "Add Groceries",
                 "Remove Groceries");
 
         theMainMenu.start();

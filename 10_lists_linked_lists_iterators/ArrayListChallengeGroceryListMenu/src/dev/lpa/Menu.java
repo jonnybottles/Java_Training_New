@@ -3,6 +3,7 @@ package dev.lpa;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 public class Menu {
 
@@ -12,13 +13,13 @@ public class Menu {
     private List<String> menuItems; // A list of menu items to select from.
     private boolean isMainMenu; // Used to check if the menu is a main or submenu
     private int numSelections; // Size of the menuItems list.
+    private static boolean isAnyMenuRunning;
 
 
     // Constructor for MainMenu objects
     public Menu(String programName, String menuName, String... menuItems) {
         this.programName = programName.toUpperCase();
-        //TODO modify to use method to capitalize each first letter of menu name.
-        this.menuName = menuName;
+        this.menuName = Utilities.capitalize(menuName);
         this.menuItems = new ArrayList<>(Arrays.asList(menuItems));
         this.isMainMenu = true;
         // Add "Exit Program" as the last item for main menu
@@ -64,7 +65,9 @@ public class Menu {
         return numSelections;
     }
 
-    //TODO Add abstract method "start" to require a start function in all menus.
+
+    // TODO modify code to use printPrompt and inputPrompt from here
+    // https://chat.openai.com/c/00075186-1067-462e-b520-9c4a3b58c148
 
     // Prints menu name centered to the console width with dashes on each side of menu name
     public void printMenuName() {
@@ -93,10 +96,11 @@ public class Menu {
 
         printMenuName();
         while (true) {
+
+            displayCustomContent();
             displayMenuOptions();
 
             try {
-//                String inputLine = scanner.nextLine();
                 int userSelection = Integer.parseInt(scanner.nextLine());
                 if (isValidSelection(userSelection)) {
                     return userSelection;
@@ -109,8 +113,6 @@ public class Menu {
                 Utilities.clearScreen();
                 printMenuName();
                 System.out.println("Please enter a valid selection.\n");
-                // If CTRL D is detected, handle and call exit program
-                // TODO infinite loop here. I believe the buffer needs to be flushed or something
             } catch (NoSuchElementException e) {
                 exitProgram();
             }
@@ -120,6 +122,11 @@ public class Menu {
 
     }
 
+    // Method that can be overridden by subclasses when there is a need to display custom content
+    // in makeASelection after clearing the screen, but before displaying menu optons
+    protected void displayCustomContent() {
+        // Empty by default
+    }
 
     // Iterates through menuItems and prints off corresponding number selection and item name
     private void displayMenuOptions() {
@@ -155,22 +162,90 @@ public class Menu {
                 if (isValidString(userString)) {
                     return userString;
                 } else {
+                    System.out.println("Please enter a valid response.");
+                    try {
+                        // Sleep for 1 second
+                        TimeUnit.SECONDS.sleep(1);
+                    } catch (InterruptedException e) {
+                        exitProgram();
+
+                    }
                     Utilities.clearScreen();
                     printMenuName();
                 }
-                // TODO infinite loop here. I believe the buffer needs to be flushed or something
+
             } catch (NoSuchElementException e) {
                 exitProgram();
             }
-
 
         }
 
     }
 
+    // Obtains multiple strings from a user and returns a list of strings
+    public List<String> getStrings(String msg) {
+        Scanner scanner = new Scanner(System.in);
+        List<String> userStrings = new ArrayList<>();
+
+        while (true) {
+            try {
+                System.out.println(msg);
+                String response = scanner.nextLine();
+
+                if (response.isEmpty()) {
+                    break;
+                }
+
+                userStrings.add(response);
+            } catch (NoSuchElementException e) {
+                exitProgram();
+            }
+        }
+
+        return userStrings;
+    }
+
+
+    public int getInt(String msg) {
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            try {
+                System.out.println(msg);
+                return Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter an integer");
+            } catch (NoSuchElementException e) {
+                exitProgram();
+            }
+        }
+    }
+
+
+    public void start() {
+    }
+
     private static boolean isValidString(String userString) {
-        //TODO identify methods to validate if string is empty or newline and return false if so
-        return 2 > 1;
+        // Trim the string to remove leading and trailing whitespaces to include \n\t\r etc.
+        String trimmedString = userString.trim();
+
+        // Check if the trimmed string is empty
+        return !trimmedString.isEmpty();
+    }
+
+
+    // TODO figure out how to have handleCtrlD work in both sub and parent menus
+    // TODO when Ctrl + D is detected while receiving input (e.g. in make a selection / getString)
+    // TODO it currently identifies a parent / sub menu correctly. When pressing ctrld
+    // TODO from a MainMenu it will exit appropriately. When doing so from a submenu
+    // TODO it returns the previous menu and gets caught in an infinite loop
+    public void handleCtrlD() {
+        if (isMainMenu) {
+            System.out.println("Exiting " + getProgramName());
+            System.exit(0);
+        }
+        getParentMenu().start();
+
+
     }
 
     // Centers text within a specified width by adding padding with dashes '-' on both sides.
