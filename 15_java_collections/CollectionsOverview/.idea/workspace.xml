@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c3e21a6a-38cc-4256-8f4a-cabb74ef3bb7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../14_lambda_expressions_function_interfaces_method_references/LambdaExpressions/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../14_lambda_expressions_function_interfaces_method_references/LambdaExpressions/src/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../14_lambda_expressions_function_interfaces_method_references/LambdaExpressions/src/Operation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../14_lambda_expressions_function_interfaces_method_references/LambdaExpressions/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../14_lambda_expressions_function_interfaces_method_references/LambdaExpressions/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../14_lambda_expressions_function_interfaces_method_references/LambdaExpressions/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../14_lambda_expressions_function_interfaces_method_references/LambdaExpressions/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CollectionMethods/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../CollectionMethods/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CollectionMethods/src/dev/lpa/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/../CollectionMethods/src/dev/lpa/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CollectionMethods/src/dev/lpa/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../CollectionMethods/src/dev/lpa/Main.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file>
+        <entry file="file://$PROJECT_DIR$/src/dev/lpa/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="4" column="8" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="alwaysUpdateSnapshots" value="false" />
+        <option name="checksumPolicy" value="NOT_SET" />
+        <option name="emulateTerminal" value="false" />
+        <option name="failureBehavior" value="NOT_SET" />
+        <option name="localRepository" value="" />
+        <option name="mavenHome" value="Bundled (Maven 3)" />
+        <option name="nonRecursive" value="false" />
+        <option name="outputLevel" value="INFO" />
+        <option name="printErrorStackTraces" value="false" />
+        <option name="showDialogWithAdvancedSettings" value="false" />
+        <option name="threads" />
+        <option name="useMavenConfig" value="true" />
+        <option name="usePluginRegistry" value="false" />
+        <option name="userSettingsFile" value="" />
+        <option name="workOffline" value="false" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="autoDetectCompiler" value="true" />
+        <option name="createModuleGroups" value="false" />
+        <option name="createModulesForAggregators" value="true" />
+        <option name="dedicatedModuleDir" value="" />
+        <option name="dependencyTypes" value="jar, test-jar, maven-plugin, ejb, ejb-client, jboss-har, jboss-sar, war, ear, bundle" />
+        <option name="downloadAnnotationsAutomatically" value="false" />
+        <option name="downloadDocsAutomatically" value="false" />
+        <option name="downloadSourcesAutomatically" value="false" />
+        <option name="excludeTargetFolder" value="true" />
+        <option name="generatedSourcesFolder" value="AUTODETECT" />
+        <option name="importAutomatically" value="false" />
+        <option name="importToTreeStructure" value="false" />
+        <option name="jdkForImporter" value="#USE_PROJECT_JDK" />
+        <option name="keepSourceFolders" value="true" />
+        <option name="lookForNested" value="false" />
+        <option name="updateFoldersOnImportPhase" value="process-resources" />
+        <option name="useMavenOutput" value="true" />
+        <option name="vmOptionsForImporter" value="" />
+        <option name="workspaceImportEnabled" value="true" />
+      </MavenImportingSettings>
+    </option>
+    <option name="enabledProfiles">
+      <list />
+    </option>
+    <option name="disabledProfiles">
+      <list />
+    </option>
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 8
+}]]></component>
+  <component name="ProjectId" id="2ZpRuCL0umkVtTtW7Z03rnfA5iO" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Merging main",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-17.0.9-corretto-17.0.9-3183f394aec4-8f899f12" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c3e21a6a-38cc-4256-8f4a-cabb74ef3bb7" name="Changes" comment="" />
+      <created>1703117257357</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1703117257357</updated>
+      <workItem from="1703117258398" duration="1525000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

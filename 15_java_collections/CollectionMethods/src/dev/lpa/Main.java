@@ -49,6 +49,8 @@ public class Main {
         Collections.sort(deck, sortingAlgorithm);
         Card.printDeck(deck, "Standard  Deck sort by rank, suit", 13);
 
+        Collections.reverse(deck);
+        Card.printDeck(deck, "Sorted by rain, suit reversed", 13);
 
 
 
