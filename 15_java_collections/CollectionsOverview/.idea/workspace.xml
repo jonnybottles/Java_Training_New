@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c3e21a6a-38cc-4256-8f4a-cabb74ef3bb7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../14_lambda_expressions_function_interfaces_method_references/LambdaExpressions/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../14_lambda_expressions_function_interfaces_method_references/LambdaExpressions/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../14_lambda_expressions_function_interfaces_method_references/LambdaExpressions/src/Operation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../14_lambda_expressions_function_interfaces_method_references/LambdaExpressions/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../14_lambda_expressions_function_interfaces_method_references/LambdaExpressions/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../14_lambda_expressions_function_interfaces_method_references/LambdaExpressions/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../14_lambda_expressions_function_interfaces_method_references/LambdaExpressions/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CollectionMethods/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../CollectionMethods/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CollectionMethods/src/dev/lpa/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/../CollectionMethods/src/dev/lpa/Card.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CollectionMethods/src/dev/lpa/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../CollectionMethods/src/dev/lpa/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,9 +78,9 @@
       <list />
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2ZpRuCL0umkVtTtW7Z03rnfA5iO" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
@@ -97,8 +90,9 @@
     "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Merging main",
+    "git-widget-placeholder": "Rebasing main",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/xxbut/code/Java_Training_New/15_java_collections/FiveCardDraw",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -122,7 +116,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1703117257357</updated>
-      <workItem from="1703117258398" duration="1525000" />
+      <workItem from="1703117258398" duration="1526000" />
+      <workItem from="1703242694180" duration="1087000" />
     </task>
     <servers />
   </component>
