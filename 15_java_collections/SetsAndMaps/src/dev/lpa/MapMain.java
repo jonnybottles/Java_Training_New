@@ -36,8 +36,36 @@ public class MapMain {
         System.out.println("--------------------------------");
         contacts.clear();
         for (Contact contact: fullList) {
-            Contact dulplicate = contacts.put(contact.getName(), contact);
+            Contact duplicate = contacts.put(contact.getName(), contact);
+            if (duplicate != null) {
+//                System.out.println("duplicate = " + duplicate);
+//                System.out.println("current = " + contact);
+                contacts.put(contact.getName(), contact.mergeContactData(duplicate));
+            }
         }
+        contacts.forEach((k, v) -> System.out.println("key=" + k + ", value=" + v));
+
+        System.out.println("----------------------------");
+        contacts.clear();
+
+        for (Contact contact : fullList) {
+            contacts.putIfAbsent(contact.getName(), contact);
+        }
+        contacts.forEach((k, v) -> System.out.println("key=" + k + ", value=" + v));
+
+        System.out.println("----------------------------");
+        contacts.clear();
+
+        for (Contact contact : fullList) {
+            Contact duplicate = contacts.putIfAbsent(contact.getName(), contact);
+            if (duplicate != null) {
+                contacts.put(contact.getName(), contact.mergeContactData(duplicate));
+            }
+        }
+        contacts.forEach((k, v) -> System.out.println("key=" + k + ", value=" + v));
+
+        System.o
+
 
     }
 
