@@ -64,11 +64,61 @@ public class MapMain {
         }
         contacts.forEach((k, v) -> System.out.println("key=" + k + ", value=" + v));
 
-        System.o
+        System.out.println("-----------------------------");
+        contacts.clear();
+        fullList.forEach(contact -> contacts.merge(contact.getName(), contact, Contact::mergeContactData));
+
+        contacts.forEach((k, v) -> System.out.println("key=" + k + ", value = " + v));
+
+        System.out.println("-----------------------------");
+
+        for (String contactName : new String[] {"Daisy Duck", "Daffy Duck", "Scrooge McDuck"}) {
+            contacts.computeIfAbsent(contactName, Contact::new);
+        }
+
+        contacts.forEach((k, v) -> System.out.println("key = " + k + ", value= " + v));
+
+        System.out.println("--------------------------------");
+        for (String contactName : new String[] {"Daisy Duck", "Daffy Duck", "Scrooge McDuck"}) {
+            contacts.computeIfPresent(contactName, (k,v) -> {
+                v.addEmail("Fun Place"); return v;});
+            }
+
+        contacts.forEach((k, v ) -> System.out.println("key=" + k + ", value= " + v));
+
+        System.out.println("-------------------------------");
+        contacts.replaceAll((k, v) -> {
+            String newEmail = k.replaceAll(" ", "") + "@funplace.com";
+            v.replaceEmailIFExists("DDuck@funplace.com", newEmail);
+            return v;
+        });
+
+        contacts.forEach((k, v) -> System.out.println("key=" + k + ",value = " + v));
+
+        Contact daisy = new Contact("Daisy Jane Duck", "daisyj@duck.com");
+
+        Contact replacedContact = contacts.replace("Daisy Duck", daisy);
+        System.out.println("daisy = " + daisy);
+        System.out.println("replacedContact =  " + replacedContact);
+        contacts.forEach((k, v) -> System.out.println("key= " + k + ", value= " + v));
+
+        System.out.println("------------------------------------");
+
+        Contact updatedDaisy = replacedContact.mergeContactData(daisy);
+        System.out.println("updatedDaisy = " + updatedDaisy);
+        boolean success = contacts.replace("Daisy Duck", replacedContact, updatedDaisy);
+
+        if (success) {
+            System.out.println("Successfully replaced element");
+        } else {
+            System.out.printf("Did not match on boy key: %s and value: %s %n"
+                    .formatted("Daisy Duck", replacedContact));
+        }
+        contacts.forEach((k, v) -> System.out.println("key= " + k + ", value= " + v));
+
+
+
 
 
     }
-
-
-
 }
