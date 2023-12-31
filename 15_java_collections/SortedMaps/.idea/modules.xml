@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ScannerProjectReadingFiles.iml" filepath="$PROJECT_DIR$/ScannerProjectReadingFiles.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SortedMaps.iml" filepath="$PROJECT_DIR$/SortedMaps.iml" />
     </modules>
   </component>
 </project>
