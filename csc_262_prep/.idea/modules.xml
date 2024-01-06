@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ArgParsin/ArgParsin.iml" filepath="$PROJECT_DIR$/ArgParsin/ArgParsin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EventManagementSystem/EventManagementSystem.iml" filepath="$PROJECT_DIR$/EventManagementSystem/EventManagementSystem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LibraryManagementSystem/LibraryManagementSystem.iml" filepath="$PROJECT_DIR$/LibraryManagementSystem/LibraryManagementSystem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/csc_262_prep.iml" filepath="$PROJECT_DIR$/.idea/csc_262_prep.iml" />
+    </modules>
+  </component>
+</project>
