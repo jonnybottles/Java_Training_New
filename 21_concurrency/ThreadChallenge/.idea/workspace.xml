@@ -4,7 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bfa021c1-01cf-42f1-9a35-c3e086c23131" name="Changes" comment="" />
+    <list default="true" id="bfa021c1-01cf-42f1-9a35-c3e086c23131" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../Synchronization/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SynchronizationChallenge/SynchronizationChallenge.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RunningThreads/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../RunningThreads/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Synchronization/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../Synchronization/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Synchronization/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Synchronization/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Synchronization/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Synchronization/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Synchronization/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Synchronization/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Synchronization/Synchronization.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Synchronization/src/dev/lpa/BankAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Synchronization/src/dev/lpa/BankAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Synchronization/src/dev/lpa/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Synchronization/src/dev/lpa/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Threads/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Threads/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -83,9 +96,9 @@
       <list />
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2aaF3SA4WP8FYGJDAOzihgESBAj" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
@@ -95,9 +108,9 @@
     "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Rebasing main",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/xxbut/code/Java_Training_New/21_concurrency/MultipleThreads",
+    "last_opened_file_path": "C:/Users/xxbut/code/Java_Training_New/21_concurrency/ThreadChallenge",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -115,6 +128,7 @@
       <option name="presentableId" value="Default" />
       <updated>1704548585426</updated>
       <workItem from="1704548586457" duration="2593000" />
+      <workItem from="1704636732827" duration="636000" />
     </task>
     <servers />
   </component>

@@ -4,7 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3f4e3af-1d60-4e1e-8431-594f5dedad6d" name="Changes" comment="" />
+    <list default="true" id="d3f4e3af-1d60-4e1e-8431-594f5dedad6d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../Synchronization/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SynchronizationChallenge/SynchronizationChallenge.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Synchronization/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../Synchronization/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Synchronization/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Synchronization/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Synchronization/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Synchronization/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Synchronization/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Synchronization/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Synchronization/Synchronization.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Synchronization/src/dev/lpa/BankAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Synchronization/src/dev/lpa/BankAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Synchronization/src/dev/lpa/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Synchronization/src/dev/lpa/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ThreadChallenge/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ThreadChallenge/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Threads/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Threads/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,9 +30,12 @@
       </list>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2VXROAD1EQOhj0mPwfJE93Sm3NJ" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
@@ -28,9 +44,40 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "settings.editor.selected.configurable": "configurable.group.editor"
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/xxbut/code/Java_Training_New/21_concurrency/ThreadChallenge",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "configurable.group.editor",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="RunningThreads" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="RunningThreads" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-17.0.9-corretto-17.0.9-3183f394aec4-8f899f12" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -39,7 +86,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1694980403440</updated>
+      <workItem from="1704545371575" duration="2345000" />
+      <workItem from="1704636420209" duration="950000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>
