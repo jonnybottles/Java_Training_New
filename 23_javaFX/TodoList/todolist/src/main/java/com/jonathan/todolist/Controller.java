@@ -2,13 +2,18 @@ package com.jonathan.todolist;
 
 import com.jonathan.todolist.datamodel.TodoData;
 import com.jonathan.todolist.datamodel.TodoItem;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.util.Callback;
@@ -16,8 +21,10 @@ import javafx.util.Callback;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 public class Controller {
    private List<TodoItem> todoItems;
@@ -36,6 +43,15 @@ public class Controller {
 
    @FXML
    private ContextMenu listContextMenu;
+
+   @FXML
+   private ToggleButton filterToggleButton;
+
+   private FilteredList<TodoItem> filteredList;
+
+   private Predicate<TodoItem> wantAllItems;
+
+   private Predicate<TodoItem> wantTodaysItems;
 
    public void initialize() {
 
@@ -63,7 +79,32 @@ public class Controller {
            }
        });
 
-       todoListView.setItems(TodoData.getInstance().getTodoItems());
+       wantAllItems = new Predicate<TodoItem>() {
+           @Override
+           public boolean test(TodoItem todoItem) {
+               return true;
+           }
+       };
+
+       wantTodaysItems = new Predicate<TodoItem>() {
+           @Override
+           public boolean test(TodoItem todoItem) {
+               return (todoItem.getDeadline().equals(LocalDate.now()));
+           }
+       };
+
+       filteredList = new FilteredList<TodoItem>(TodoData.getInstance().getTodoItems(), wantAllItems);
+
+
+       SortedList<TodoItem> sortedList = new SortedList<TodoItem>(filteredList, new Comparator<TodoItem>() {
+           @Override
+           public int compare(TodoItem o1, TodoItem o2) {
+               return o1.getDeadline().compareTo(o2.getDeadline());
+           }
+       });
+
+//       todoListView.setItems(TodoData.getInstance().getTodoItems());
+       todoListView.setItems(sortedList);
        todoListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
        todoListView.getSelectionModel().selectFirst();
 
@@ -138,6 +179,16 @@ public class Controller {
    }
 
    @FXML
+   public void handleKeyPressed(KeyEvent keyEvent) {
+       TodoItem selectedItem = todoListView.getSelectionModel().getSelectedItem();
+       if(selectedItem != null) {
+           if(keyEvent.getCode().equals(KeyCode.DELETE)) {
+               deleteItem(selectedItem);
+           }
+       }
+   }
+
+   @FXML
    public void handleClickListView() {
        TodoItem item = todoListView.getSelectionModel().getSelectedItem();
        itemDetailsTextArea.setText(item.getDetails());
@@ -155,8 +206,31 @@ public class Controller {
        if (result.isPresent() && result.get() == ButtonType.OK) {
            TodoData.getInstance().deleteTodoItem(item);
        }
+   }
 
+   @FXML
+   public void handleFilterButton() {
+       TodoItem selectedItem = todoListView.getSelectionModel().getSelectedItem();
 
+       if(filterToggleButton.isSelected()) {
+           filteredList.setPredicate(wantTodaysItems);
+           if(filteredList.isEmpty()) {
+               itemDetailsTextArea.clear();
+               deadlineLabel.setText("");
+           } else if(filteredList.contains(selectedItem)) {
+               todoListView.getSelectionModel().select(selectedItem);
+           } else {
+               todoListView.getSelectionModel().selectFirst();
+           }
+       } else {
+            filteredList.setPredicate(wantAllItems);
+            todoListView.getSelectionModel().select(selectedItem);
+       }
+   }
+
+   @FXML
+   public void handleExit() {
+       Platform.exit();
    }
 
 }
