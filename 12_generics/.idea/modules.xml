@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/12_generics.iml" filepath="$PROJECT_DIR$/.idea/12_generics.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CSC262BMI/CSC262BMI.iml" filepath="$PROJECT_DIR$/CSC262BMI/CSC262BMI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CSC262Exam/CSC262Exam.iml" filepath="$PROJECT_DIR$/CSC262Exam/CSC262Exam.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CSC262RandomIntegers/CSC262RandomIntegers.iml" filepath="$PROJECT_DIR$/CSC262RandomIntegers/CSC262RandomIntegers.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Comparing/Comparing.iml" filepath="$PROJECT_DIR$/Comparing/Comparing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GenericMappableChallenge/GenericMappableChallenge.iml" filepath="$PROJECT_DIR$/GenericMappableChallenge/GenericMappableChallenge.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Generics/Generics.iml" filepath="$PROJECT_DIR$/Generics/Generics.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Rectangle/Rectangle.iml" filepath="$PROJECT_DIR$/Rectangle/Rectangle.iml" />
+    </modules>
+  </component>
+</project>

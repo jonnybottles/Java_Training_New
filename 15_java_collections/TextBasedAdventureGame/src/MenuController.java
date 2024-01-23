@@ -42,6 +42,14 @@ public class MenuController {
         streamMenu.addMenuOption("W", valleyMenu);
         streamMenu.addMenuOption("N", wellHouseMenu);
 
+        roadMenu.setMenuOptionDescription("A road to the West");
+        hillMenu.setMenuOptionDescription("A hill to the North");
+        wellHouseMenu.setMenuOptionDescription("A well house to the East");
+        valleyMenu.setMenuOptionDescription("A valley to the South");
+        forestMenu.setMenuOptionDescription("A forest to the North");
+        lakeMenu.setMenuOptionDescription("A lake to the North");
+        streamMenu.setMenuOptionDescription("A stream to the South");
+
     }
 
     public void startGame() {
