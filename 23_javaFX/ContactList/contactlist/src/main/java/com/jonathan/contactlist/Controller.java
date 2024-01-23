@@ -38,6 +38,7 @@ public class Controller {
         ContactData theContacts = new ContactData();
         theContacts.addContact(new Contact("Lorenzo", "Ireland", "1-800-CPT-CPLR", "Americas Premier Programmer"));
         theContacts.addContact(new Contact("Paul", "Navarro", "1-800-CLD-ARCH", "USA's Leading Cloud Architect"));
+        theContacts.addContact(new Contact("Blake", "Butler", "1-800-BRO-SIFF", "CyberSecurity Pro In Training"));
 
 
         //Bind the TableView to the list of contacts
