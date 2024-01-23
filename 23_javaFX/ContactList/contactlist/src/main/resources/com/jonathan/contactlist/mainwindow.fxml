@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<BorderPane fx:id="mainBorderPane" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.jonathan.contactlist.Controller">
+    <top>
+        <VBox>
+            <MenuBar>
+                <Menu text="Contacts">
+                    <items>
+                        <MenuItem text="Add" onAction="#showAddItemDialog"/> <!-- add onAction reference here -->
+                        <SeparatorMenuItem/>
+                        <MenuItem text="Edit"/> <!--add onAction reference here -->
+                        <SeparatorMenuItem/>
+                        <MenuItem text="Delete"/> <!-- add onAction reference here -->
+                    </items>
+                </Menu>
+            </MenuBar>
+        </VBox>
+    </top>
+
+    <center>
+       <TableView fx:id="tableView" fixedCellSize="25.0"> <!-- may need to add fx:id here-->
+            <columns>
+                <TableColumn fx:id="firstNameCol" text="First Name">
+                </TableColumn>
+                <TableColumn fx:id="lastNameCol" text="Last Name">
+                </TableColumn>
+                <TableColumn fx:id="phoneNumberCol" text="Phone Number">
+                </TableColumn>
+                <TableColumn fx:id="notesCol" text="Notes">
+                </TableColumn>
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>
