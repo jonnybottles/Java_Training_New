@@ -7,9 +7,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class Main extends Application {
     @Override
@@ -19,7 +16,6 @@ public class Main extends Application {
         stage.setTitle("Grades GUI");
         stage.setScene(scene);
         stage.show();
-//        testFileHandler();
 
     }
 
@@ -27,15 +23,5 @@ public class Main extends Application {
         launch();
     }
 
-    public static void testFileHandler() {
-        FileHandler theFileHandler = new FileHandler("test.txt", "test.txt");
-        List<String> theGradesList = new ArrayList<String>(Arrays.asList("72.0", "100.0", "65.8", "88.0"));
-        theFileHandler.openWriteFile();
-        theFileHandler.writeGrades(theGradesList);
 
-        List<String> theEmptyGradesList = new ArrayList<>();
-        theFileHandler.openReadFile();
-        theFileHandler.readGrades(theEmptyGradesList);
-
-    }
 }

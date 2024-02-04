@@ -1,11 +1,13 @@
 package com.jonathan.gradesgui;
 
+import com.jonathan.gradesgui.datamodel.FileHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class Controller {
 
@@ -36,26 +38,59 @@ public class Controller {
     @FXML
     private Button minimizeButton;
 
+    private FileHandler theFileHandler;
 
+
+    public void initialize() {
+        theFileHandler = new FileHandler();
+    }
 
     @FXML
     public void onReadGradesFileClicked() {
-        System.out.println("Read Grades File Clicked");
+        String fileName = fileNameField.getText().trim();
+        theFileHandler.setReadFile(fileName);
+        if (!theFileHandler.openReadFile()) {
+            readFileNotificationLabel.setText("File does not exist.");
+            gradeComboBox.getItems().clear();
+            GPALabel.setText("GPA is: ...");
+
+        } else if (theFileHandler.openReadFile()) {
+            theFileHandler.readGrades();
+            if (!theFileHandler.getGrades().isEmpty()) {
+                gradeComboBox.getItems().clear();
+                gradeComboBox.getItems().addAll(theFileHandler.getGrades());
+                readFileNotificationLabel.setText("Read file successful");
+
+            } else {
+                readFileNotificationLabel.setText("No grades found in file");
+                gradeComboBox.getItems().clear();
+                GPALabel.setText("GPA is: ...");
+            }
+            theFileHandler.closeFile();
+        }
+
     }
 
     @FXML
     public void onCalculateGPAClicked() {
-        System.out.println("Calculate GPA Clicked");
+        if (gradeComboBox.getItems().isEmpty()) {
+            readFileNotificationLabel.setText("Please load grades file first");
+            return;
+        }
+        String selectedGrade = gradeComboBox.getValue();
+        GPALabel.setText("GPA is: " + theFileHandler.getGPA(selectedGrade));
     }
 
     @FXML
     public void onOKClicked() {
-        System.out.println("OK Clicked");
+        Stage stage = (Stage) okButton.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
     public void onMinimizeClicked() {
-        System.out.println("Minimize Clicked");
+        Stage stage = (Stage) okButton.getScene().getWindow();
+        stage.setIconified(true);
     }
 
 

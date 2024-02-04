@@ -21,8 +21,7 @@
                   AnchorPane.topAnchor="50" AnchorPane.rightAnchor="10"/>
         <Label fx:id="GPALabel" text="GPA is: ..."
                AnchorPane.topAnchor="90"  AnchorPane.leftAnchor="30"/>
-        <Label fx:id="readFileNotificationLabel" text="Read file successful *** SET THIS DYNAMICALLY"
-               AnchorPane.topAnchor="130"  AnchorPane.leftAnchor="10"/>
+        <Label fx:id="readFileNotificationLabel" AnchorPane.topAnchor="130"  AnchorPane.leftAnchor="10"/>
         <Button fx:id="okButton" text="OK" prefWidth="65"
                 AnchorPane.bottomAnchor="10"  AnchorPane.rightAnchor="10" onAction="#onOKClicked"/>
         <Button fx:id="minimizeButton" text="Minimize" prefWidth="65"

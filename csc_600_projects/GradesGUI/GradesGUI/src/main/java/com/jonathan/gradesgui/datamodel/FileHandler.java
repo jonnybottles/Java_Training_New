@@ -2,6 +2,7 @@ package com.jonathan.gradesgui.datamodel;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.List;
 import java.util.Scanner;
@@ -13,19 +14,44 @@ public class FileHandler {
     private String readFile;
     private String writeFile;
 
+    private List<String> grades;
+
     public FileHandler(String readFile, String writeFile) {
         this.readFile = readFile;
         this.writeFile = writeFile;
+        grades = new ArrayList<>();
 
     }
 
+    public FileHandler() {
+        grades = new ArrayList<>();
+    }
+
+    public List<String> getGrades() {
+        return grades;
+    }
+
+    public String getReadFile() {
+        return readFile;
+    }
+
+    public void setReadFile(String readFile) {
+        this.readFile = readFile;
+    }
+
+    public String getWriteFile() {
+        return writeFile;
+    }
+
+    public void setWriteFile(String writeFile) {
+        this.writeFile = writeFile;
+    }
 
     public boolean openReadFile() {
         try {
             fileReader = new Scanner(new File(readFile));
             return true;
         } catch (FileNotFoundException e) {
-            System.out.println("File: " + readFile + " not found.");
             return false;
         }
     }
@@ -35,7 +61,6 @@ public class FileHandler {
             fileWriter = new Formatter(writeFile);
             return true;
         } catch (FileNotFoundException e) {
-            System.out.println("File " + writeFile + " could not be created or opened for writing.");
             return false;
         }
     }
@@ -43,7 +68,6 @@ public class FileHandler {
     public boolean writeGrades(List<String> grades) {
 
         if (fileWriter == null) {
-            System.out.println("File writer was not initialized");
             return false;
         }
 
@@ -55,25 +79,18 @@ public class FileHandler {
             fileWriter.flush();
             return true;
         } catch (Exception e) {
-            System.out.println("Error occurred while writing grades to file");
             return false;
         }
 
     }
 
-    public boolean readGrades(List<String> grades) {
+    public boolean readGrades() {
         if (fileReader == null) {
-            System.out.println("File reader was not initialized");
             return false;
         }
 
         while (fileReader.hasNext()) {
             grades.add(fileReader.nextLine().trim());
-        }
-
-        System.out.println("The grades read from the file are:");
-        for (String grade : grades) {
-            System.out.println(grade);
         }
 
         return true;
@@ -90,5 +107,37 @@ public class FileHandler {
             fileReader = null;
         }
     }
+
+    public String getGPA(String grade) {
+        switch (grade) {
+            case "A":
+                return "4.0";
+            case "A-":
+                return "3.7";
+            case "B+":
+                return "3.3";
+            case "B":
+                return "3.0";
+            case "B-":
+                return "2.7";
+            case "C+":
+                return "2.3";
+            case "C":
+                return "2.0";
+            case "C-":
+                return "1.7";
+            case "D+":
+                return "1.3";
+            case "D":
+                return "1.0";
+            case "D-":
+                return "0.7";
+            case "F":
+                return "0.0";
+            default:
+                return "Invalid grade";
+        }
+    }
+
 
 }
