@@ -15,11 +15,11 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        testBMICalculator();
+//        testBMICalculator();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("mainwindow.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 700, 140);
+        stage.setTitle("Individual Health Assessment");
         stage.setScene(scene);
         stage.show();
     }
@@ -40,7 +40,7 @@ public class Main extends Application {
             calculator.setWeight(testCase[0]);
             calculator.calculateBMI();
             System.out.println("For weight " + testCase[0] + "kg and height " + testCase[1] + "m, BMI is: " +
-                    calculator.getBMI() + " BMI Category is: " + calculator.getBMICategory());
+                    calculator.getBMIString() + " BMI Category is: " + calculator.getBMICategory());
         }
     }
 

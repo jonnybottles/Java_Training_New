@@ -29,14 +29,18 @@ public class BMICalculator {
         return height;
     }
 
-    public String getBMI() {
+    public String getBMIString() {
         if (BMI == 0) {
             calculateBMI();
             if (BMI == 0) {
-                return "BMI not calculated. Set height and weight first.";
+                return "N/A";
             }
         }
         return String.format("%.2f", BMI);
+    }
+
+    public float getBMIFloat() {
+        return BMI;
     }
 
     public void setWeight(float weight) {
@@ -51,7 +55,7 @@ public class BMICalculator {
         int listIndex = -1;
         if (BMI == 0) {
             System.out.println("BMI was never calculated and is set to zero.");
-            return "Invalid BMI value";
+            return "N/A";
         } else if (BMI < 18) {
             listIndex = 0;
         } else if (BMI < 18.5) {
