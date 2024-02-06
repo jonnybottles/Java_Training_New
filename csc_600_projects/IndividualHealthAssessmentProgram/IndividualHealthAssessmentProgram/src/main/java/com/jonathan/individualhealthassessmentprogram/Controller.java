@@ -57,9 +57,6 @@ public class Controller {
         }
 
 
-
-
-
     }
 
     private float validateHeightWeight(String input, String type) {

@@ -69,7 +69,7 @@ public class Calculator {
         }
     }
 
-    // Validates that a digit is a zero or not. Used only when calling divide method.
+    // Validates that a digit is a zero or not. Used only when calling divide method:
     public boolean isSecondNumberZero() {
         return numberTwoFloat == 0;
     }
