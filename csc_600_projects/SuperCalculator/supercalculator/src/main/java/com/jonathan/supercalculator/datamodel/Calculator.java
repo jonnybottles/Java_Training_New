@@ -4,6 +4,7 @@ import java.math.RoundingMode;
 import java.text.NumberFormat;
 import java.util.Locale;
 
+// Class which contains all methods and properties for the calculator class.
 public class Calculator {
 
     private float numberOneFloat;
@@ -12,22 +13,27 @@ public class Calculator {
     public Calculator() {
     }
 
+    // Performs add operations and returns formatted result.
     public String add() {
         return formatResult(numberOneFloat + numberTwoFloat);
     }
 
+    // Performs subtract operations and returns formatted result.
     public String subtract() {
         return formatResult(numberOneFloat - numberTwoFloat);
     }
 
+    // Performs multiply operations and returns formatted result.
     public String multiply() {
         return formatResult(numberOneFloat * numberTwoFloat);
     }
 
+    // Performs divide operations and returns formatted result.
     public String divide() {
         return formatResult(numberOneFloat / numberTwoFloat);
     }
 
+    // Resets values stored in calculator object.
     public void clear() {
         this.numberOneFloat = 0;
         this.numberTwoFloat = 0;
@@ -51,6 +57,7 @@ public class Calculator {
         return formatter.format((double) result);
     }
 
+    // Validates that the data being passed via the GUI text fields is a valid number.
     public boolean isValidInput(String numberOne, String numberTwo) {
         try {
             this.numberOneFloat = Float.parseFloat(numberOne);
@@ -62,6 +69,7 @@ public class Calculator {
         }
     }
 
+    // Validates that a digit is a zero or not. Used only when calling divide method.
     public boolean isSecondNumberZero() {
         return numberTwoFloat == 0;
     }
