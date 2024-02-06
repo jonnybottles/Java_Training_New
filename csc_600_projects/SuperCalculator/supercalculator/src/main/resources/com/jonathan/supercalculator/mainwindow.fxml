@@ -37,13 +37,15 @@
 
             <HBox spacing="15" alignment="CENTER">
                 <padding>
-                    <Insets top="50" right="0" bottom="10" left="130"/>
+                    <Insets top="50" right="0" bottom="10" left="250"/>
                 </padding>
-                <Button fx:id="clearButton" text="Clear" style="-fx-pref-width: 70;"/>
-                <Button fx:id="exitButton" text="Exit" style="-fx-pref-width: 70;"/>
-                <Label fx:id="statusLabel" text="subtracting... ** CHANGE TO DYNAMIC">
+                <!-- HBox.hgrow set to never, to ensure that when the statusLabel changes, it doesn't
+                 push / move the clear / exit buttons around on the GUI. -->
+                <Button fx:id="clearButton" text="Clear" HBox.hgrow="NEVER" style="-fx-pref-width: 70;" onAction="#onClearClicked"/>
+                <Button fx:id="exitButton" text="Exit" HBox.hgrow="NEVER" style="-fx-pref-width: 70;" onAction="#onExitClicked"/>
+                <Label fx:id="statusLabel" maxWidth="200.0" HBox.hgrow="ALWAYS">
                     <HBox.margin>
-                        <Insets left="50"/>
+                        <Insets left="50" />
                     </HBox.margin>
                 </Label>
 

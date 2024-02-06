@@ -7,6 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class Controller {
 
@@ -56,34 +57,39 @@ public class Controller {
 
         if (!theCalculator.isValidInput(numberOne, numberTwo)) {
             displayErrorAlert("Invalid input", "Please enter integer values only.");
-            theCalculator.clear();
+            clearCalculator();
             return;
         }
 
-        String answer;
+        String answer = "";
         switch (buttonText) {
             case "Add":
                 answer = theCalculator.add();
+                statusLabel.setText("adding...");
                 break;
             case "Subtract":
                 answer = theCalculator.subtract();
+                statusLabel.setText("subtracting...");
                 break;
             case "Multiply":
                 answer = theCalculator.multiply();
+                statusLabel.setText("multiplying...");
                 break;
             case "Divide":
                 if (theCalculator.isSecondNumberZero()) {
                     displayErrorAlert("Invalid input", "Cannot divide by zero.");
-                    theCalculator.clear();
+                    clearCalculator();
                     return;
                 }
-                theCalculator.divide();
+                answer = theCalculator.divide();
+                statusLabel.setText("dividing...");
                 break;
         }
 
-        // NEED TO SET RESULTS FIELD NOW!!!!!!!!!!!!
 
+        resultField.setText(answer);
     }
+
 
     public void displayErrorAlert(String header, String msg) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -93,12 +99,24 @@ public class Controller {
         alert.showAndWait();
     }
 
+    @FXML
+    public void onClearClicked() {
+        clearCalculator();
+    }
+
     public void clearCalculator() {
         theCalculator.clear();
         numberOneField.setText("");
         numberTwoField.setText("");
         resultField.setText("");
+        statusLabel.setText("");
 
+    }
+
+    @FXML
+    public void onExitClicked() {
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
     }
 
 }
