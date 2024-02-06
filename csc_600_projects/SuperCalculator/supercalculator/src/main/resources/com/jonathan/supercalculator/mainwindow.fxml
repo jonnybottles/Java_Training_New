@@ -19,29 +19,29 @@
                     <Insets top="30" right="20" bottom="20" left="20"/>
                 </padding>
                 <Label text="Number 1" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-                <TextField GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <TextField fx:id="numberOneField" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
                 <Label text="Number 2" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-                <TextField GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <TextField fx:id="numberTwoField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
                 <Label text="Result" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
-                <TextField GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+                <TextField fx:id="resultField" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
             </GridPane>
             <HBox spacing="50" alignment="CENTER" >
                 <padding>
                     <Insets top="15" right="0" bottom="0" left="0"/>
                 </padding>
-                <Button text="Add" style="-fx-pref-width: 90;"/>
-                <Button text="Subtract" style="-fx-pref-width: 90;"/>
-                <Button text="Multiply" style="-fx-pref-width: 90;"/>
-                <Button text="Divide" style="-fx-pref-width: 90;"/>
+                <Button fx:id="addButton" text="Add" style="-fx-pref-width: 90;" onAction="#onMathOperationClicked"/>
+                <Button fx:id="subtractButton" text="Subtract" style="-fx-pref-width: 90;" onAction="#onMathOperationClicked"/>
+                <Button fx:id="multiplyButton" text="Multiply" style="-fx-pref-width: 90;" onAction="#onMathOperationClicked"/>
+                <Button fx:id="divideButton" text="Divide" style="-fx-pref-width: 90;" onAction="#onMathOperationClicked"/>
             </HBox>
 
             <HBox spacing="15" alignment="CENTER">
                 <padding>
                     <Insets top="50" right="0" bottom="10" left="130"/>
                 </padding>
-                <Button text="Clear" style="-fx-pref-width: 70;"/>
-                <Button text="Exit" style="-fx-pref-width: 70;"/>
-                <Label text="subtracting...">
+                <Button fx:id="clearButton" text="Clear" style="-fx-pref-width: 70;"/>
+                <Button fx:id="exitButton" text="Exit" style="-fx-pref-width: 70;"/>
+                <Label fx:id="statusLabel" text="subtracting... ** CHANGE TO DYNAMIC">
                     <HBox.margin>
                         <Insets left="50"/>
                     </HBox.margin>
