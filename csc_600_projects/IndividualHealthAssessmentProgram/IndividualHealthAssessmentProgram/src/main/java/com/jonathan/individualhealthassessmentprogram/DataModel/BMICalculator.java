@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+// Class that contains the properties and methods for calculating a users BMI
 public class BMICalculator {
 
     private float weight;
@@ -11,6 +12,8 @@ public class BMICalculator {
     private float BMI;
     private List<String> BMIStrings;
 
+    // Constructor that initializes the BMIStrings arrays list and sets the values
+    // for the BMI Categories
     public BMICalculator() {
         this.BMIStrings = new ArrayList<>(Arrays.asList(
                 "Seriously Underweight",
@@ -18,26 +21,8 @@ public class BMICalculator {
                 "Normal Weight",
                 "Overweight",
                 "Obese"));
-
     }
 
-    public float getWeight() {
-        return weight;
-    }
-
-    public float getHeight() {
-        return height;
-    }
-
-    public String getBMIString() {
-        if (BMI == 0) {
-            calculateBMI();
-            if (BMI == 0) {
-                return "N/A";
-            }
-        }
-        return String.format("%.2f", BMI);
-    }
 
     public float getBMIFloat() {
         return BMI;
@@ -51,6 +36,28 @@ public class BMICalculator {
         this.height = height;
     }
 
+    // Returns string formatted version of the users BMI value.
+    public String getBMIString() {
+        if (BMI == 0) {
+            calculateBMI();
+            if (BMI == 0) {
+                return "N/A";
+            }
+        }
+        return String.format("%.2f", BMI);
+    }
+
+    // Calculates BMI value.
+    public void calculateBMI() {
+
+        if (height != 0 && weight != 0) {
+            BMI = weight / (height * height);
+        } else {
+            System.out.println("Height and weight must be set prior to calculating BMI.");
+        }
+    }
+
+    // Returns BMI string category based upon BMI value.
     public String getBMICategory() {
         int listIndex = -1;
         if (BMI == 0) {
@@ -71,15 +78,6 @@ public class BMICalculator {
         return BMIStrings.get(listIndex);
     }
 
-    public void calculateBMI() {
 
-        if (height != 0 && weight != 0) {
-            BMI = weight / (height * height);
-        } else {
-            System.out.println("Height and weight must be set prior to calculating BMI.");
-        }
-
-
-    }
 
 }
