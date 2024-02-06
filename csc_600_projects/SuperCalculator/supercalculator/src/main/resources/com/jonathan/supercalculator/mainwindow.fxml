@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.layout.HBox?>
 
 <?import javafx.scene.control.TextField?>
@@ -12,8 +11,12 @@
 <?import javafx.scene.layout.GridPane?>
 <BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.jonathan.supercalculator.Controller">
     <center>
+        <!-- Creates center aligned Vbox to center all other children layouts inside the center border pane-->
         <VBox alignment="CENTER" spacing="10">
+            <!-- Creates a label for program name and sets text font size to 24-->
             <Label text="SUPER CALCULATOR" style="-fx-font-size: 24px;"/>
+            <!-- Creates a center aligned gridpane required for aligning the number /
+            result labels above the number / result text fields-->
             <GridPane alignment="center" hgap="30" vgap="10">
                 <padding>
                     <Insets top="30" right="20" bottom="20" left="20"/>
@@ -25,9 +28,12 @@
                 <Label text="Result" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
                 <TextField fx:id="resultField" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
             </GridPane>
+
+            <!-- Creates HBox to align all math operation buttons equally -->
             <HBox spacing="50" alignment="CENTER" >
                 <padding>
-                    <Insets top="15" right="0" bottom="0" left="0"/>
+                    <!-- Adds spacing above HBox to provide space between buttons and controls above-->
+                    <Insets top="15"/>
                 </padding>
                 <Button fx:id="addButton" text="Add" style="-fx-pref-width: 90;" onAction="#onMathOperationClicked"/>
                 <Button fx:id="subtractButton" text="Subtract" style="-fx-pref-width: 90;" onAction="#onMathOperationClicked"/>
@@ -37,7 +43,9 @@
 
             <HBox spacing="15" alignment="CENTER">
                 <padding>
-                    <Insets top="50" right="0" bottom="10" left="250"/>
+                    <!-- Adds spacing above HBox to provide space between buttons and controls above-->
+                    <!-- Adds spacing left of HBox to provide space HBox further to the right-->
+                    <Insets top="50" bottom="10" left="250"/>
                 </padding>
                 <!-- HBox.hgrow set to never, to ensure that when the statusLabel changes, it doesn't
                  push / move the clear / exit buttons around on the GUI. -->
