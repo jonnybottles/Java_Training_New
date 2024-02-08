@@ -92,6 +92,8 @@ public class MortgageAnalyzer {
         // Sets the maximum number of digits shown after the decimal point to 2.
         formatter.setMaximumFractionDigits(2);
 
+
+
         // Format the given float result as a String, casting the float to a double.
         return formatter.format(result);
     }
