@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.TextField?>
+<AnchorPane fx:id="mainAnchorPane" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.jonathan.individualhealthassessmentprogram.Controller">
+    <children>
+        <!-- Sets labels / text field for the AnchorPane-->
+        <Label text="Enter Height in Meters" AnchorPane.bottomAnchor="40" AnchorPane.leftAnchor="40"/>
+        <TextField fx:id="heightField" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="40"/>
+        <Label text="Enter Weight in kg" AnchorPane.bottomAnchor="40" AnchorPane.leftAnchor="220"/>
+        <TextField fx:id="weightField" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="220"/>
+        <!-- Associates action with onCalcBMIButtonClicked method-->
+        <Button fx:id="calcBMIButton" text="Calculate BMI"
+                AnchorPane.bottomAnchor="10"  AnchorPane.rightAnchor="190"
+                onAction="#onCalcBMIButtonClicked"/>
+        <Label fx:id="BMILabel" text="BMI: N/A" style="-fx-font-weight: bold;" AnchorPane.topAnchor="25" AnchorPane.leftAnchor="420"/>
+        <Label fx:id="categoryLabel" text="BMI Category: N/A" style="-fx-font-weight: bold;" AnchorPane.topAnchor="60" AnchorPane.leftAnchor="420"/>
+    </children>
+</AnchorPane>

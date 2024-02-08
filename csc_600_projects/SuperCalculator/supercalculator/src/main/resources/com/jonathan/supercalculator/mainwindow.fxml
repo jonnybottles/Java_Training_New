@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.GridPane?>
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.jonathan.supercalculator.Controller">
+    <center>
+        <!-- Creates center aligned Vbox to center all other children layouts inside the center border pane-->
+        <VBox alignment="CENTER" spacing="10">
+            <!-- Creates a label for program name and sets text font size to 24-->
+            <Label text="SUPER CALCULATOR" style="-fx-font-size: 24px;"/>
+            <!-- Creates a center aligned gridpane required for aligning the number /
+            result labels above the number / result text fields-->
+            <GridPane alignment="center" hgap="30" vgap="10">
+                <padding>
+                    <Insets top="30" right="20" bottom="20" left="20"/>
+                </padding>
+                <Label text="Number 1" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <TextField fx:id="numberOneField" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <Label text="Number 2" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                <TextField fx:id="numberTwoField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <Label text="Result" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+                <TextField fx:id="resultField" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+            </GridPane>
+
+            <!-- Creates HBox to align all math operation buttons equally -->
+            <HBox spacing="50" alignment="CENTER" >
+                <padding>
+                    <!-- Adds spacing above HBox to provide space between buttons and controls above-->
+                    <Insets top="15"/>
+                </padding>
+                <Button fx:id="addButton" text="Add" style="-fx-pref-width: 90;" onAction="#onMathOperationClicked"/>
+                <Button fx:id="subtractButton" text="Subtract" style="-fx-pref-width: 90;" onAction="#onMathOperationClicked"/>
+                <Button fx:id="multiplyButton" text="Multiply" style="-fx-pref-width: 90;" onAction="#onMathOperationClicked"/>
+                <Button fx:id="divideButton" text="Divide" style="-fx-pref-width: 90;" onAction="#onMathOperationClicked"/>
+            </HBox>
+
+            <HBox spacing="15" alignment="CENTER">
+                <padding>
+                    <!-- Adds spacing above HBox to provide space between buttons and controls above-->
+                    <!-- Adds spacing left of HBox to provide space HBox further to the right-->
+                    <Insets top="50" bottom="10" left="250"/>
+                </padding>
+                <!-- HBox.hgrow set to never, to ensure that when the statusLabel changes, it doesn't
+                 push / move the clear / exit buttons around on the GUI. -->
+                <Button fx:id="clearButton" text="Clear" HBox.hgrow="NEVER" style="-fx-pref-width: 70;" onAction="#onClearClicked"/>
+                <Button fx:id="exitButton" text="Exit" HBox.hgrow="NEVER" style="-fx-pref-width: 70;" onAction="#onExitClicked"/>
+                <Label fx:id="statusLabel" maxWidth="200.0" HBox.hgrow="ALWAYS">
+                    <HBox.margin>
+                        <Insets left="50" />
+                    </HBox.margin>
+                </Label>
+
+            </HBox>
+
+        </VBox>
+    </center>
+</BorderPane>

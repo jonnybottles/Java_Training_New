@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ComboBox?>
+<AnchorPane fx:id="mainAnchorPane" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.jonathan.gradesgui.Controller">
+    <children>
+        <Button fx:id="readGradesFileButton" text="Read Grades File" prefWidth="110"
+                AnchorPane.topAnchor="10"  AnchorPane.leftAnchor="10" onAction="#onReadGradesFileClicked"/>
+        <TextField fx:id="fileNameField" promptText="FileName" prefWidth="175"
+                   AnchorPane.topAnchor="10" AnchorPane.rightAnchor="10"/>
+        <Button fx:id="calculateGPAButton" text="Calculate GPA" prefWidth="110"
+                AnchorPane.topAnchor="50"  AnchorPane.leftAnchor="10" onAction="#onCalculateGPAClicked"/>
+        <ComboBox fx:id="gradeComboBox" prefWidth="175"
+                  AnchorPane.topAnchor="50" AnchorPane.rightAnchor="10"/>
+        <Label fx:id="GPALabel" text="GPA is: ..."
+               AnchorPane.topAnchor="90"  AnchorPane.leftAnchor="30"/>
+        <Label fx:id="readFileNotificationLabel" AnchorPane.topAnchor="130"  AnchorPane.leftAnchor="10"/>
+        <Button fx:id="okButton" text="OK" prefWidth="65"
+                AnchorPane.bottomAnchor="10"  AnchorPane.rightAnchor="10" onAction="#onOKClicked"/>
+        <Button fx:id="minimizeButton" text="Minimize" prefWidth="65"
+                AnchorPane.bottomAnchor="10"  AnchorPane.rightAnchor="85" onAction="#onMinimizeClicked"/>
+    </children>
+
+
+
+</AnchorPane>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<contacts>
+<contact>
+	<first_name>Blake</first_name>
+	<last_name>Butler</last_name>
+	<phone_number>1-800-BRO-SIFF</phone_number>
+	<notes>CyberSecurity Professional In Training</notes>
+</contact>
+<contact>
+	<first_name>Lorenzo</first_name>
+	<last_name>Ireland</last_name>
+	<phone_number>1-800-CPT-CPLR</phone_number>
+	<notes>Americas Premier Programmer</notes>
+</contact>
+<contact>
+	<first_name>Paul</first_name>
+	<last_name>Navarro</last_name>
+	<phone_number>1-800-CLD-ARCH</phone_number>
+	<notes>USA's Leading Cloud Architect</notes>
+</contact>
+</contacts>

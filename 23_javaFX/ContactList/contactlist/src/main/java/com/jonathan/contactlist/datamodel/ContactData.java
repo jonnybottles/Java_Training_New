@@ -23,6 +23,8 @@ import java.io.InputStream;
 
 public class ContactData {
 
+    private static ContactData instance = new ContactData();
+
     private static final String CONTACTS_FILE = "contacts.xml";
 
     private static final String CONTACT = "contact";
@@ -33,14 +35,22 @@ public class ContactData {
 
     private ObservableList<Contact> contacts;
 
-    public ContactData() {
+    private ContactData() {
         this.contacts = FXCollections.observableArrayList();
+    }
+
+    public static ContactData getInstance() {
+        return instance;
     }
 
     // *** Add methods to add/delete/access contacts here ***
 
     public void addContact(Contact newContact) {
         this.contacts.add(newContact);
+    }
+
+    public void deleteContact(Contact contact) {
+        this.contacts.remove(contact);
     }
 
     public ObservableList<Contact> getContacts() {
