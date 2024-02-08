@@ -16,6 +16,8 @@ public class FileHandler {
 
     private List<String> grades;
 
+    // This constructor is an artifact from part one of the program
+    // I left it here to show that I completed it.
     public FileHandler(String readFile, String writeFile) {
         this.readFile = readFile;
         this.writeFile = writeFile;
@@ -31,6 +33,8 @@ public class FileHandler {
         return grades;
     }
 
+    // Another artifact from the first portion of the program
+    // Not sure if I should leave artifacts from previous requirements in the program
     public String getReadFile() {
         return readFile;
     }
@@ -39,14 +43,7 @@ public class FileHandler {
         this.readFile = readFile;
     }
 
-    public String getWriteFile() {
-        return writeFile;
-    }
-
-    public void setWriteFile(String writeFile) {
-        this.writeFile = writeFile;
-    }
-
+    // Method for opening a file.
     public boolean openReadFile() {
         try {
             fileReader = new Scanner(new File(readFile));
@@ -56,6 +53,8 @@ public class FileHandler {
         }
     }
 
+    // Another artifact from the first portion of the program
+    // Not sure if I should leave artifacts from previous requirements in the program
     public boolean openWriteFile() {
         try {
             fileWriter = new Formatter(writeFile);
@@ -65,6 +64,8 @@ public class FileHandler {
         }
     }
 
+    // Another artifact from the first portion of the program
+    // Not sure if I should leave artifacts from previous requirements in the program
     public boolean writeGrades(List<String> grades) {
 
         if (fileWriter == null) {
@@ -84,6 +85,7 @@ public class FileHandler {
 
     }
 
+    // Reads grades from the opened file.
     public boolean readGrades() {
         if (fileReader == null) {
             return false;
@@ -97,6 +99,7 @@ public class FileHandler {
 
     }
 
+    // Method used to close any open files for file reader and file writer.
     public void closeFile() {
         if (fileWriter != null) {
             fileWriter.close();
@@ -108,6 +111,7 @@ public class FileHandler {
         }
     }
 
+    // Returns GPA equivalent of letter grade.
     public String getGPA(String grade) {
         switch (grade) {
             case "A":
