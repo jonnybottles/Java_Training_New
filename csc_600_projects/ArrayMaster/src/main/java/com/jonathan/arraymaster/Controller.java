@@ -1,14 +1,29 @@
 package com.jonathan.arraymaster;
 
+import com.jonathan.arraymaster.datamodel.ArrayManager;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 
 public class Controller {
-    @FXML
-    private Label welcomeText;
+
+    private ArrayManager theArrayManager;
 
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+    private ListView<Integer> originalArrayListView;
+
+    @FXML
+    private Button displayArrayButton;
+
+    public void initialize() {
+        theArrayManager = new ArrayManager();
     }
+
+    @FXML
+    public void onDisplayArrayClicked() {
+        originalArrayListView.setItems(theArrayManager.getTheOriginalArray());
+    }
+
+
 }
