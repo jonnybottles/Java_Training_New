@@ -4,25 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f5d39b19-c88b-42ad-96f2-5f95d74b3843" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../23_javaFX/ContactList/.idea/ContactList.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../23_javaFX/TodoList/.idea/TodoList.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../csc_600_projects/GradesGUI/.idea/GradesGUI.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../csc_600_projects/Week3Lab1Streams/Week3Lab1Streams.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="3ffffde2-42cc-4480-b80f-0ee009660fb2" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
-  <component name="ProjectId" id="2aMKjOP11c5ylk6wAWnl13qxhxT" />
+  <component name="ProjectId" id="2asUz9D1IKOpc6rb3naM1Q2mgTO" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
@@ -31,41 +25,36 @@
     "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/xxbut/code/Java_Training_New/15_java_collections/TextBasedAdventureGame",
+    "last_opened_file_path": "C:/Users/xxbut/code/Java_Training_New/15_java_collections/test/test/src",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Global Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\xxbut\code\Java_Training_New\15_java_collections\TextBasedAdventureGame\src" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\xxbut\code\Java_Training_New\15_java_collections\test\test\src" />
     </key>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="jdk-17.0.9-corretto-17.0.9-f644763e9732-ebaef533" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f5d39b19-c88b-42ad-96f2-5f95d74b3843" name="Changes" comment="" />
-      <created>1704123141656</created>
+      <changelist id="3ffffde2-42cc-4480-b80f-0ee009660fb2" name="Changes" comment="" />
+      <created>1705107041881</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1704123141656</updated>
-      <workItem from="1704123142721" duration="2408000" />
-      <workItem from="1707434524430" duration="2177000" />
+      <updated>1705107041881</updated>
+      <workItem from="1705107042975" duration="100000" />
+      <workItem from="1705107151173" duration="1065000" />
     </task>
     <servers />
   </component>
