@@ -1,14 +1,19 @@
 package com.jonathan;
 
-import com.jonathan.datamodel.AES256;
-import com.jonathan.datamodel.FileHandler;
 
-import java.util.LinkedHashMap;
+public class ReadFileMenu extends MainMenu {
 
-public class ReadFileMenu extends Menu {
-
-    public ReadFileMenu(Menu parentMenu, String menuName) {
-        super(parentMenu, menuName);
+    public ReadFileMenu(MainMenu parentMenu, String menuName) {
+        this.parentMenu = parentMenu;
+        this.menuName = menuName;
     }
+
+
+    @Override
+    public void start() {
+        getString("Please enter path of file to read: ");
+        this.parentMenu.start();
+    }
+
 
 }

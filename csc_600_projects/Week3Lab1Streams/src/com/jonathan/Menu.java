@@ -16,6 +16,9 @@ public class Menu {
     protected boolean isMainMenu; // Used to check if the menu is a main or submenu
     protected String optionSelection;
 
+    public Menu() {
+
+    }
 
     // Constructor for MainMenu objects with menu options
     public Menu(String programName, String menuName, LinkedHashMap<String, Menu> menuOptions) {
