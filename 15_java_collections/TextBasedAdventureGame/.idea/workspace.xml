@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f5d39b19-c88b-42ad-96f2-5f95d74b3843" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../csc_600_projects/Week3Lab1Streams/src/com/jonathan/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../csc_600_projects/Week3Lab1Streams/src/com/jonathan/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../csc_600_projects/Week3Lab1Streams/src/com/jonathan/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../csc_600_projects/Week3Lab1Streams/src/com/jonathan/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../csc_600_projects/Week3Lab1Streams/src/com/jonathan/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../csc_600_projects/Week3Lab1Streams/src/com/jonathan/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../csc_600_projects/Week3Lab1Streams/src/com/jonathan/ReadFileMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../csc_600_projects/Week3Lab1Streams/src/com/jonathan/ReadFileMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +56,7 @@
       <workItem from="1704123142721" duration="2408000" />
       <workItem from="1707434524430" duration="2177000" />
       <workItem from="1707437940746" duration="779000" />
+      <workItem from="1707499170094" duration="862000" />
     </task>
     <servers />
   </component>
