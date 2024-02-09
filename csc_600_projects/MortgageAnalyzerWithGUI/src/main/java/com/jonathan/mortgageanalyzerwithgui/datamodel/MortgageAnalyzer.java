@@ -17,48 +17,31 @@ public class MortgageAnalyzer {
     private double totalInterestPaid;
 
 
+    // Default constructor
     public MortgageAnalyzer() {
     }
 
-    public double getLoanAmount() {
-        return loanAmount;
-    }
-
-    public double getAnnualInterestRate() {
-        return annualInterestRate;
-    }
-
-    public int getLoanDuration() {
-        return loanDuration;
-    }
-
-    public double getMonthlyPayment() {
-        return monthlyPayment;
-    }
-
-    public double getTotalInterestPaid() {
-        return totalInterestPaid;
-    }
-
+    // String formatted getters
     public String getFormattedLoanAmount() {
-        return formatResult(this.loanAmount);
+        return "- $" + formatResult(this.loanAmount);
     }
 
     public String getFormattedAnnualInterestRate() {
-        return String.format("%.2f%%", this.annualInterestRate);
+        return String.format("- %.2f%%", this.annualInterestRate);
     }
 
     public String getFormattedLoanDuration() {
-        return this.loanDuration + " months";
+        return "- " + this.loanDuration;
     }
 
     public String getFormattedMonthlyPayment() {
-        return formatResult(this.monthlyPayment);
+        return "- $" + formatResult(this.monthlyPayment);
     }
 
     public String getFormattedTotalInterestPaid() {
-        return formatResult(this.totalInterestPaid);
+        return "- $" + formatResult(this.totalInterestPaid);
     }
+
 
     // Validates and sets loan amount
     public void setLoanAmount(String loanAmount) {
@@ -80,16 +63,14 @@ public class MortgageAnalyzer {
     public void setAnnualInterestRate(String annualInterestRate) {
         try {
             double parsedAnnualInterestRate = Double.parseDouble(annualInterestRate);
-            // Check if the interest rate is within the valid range
+
             if (parsedAnnualInterestRate >= 2 && parsedAnnualInterestRate <= 20) {
                 this.annualInterestRate = parsedAnnualInterestRate;
                 this.isValidAnnualInterestRate = true;
             } else {
-                // Mark as invalid if outside the valid range
                 this.isValidAnnualInterestRate = false;
             }
         } catch (NumberFormatException e) {
-            // Mark as invalid if parsing fails
             this.isValidAnnualInterestRate = false;
         }
     }
@@ -111,7 +92,7 @@ public class MortgageAnalyzer {
     }
 
 
-    // Verifies user input is within appropriate bounds.
+    // Checks all boolean values to determine if all data is correct
     public boolean verify() {
         return isValidLoanAmount && isValidAnnualInterestRate && isValidLoanDuration;
     }
@@ -151,9 +132,6 @@ public class MortgageAnalyzer {
         // Sets the maximum number of digits shown after the decimal point to 2.
         formatter.setMaximumFractionDigits(2);
 
-
-
-        // Format the given float result as a String, casting the float to a double.
         return formatter.format(result);
     }
 
