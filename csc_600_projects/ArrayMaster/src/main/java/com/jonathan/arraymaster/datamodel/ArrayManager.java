@@ -44,12 +44,50 @@ public class ArrayManager {
         FXCollections.sort(theSortableArray, Comparator.naturalOrder());
     }
 
-    public void getArraySize() {
+    // Obtains array size and returns formatted string representation.
+    public String getArraySizeMessage() {
+        return "Array Size: " + String.valueOf(theOriginalArray.size() + ".");
+    }
 
+    public int getArraySize() {
+        return theOriginalArray.size();
     }
 
     public boolean addNumbers(String index, String... numbers) {
-        return true;
+
+        int indexInt = Integer.parseInt(index);
+
+        try {
+            for (String numbersWithCommas : numbers) {
+                String[] numbersWithoutCommas = numbersWithCommas.split(",");
+
+                for (String number : numbersWithoutCommas) {
+                    String trimmedNumber = number.trim();
+                    theOriginalArray.add(indexInt, Integer.valueOf(trimmedNumber));
+                    theSortableArray.add(indexInt, Integer.valueOf(trimmedNumber));
+                    indexInt++;
+                }
+
+            }
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+
+
+    }
+
+    public boolean isValidIndex(String index) {
+        int indexInt = 0;
+        try {
+            indexInt = Integer.parseInt(index);
+            if (indexInt >= 0 && indexInt <= theOriginalArray.size()) {
+                return true;
+            }
+            return false;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     public boolean deleteNumbers(String idnex) {
@@ -61,6 +99,13 @@ public class ArrayManager {
         return true;
     }
 
+    public String formatMessage(String msg, String logLevel) {
+
+        String logLevelIcon = logLevel.equals("info") ? "[+]" : "[-]";
+
+        return logLevelIcon + " " + msg;
+
+    }
 
 
 }
