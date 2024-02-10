@@ -34,7 +34,13 @@ public class Controller {
     private TextField atPositionTextField;
 
     @FXML
+    private TextField deleteNumberTextField;
+
+    @FXML
     private Button addButton;
+
+    @FXML
+    private TextField searchNumberTextField;
 
     // Used to track whether the user has displayed the array
     // If not, no other buttons can be clicked until array is displayed.
@@ -42,6 +48,12 @@ public class Controller {
 
     public void initialize() {
         theArrayManager = new ArrayManager();
+
+        // Sets log to monospace, without this the logs do not align neatly
+        // when there is a difference in the [+] or [-] prompt
+        // created in append log.
+        theLogsTextArea.setStyle("-fx-font-family: monospace;");
+
     }
 
     @FXML
@@ -77,12 +89,12 @@ public class Controller {
     public void onAddButtonClicked() {
         if (hasDisplayBeenClicked) {
             String index = atPositionTextField.getText().trim();
-            if (theArrayManager.isValidIndex(index)) {
+            if (theArrayManager.isValidAddIndex(index)) {
                 String numbersToAdd = addNumbersTextField.getText().trim();
                 if (theArrayManager.addNumbers(index, numbersToAdd)) {
-                    appendLog("Added numbers to array: " + numbersToAdd + ".", "info");
+                    appendLog("Added numbers to array: [" + numbersToAdd + "].", "info");
                 } else {
-                    appendLog("Something went wrong with adding numbers.", "error");
+                    appendLog("List cannot contain duplicate numbers.", "error");
                 }
             } else {
                 String arraySize = String.valueOf(theArrayManager.getArraySize());
@@ -92,6 +104,82 @@ public class Controller {
         } else {
             appendLog("Array must be loaded / displayed before performing any other actions.", "error");
         }
+    }
+
+    @FXML
+    public void onDeleteButtonClicked() {
+        if (hasDisplayBeenClicked) {
+            String index = deleteNumberTextField.getText().trim();
+            if (theArrayManager.isValidDeleteIndex(index)) {
+                int deletedValue = theArrayManager.getValue(index);
+                if (theArrayManager.deleteNumber(index)) {
+                    appendLog("Deleted " + deletedValue + " at index " + index + ".", "info");
+                } else {
+                    appendLog("Something went wrong with deleting number.", "error");
+                }
+            } else {
+                String arraySize = String.valueOf(theArrayManager.getArraySize());
+                appendLog("Array index must be between 0 and " + arraySize + ".", "error");
+            }
+        } else {
+            appendLog("Array must be loaded / displayed before performing any other actions.", "error");
+        }
+    }
+
+
+    public void onSearchButtonClicked() {
+        if (hasDisplayBeenClicked) {
+            String searchText = searchNumberTextField.getText().trim();
+            Integer searchNumber;
+
+            try {
+                searchNumber = Integer.parseInt(searchText);
+            } catch (NumberFormatException e) {
+                appendLog("Invalid number format for search.", "error");
+                return;
+            }
+
+            // Check if the number exists in the array
+            boolean numberExists = theArrayManager.containsValue(searchNumber);
+
+            // If the number doesn't exist, log a message and do not proceed with highlighting
+            if (!numberExists) {
+                appendLog("Number " + searchNumber + " does not exist in the array.", "info");
+                return;
+            }
+
+            // If the number exists, set the cell factory to highlight the number
+            highlightNumberInListView(originalArrayListView, searchNumber);
+            // Optionally highlight the number in the sortable array ListView as well
+            highlightNumberInListView(sortableArrayListView, searchNumber);
+        } else {
+            appendLog("Array must be loaded / displayed before performing any other actions.", "error");
+
+        }
+
+    }
+
+    // TODO UPDATE THIS TO USE CODE FROM TEH JAVAFX COURSE!!!
+    private void highlightNumberInListView(ListView<Integer> listView, Integer searchNumber) {
+        listView.setCellFactory(lv -> new ListCell<Integer>() {
+            @Override
+            protected void updateItem(Integer item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                    setStyle("");
+                } else {
+                    setText(item.toString());
+                    if (item.equals(searchNumber)) {
+                        setStyle("-fx-background-color: #0095ff;"); // Highlight with blue background
+                    } else {
+                        setStyle("");
+                    }
+                }
+            }
+        });
+        // Refresh the ListView to apply the new cell factory
+        listView.refresh();
     }
 
     // Appends text area with a given log

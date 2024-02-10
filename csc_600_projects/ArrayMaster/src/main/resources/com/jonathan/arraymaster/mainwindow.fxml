@@ -79,9 +79,9 @@
                      <Label text="Add Number(s):" GridPane.columnIndex="0" GridPane.rowIndex="0" />
                      <TextField fx:id="addNumbersTextField" promptText="comma separated" GridPane.columnIndex="1" GridPane.rowIndex="0" />
                      <Label text="Delete Number At:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                     <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                     <TextField fx:id="deleteNumberTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                      <Label text="Search Number:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                     <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                     <TextField fx:id="searchNumberTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label text="At Position:" GridPane.columnIndex="2">
                      <GridPane.margin>
                         <Insets />
@@ -96,12 +96,14 @@
                              <Insets left="60.0" />
                          </GridPane.margin>
                      </Button>
-                     <Button mnemonicParsing="false" prefWidth="125.0" text="Delete" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                     <Button mnemonicParsing="false" prefWidth="125.0" text="Delete" GridPane.columnIndex="4" GridPane.rowIndex="1"
+                             onAction="#onDeleteButtonClicked">
                          <GridPane.margin>
                              <Insets left="60.0" />
                          </GridPane.margin>
                      </Button>
-                     <Button mnemonicParsing="false" prefWidth="125.0" text="Search" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                     <Button mnemonicParsing="false" prefWidth="125.0" text="Search" GridPane.columnIndex="4" GridPane.rowIndex="2"
+                            onAction="#onSearchButtonClicked">
                          <GridPane.margin>
                              <Insets left="60.0" />
                          </GridPane.margin>
