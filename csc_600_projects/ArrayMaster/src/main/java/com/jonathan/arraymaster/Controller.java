@@ -118,7 +118,7 @@ public class Controller {
                     appendLog("Something went wrong with deleting number.", "error");
                 }
             } else {
-                String arraySize = String.valueOf(theArrayManager.getArraySize());
+                String arraySize = String.valueOf(theArrayManager.getArraySize() -1);
                 appendLog("Array index must be between 0 and " + arraySize + ".", "error");
             }
         } else {

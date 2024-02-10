@@ -39,7 +39,7 @@ public class ArrayManager {
         int attempts = 0;
         // While loop set to limit attempts to avoid infinite loop
         while (theOriginalArray.size() < 20 && attempts < 1000) {
-            int randInt = theRandom.nextInt(1, 5);
+            int randInt = theRandom.nextInt(1, 1000);
             if (!theOriginalArray.contains(randInt)) {
                 theOriginalArray.add(randInt);
                 theSortableArray.add(randInt);
