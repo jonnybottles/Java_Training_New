@@ -13,7 +13,11 @@ public class Controller {
     @FXML
     private ListView<Integer> originalArrayListView;
 
-    @FXML ListView<Integer> sortableArrayListView;
+    @FXML
+    private ListView<Integer> sortableArrayListView;
+
+    @FXML
+    private Button theSortArrayButton;
 
     @FXML
     private Button displayArrayButton;
@@ -27,6 +31,11 @@ public class Controller {
         originalArrayListView.setItems(theArrayManager.getTheOriginalArray());
         sortableArrayListView.setItems(theArrayManager.getTheSortableArray());
 
+    }
+
+    @FXML
+    public void onSortArrayButtonClicked() {
+        theArrayManager.sortSortableArray();
     }
 
 

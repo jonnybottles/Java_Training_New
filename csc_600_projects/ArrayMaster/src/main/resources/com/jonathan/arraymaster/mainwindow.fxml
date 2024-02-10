@@ -12,7 +12,7 @@
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin></Button>
-            <Button mnemonicParsing="false" prefWidth="125.0" text="Sort Array">
+            <Button fx:id="theSortArrayButton" mnemonicParsing="false" prefWidth="125.0" text="Sort Array" onAction="#onSortArrayButtonClicked">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin></Button>

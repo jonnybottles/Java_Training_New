@@ -4,11 +4,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
 public class ArrayManager {
 
+    // Using ObservableLists as to avoid having to manually update the GUI
+    // every time a change is made the arrays.
     ObservableList<Integer> theOriginalArray;
     ObservableList<Integer> theSortableArray;
 
@@ -36,8 +39,9 @@ public class ArrayManager {
 
     }
 
-    public void sortArray() {
-
+    // Sorts theSortableArray by numerical order from smallest to largest
+    public void sortSortableArray() {
+        FXCollections.sort(theSortableArray, Comparator.naturalOrder());
     }
 
     public void getArraySize() {
