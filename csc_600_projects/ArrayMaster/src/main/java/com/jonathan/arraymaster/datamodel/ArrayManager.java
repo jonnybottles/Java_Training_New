@@ -3,9 +3,7 @@ package com.jonathan.arraymaster.datamodel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
 import java.util.Random;
 
 // Provides the attributes and methods for managing array objects.
@@ -47,7 +45,6 @@ public class ArrayManager {
             attempts++;
         }
     }
-
 
     // Sorts theSortableArray by numerical order from smallest to largest
     public void sortSortableArray() {
@@ -93,25 +90,23 @@ public class ArrayManager {
 
                 }
 
-                // Now that there are no duplicates, add numbers to lists.
+                // Now that there are no duplicates, adds numbers to lists.
                 for (String number : numbersWithoutCommas) {
                     String trimmedNumber = number.trim();
                     int trimmedNumberInt = Integer.parseInt(trimmedNumber);
 
-                    theOriginalArray.add(indexInt, Integer.valueOf(trimmedNumber));
-                    theSortableArray.add(indexInt, Integer.valueOf(trimmedNumber));
+                    theOriginalArray.add(indexInt, trimmedNumberInt);
+                    theSortableArray.add(indexInt, trimmedNumberInt);
                     indexInt++;
                 }
-
             }
             return true;
         } catch (NumberFormatException e) {
             return false;
         }
-
-
     }
 
+    // Checks to see if value is in the OriginalArray
     public boolean containsValue(Integer value) {
         return theOriginalArray.contains(value);
     }
@@ -167,18 +162,6 @@ public class ArrayManager {
             return false;
         }
     }
-    public boolean searchNumber() {
-        return true;
-    }
-
-    public String formatMessage(String msg, String logLevel) {
-
-        String logLevelIcon = logLevel.equals("info") ? "[+]" : "[-]";
-
-        return logLevelIcon + " " + msg;
-
-    }
-
 
 
 }

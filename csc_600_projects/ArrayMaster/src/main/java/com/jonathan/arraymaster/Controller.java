@@ -1,7 +1,6 @@
 package com.jonathan.arraymaster;
 
 import com.jonathan.arraymaster.datamodel.ArrayManager;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -55,6 +54,7 @@ public class Controller {
         // Used to track whether the user has displayed the array
         // If not, no other buttons can be clicked until array is displayed.
         hasDisplayBeenClicked = true;
+        appendLog("Arrays successfully loaded / displayed.", "info");
 
     }
 
@@ -98,7 +98,7 @@ public class Controller {
                 if (theArrayManager.addNumbers(index, numbersToAdd)) {
                     appendLog("Added numbers to array: [" + numbersToAdd + "].", "info");
                 } else {
-                    appendLog("List cannot contain duplicate numbers.", "error");
+                    appendLog("Can only add integer values and no duplicates.", "error");
                 }
             // If the index is invalid, log error to TextArea
             } else {
