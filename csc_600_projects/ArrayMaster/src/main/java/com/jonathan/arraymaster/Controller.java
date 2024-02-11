@@ -66,6 +66,10 @@ public class Controller {
 
     @FXML
     public void onSortArrayButtonClicked() {
+        // If Display Array has been clicked, run code
+        // otherwise, generate log message to load / display the arrays first
+        // All other event handler methods run this same check at the beginning as no actions can be performed
+        // until the Display Array button has been clicked.
         if (hasDisplayBeenClicked) {
             theArrayManager.sortSortableArray();
             appendLog("Array successfully sorted.", "info");
@@ -127,11 +131,16 @@ public class Controller {
     }
 
 
+    // Handles all event for when search button is clicked
+    // highlighting the value found in the array lists on the ListView
     public void onSearchButtonClicked() {
+
         if (hasDisplayBeenClicked) {
+            // Obtain number to search for from Search text field
             String searchText = searchNumberTextField.getText().trim();
             Integer searchNumber;
 
+            // Try and convert it to an int
             try {
                 searchNumber = Integer.parseInt(searchText);
             } catch (NumberFormatException e) {
@@ -139,19 +148,17 @@ public class Controller {
                 return;
             }
 
-            // Check if the number exists in the array
-            boolean numberExists = theArrayManager.containsValue(searchNumber);
-
             // If the number doesn't exist, log a message and do not proceed with highlighting
-            if (!numberExists) {
+            if (!theArrayManager.containsValue(searchNumber)) {
                 appendLog("Number " + searchNumber + " does not exist in the array.", "info");
                 return;
             }
 
-            // If the number exists, set the cell factory to highlight the number
+            // If the number exists, set the cell factory to highlight the number in both ListViews
             highlightNumberInListView(originalArrayListView, searchNumber);
-            // Optionally highlight the number in the sortable array ListView as well
             highlightNumberInListView(sortableArrayListView, searchNumber);
+            appendLog("Found and highlighted " + searchNumber + ".", "info");
+
         } else {
             appendLog("Array must be loaded / displayed before performing any other actions.", "error");
 
@@ -159,26 +166,39 @@ public class Controller {
 
     }
 
-    // TODO UPDATE THIS TO USE CODE FROM TEH JAVAFX COURSE!!!
+    // Highlights a given number in a given list view
     private void highlightNumberInListView(ListView<Integer> listView, Integer searchNumber) {
-        listView.setCellFactory(lv -> new ListCell<Integer>() {
-            @Override
-            protected void updateItem(Integer item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
-                    setText(null);
-                    setStyle("");
-                } else {
-                    setText(item.toString());
-                    if (item.equals(searchNumber)) {
-                        setStyle("-fx-background-color: #0095ff;"); // Highlight with blue background
-                    } else {
+        // Create a new ListCell using a supplier lambda function
+        listView.setCellFactory(lv -> {
+            ListCell<Integer> cell = new ListCell<>() {
+                // Creates an anonymous subclass of ListCell and overrides the ListCell method updateItem
+                // Update item method is used to customize how each cell in a ListViews content is displayed
+                @Override
+                protected void updateItem(Integer item, boolean isEmpty) {
+                    super.updateItem(item, isEmpty);
+                    // Checks to see if the given ListCell is null // empty
+                    // if so set the text to null and style to ""
+                    if (isEmpty || item == null) {
+                        setText(null);
                         setStyle("");
+                    // otherwise, obtain the string representation of the item / cell value
+                    // and hightlight the cell of the number being searched
+                    } else {
+                        setText(item.toString());
+                        if (item.equals(searchNumber)) {
+                            // Highlights the cell background color for the searched number in blue.
+                            setStyle("-fx-background-color: #0095ff;");
+                        } else {
+                            setStyle("");
+                        }
                     }
                 }
-            }
+            };
+            // End of anonymous class
+            // Returns the supplier supplied ListCell
+            return cell;
         });
-        // Refresh the ListView to apply the new cell factory
+        // end of lambda
         listView.refresh();
     }
 
