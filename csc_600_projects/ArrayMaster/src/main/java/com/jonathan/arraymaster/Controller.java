@@ -16,15 +16,6 @@ public class Controller {
     private ListView<Integer> sortableArrayListView;
 
     @FXML
-    private Button theSortArrayButton;
-
-    @FXML
-    private Button theDisplayArrayButton;
-
-    @FXML
-    private Button theDisplaySizeButton;
-
-    @FXML
     private TextArea theLogsTextArea;
 
     @FXML
@@ -36,8 +27,6 @@ public class Controller {
     @FXML
     private TextField deleteNumberTextField;
 
-    @FXML
-    private Button addButton;
 
     @FXML
     private TextField searchNumberTextField;
@@ -46,6 +35,7 @@ public class Controller {
     // If not, no other buttons can be clicked until array is displayed.
     private boolean hasDisplayBeenClicked;
 
+    // Initializes ArrayManager object and sets font for TextArea.
     public void initialize() {
         theArrayManager = new ArrayManager();
 
@@ -56,14 +46,19 @@ public class Controller {
 
     }
 
+    // Handles Display Array button being clicked, displaying both original / sortable arrays.
     @FXML
     public void onDisplayArrayClicked() {
         originalArrayListView.setItems(theArrayManager.getTheOriginalArray());
         sortableArrayListView.setItems(theArrayManager.getTheSortableArray());
+
+        // Used to track whether the user has displayed the array
+        // If not, no other buttons can be clicked until array is displayed.
         hasDisplayBeenClicked = true;
 
     }
 
+    // Handles Sort Array button being clicked, Sorting the SortableArray
     @FXML
     public void onSortArrayButtonClicked() {
         // If Display Array has been clicked, run code
@@ -79,6 +74,7 @@ public class Controller {
 
     }
 
+    // Handles Sort Array button being clicked, logging this to the TextArea
     @FXML
     public void onDisplaySizeButtonClicked() {
         if (hasDisplayBeenClicked) {
@@ -89,17 +85,22 @@ public class Controller {
 
     }
 
+    // Handles the Add Button being clicked, adding an int to each array.
     @FXML
     public void onAddButtonClicked() {
         if (hasDisplayBeenClicked) {
             String index = atPositionTextField.getText().trim();
+            // Verifies a proper index is passed
             if (theArrayManager.isValidAddIndex(index)) {
+                // Obtain text from Add Number text field
                 String numbersToAdd = addNumbersTextField.getText().trim();
+                // Adds number to arrays and logs appropriately, otherwise logs error message
                 if (theArrayManager.addNumbers(index, numbersToAdd)) {
                     appendLog("Added numbers to array: [" + numbersToAdd + "].", "info");
                 } else {
                     appendLog("List cannot contain duplicate numbers.", "error");
                 }
+            // If the index is invalid, log error to TextArea
             } else {
                 String arraySize = String.valueOf(theArrayManager.getArraySize());
                 appendLog("Array index must be between 0 and " + arraySize, "error");
@@ -110,10 +111,14 @@ public class Controller {
         }
     }
 
+    // Handles the Delete Button being clicked, deleting value from a specified index in each array.
     @FXML
     public void onDeleteButtonClicked() {
         if (hasDisplayBeenClicked) {
+            // Obtain index to delete from text field
             String index = deleteNumberTextField.getText().trim();
+
+            // Validates the index, if valid delete, value and log accordingly
             if (theArrayManager.isValidDeleteIndex(index)) {
                 int deletedValue = theArrayManager.getValue(index);
                 if (theArrayManager.deleteNumber(index)) {
@@ -121,6 +126,7 @@ public class Controller {
                 } else {
                     appendLog("Something went wrong with deleting number.", "error");
                 }
+                // If the index is invalid, log error to TextArea
             } else {
                 String arraySize = String.valueOf(theArrayManager.getArraySize() -1);
                 appendLog("Array index must be between 0 and " + arraySize + ".", "error");
