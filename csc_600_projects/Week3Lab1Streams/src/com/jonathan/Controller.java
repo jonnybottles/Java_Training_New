@@ -15,9 +15,9 @@ public class Controller {
     public Controller() {
         this.theCryptKeeper = new CryptKeeper();
         this.theMainMenu = new MainMenu("CRYPT KEEPER", "Main Menu", theCryptKeeper);
-        this.theReadFileMenu = new ReadFileMenu(theMainMenu, "Read File", theCryptKeeper);
-        this.theEncodeStringMenu = new EncodeStringMenu(theMainMenu, "Encode String", theCryptKeeper);
-        this.theDecodeStringMenu = new DecodeStringMenu(theMainMenu, "Decode String", theCryptKeeper);
+        this.theReadFileMenu = new ReadFileMenu(theMainMenu, "Read File Menu", theCryptKeeper);
+        this.theEncodeStringMenu = new EncodeStringMenu(theMainMenu, "Encode String Menu", theCryptKeeper);
+        this.theDecodeStringMenu = new DecodeStringMenu(theMainMenu, "Decode String Menu", theCryptKeeper);
         this.theExitMenu = new ExitMenu(theMainMenu, "");
 
         theMainMenu.addMenuOption("1", theReadFileMenu);

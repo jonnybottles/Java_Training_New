@@ -21,6 +21,8 @@ public class CryptKeeper {
 
     private String fileData;
 
+    private Scanner fileReader;
+
 
     private String encryptedData;
 
@@ -30,6 +32,14 @@ public class CryptKeeper {
 
     public String getCleartextData() {
         return cleartextData;
+    }
+
+    public String getFileData() {
+        return fileData;
+    }
+
+    public String getFilePath() {
+        return filePath;
     }
 
     public void setCleartextData(String cleartextData) {
@@ -49,20 +59,32 @@ public class CryptKeeper {
         this.filePath = filePath;
     }
 
-    public String readFile() {
-        StringBuilder fileData = new StringBuilder();
-        File file = new File(filePath);
-        try (Scanner fileReader = new Scanner(file)) {
-            while (fileReader.hasNextLine()) {
-                fileData.append(fileReader.nextLine());
-                fileData.append(System.lineSeparator());
-            }
+    // Method for opening a file.
+    public boolean openReadFile(String filePath) {
+        try {
+            fileReader = new Scanner(new File(filePath));
+            return true;
         } catch (FileNotFoundException e) {
-            return "File not found: " + filePath;
+            return false;
         }
-        return fileData.toString();
     }
 
+    public void readFile() {
+        // Set file data to empty string each time through as
+        // files are read multiple times during the program operations.
+        fileData = "";
+
+        StringBuilder sb = new StringBuilder();
+        try {
+            while (fileReader.hasNextLine()) {
+                sb.append(fileReader.nextLine());
+                sb.append(System.lineSeparator());
+            }
+            fileData = sb.toString();
+        } catch (Exception e) {
+            return;
+        }
+    }
     public boolean writeEncryptedDataToFile(String filePath) {
         try {
             JAXBContext context = JAXBContext.newInstance(CryptKeeper.class);

@@ -12,15 +12,25 @@ public class ReadFileMenu extends MainMenu {
     }
 
 
+    public void displayFileContents() {
+        theCryptKeeper.readFile();
+        printMenuName();
+        System.out.println("File: " + "'" + theCryptKeeper.getFilePath() + "'" + " contents:\n");
+        System.out.println(theCryptKeeper.getFileData());
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            System.err.println("Sleep interrupted: " + e.getMessage());
+        }
+
+    }
+
     @Override
     public void start() {
-        String filePath = getString("Please enter path of file to read: ");
-        System.out.println("1");
-        theCryptKeeper.setFilePath(filePath);
-        System.out.println("2");
-        String theFileData = theCryptKeeper.readFile();
-        System.out.println("1");
-        this.parentMenu.setCustomContent(theFileData);
+
+        getFileNamePrompt();
+        displayFileContents();
         this.parentMenu.start();
     }
 
