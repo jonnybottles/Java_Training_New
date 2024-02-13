@@ -15,7 +15,11 @@ public class Menu {
     protected LinkedHashMap<String, Menu> menuOptions; // The menu options
     protected boolean isMainMenu; // Used to check if the menu is a main or submenu
     protected String optionSelection;
+    protected String customContent;
 
+    public Menu() {
+
+    }
 
     // Constructor for MainMenu objects with menu options
     public Menu(String programName, String menuName, LinkedHashMap<String, Menu> menuOptions) {
@@ -24,14 +28,8 @@ public class Menu {
         this.menuOptionDescription = this.menuName; // Initialize menuOptionDescription with menuName
         this.menuOptions = menuOptions;
         this.isMainMenu = true;
+        this.customContent = "";
 
-        // Check for reserved options "Q" and "R"
-        if (menuOptions.containsKey("Q") || menuOptions.containsKey("R")) {
-            handleInvalidOption("Option selections 'Q' and 'R' are reserved.");
-            return;
-        }
-        // Adds "Exit Menu" as last option for main menus.
-        addExtraMenuOptions();
     }
 
     // Constructor for MainMenu objects without menu options
@@ -47,7 +45,6 @@ public class Menu {
 
         // Adds "Return to [parent menu]" as second to last option for submenus.
         // Adds "Exit Menu" as last option for submenus.
-        addExtraMenuOptions();
     }
 
     // Constructor for SubMenu objects without menu options
@@ -76,6 +73,10 @@ public class Menu {
         return menuOptionDescription;
     }
 
+    public void setCustomContent(String customContent) {
+        this.customContent = customContent;
+    }
+
     // Checks to make sure that none of the reserved menu option characters are passed as a menu option
     private boolean isValidMenuOption(String optionSelection) {
         return !(optionSelection.equals("Q") || optionSelection.equals("R"));
@@ -96,23 +97,6 @@ public class Menu {
             menuOptions.put(optionSelection, menu);
         } else {
             handleInvalidOption(optionSelection, "Invalid option selection.");
-        }
-    }
-
-    // Adds "Exit Program" to the end of all menu options and adds "Return to [parent menu]"
-    // as the second to last menu option for all submenus.
-    private void addExtraMenuOptions() {
-        if (!isMainMenu) {
-            // Removes "Exit Program" from submenu to allow for proper placement as it is placed as the last element
-            // by calling the parent constructor of a main menu
-            this.menuOptions.remove("Q");
-            // Add "Return to [parent menu]" option as the second-to-last option
-            this.menuOptions.put("R", parentMenu);
-        }
-
-        // Add "Exit Program" as the last option for all menus, excluding the ExitMenu itself
-        if (!this.getClass().equals(ExitMenu.class)) {
-            this.menuOptions.put("Q", new ExitMenu(this, "Exit Menu"));
         }
     }
 
@@ -181,7 +165,7 @@ public class Menu {
     // Method that can be overridden by subclasses when there is a need to display custom content
     // in makeASelection after clearing the screen, but before displaying menu optons
     protected void displayCustomContent() {
-        // Empty by default
+        System.out.println(customContent);
     }
 
     protected void displayMenuOptions(String msg) {
@@ -207,19 +191,16 @@ public class Menu {
     protected void handleSelection(String selection) {
         // Implement actions based on the selection here
         // For example, if the selection is "Q", you may want to quit the program
-        if ("Q".equals(selection)) {
-            exitProgram();  // Always call exitProgram for "Q", regardless of whether it's a main or submenu
-        } else if ("R".equals(selection) && !isMainMenu) {
-            parentMenu.start();  // Return to parent menu for "R" in submenus
-        } else {
+
             // Handle other selections
             Menu selectedMenu = menuOptions.get(selection);
             if (selectedMenu != null) {
                 selectedMenu.start();
             } else {
+                printMenuName();
                 System.out.println("Invalid selection, please enter a valid option.\n");
             }
-        }
+
     }
 
 

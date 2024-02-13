@@ -1,17 +1,46 @@
 package com.jonathan;
 
 import com.jonathan.datamodel.AES256;
-import com.jonathan.datamodel.FileHandler;
+import com.jonathan.datamodel.CryptKeeper;
+
+import java.util.logging.FileHandler;
 
 public class MainMenu extends Menu {
 
-    FileHandler theFileHandler;
-    AES256 theAES256;
 
-    public MainMenu(String programName, String menuName) {
-        super(programName, menuName);
-        this.theFileHandler = new FileHandler();
-        this.theAES256 = new AES256();
+    protected CryptKeeper theCryptKeeper;
+
+    public MainMenu() {
     }
+
+    public MainMenu(String programName, String menuName, CryptKeeper theCryptKeeper) {
+        super(programName, menuName);
+        this.theCryptKeeper = theCryptKeeper;
+
+    }
+
+    public boolean getFileNamePrompt() {
+        while (true) {
+            String filePath = getString("Please enter path of file to read: ");
+            if (!theCryptKeeper.openReadFile(filePath)) {
+                System.out.println("File '" + filePath + "' not found.");
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    System.err.println("Sleep interrupted: " + e.getMessage());
+                }
+                continue;
+            } else {
+                theCryptKeeper.setFilePath(filePath);
+                return true;
+            }
+        }
+    }
+
+    @Override
+    public void start() {
+        makeASelection("Please Make a Selection");
+    }
+
 
 }
