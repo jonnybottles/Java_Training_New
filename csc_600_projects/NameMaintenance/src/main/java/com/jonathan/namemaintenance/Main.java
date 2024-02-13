@@ -14,13 +14,12 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("mainwindow.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
 
-        // Get the controller instance from the loader
+        // Obtains controller instance from controller
         Controller controller = fxmlLoader.getController();
 
-        // Set the event handler for the close request
+        // Sets the event handler for closing the program with the "x" button
         stage.setOnCloseRequest((WindowEvent we) -> {
             controller.onExitButtonClicked();
-            // No need to call Platform.exit() here since it's called inside onExitButtonClicked() method
         });
 
         stage.setTitle("Name Maintenance Program");

@@ -6,17 +6,17 @@ import javafx.collections.ObservableList;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Formatter;
-import java.util.List;
 import java.util.Scanner;
 
 
-
+// Provides the attributes and methods for reading / writing names to disk.
 public class NameManager {
 
     private Scanner fileReader;
     private Formatter fileWriter;
     private String filePath;
 
+    // Using an ObservableList for dynamic updating of the list view
     private ObservableList<String> names;
 
     // This constructor is an artifact from part one of the program
@@ -27,38 +27,32 @@ public class NameManager {
 
     }
 
+    // Default constructor
     public NameManager() {
         this.names = FXCollections.observableArrayList();
     }
 
 
-    // Another artifact from the first portion of the program
-    // Not sure if I should leave artifacts from previous requirements in the program
-    public String getReadFile() {
-        return filePath;
-    }
-
     public ObservableList<String> getNames() {
         return names;
     }
 
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
-    }
 
+    // Adds a given name to the names list.
     public void addName(String name) {
         names.add(Utilities.capitalize(name));
     }
 
-    // Removes all occurrences of a given name
-    public void removeName(String name) {
-        // Lambda predicate function used to remove all occurrences of a given name
-        names.removeIf(n -> n.equals(name));
-    }
-
-    public void reset() {
-        names.clear();
-        readNames();
+    // Removes all occurrences of the given name from the names list
+    public boolean removeName(String name) {
+        // Check if the list contains the name
+        if (names.contains(name)) {
+            // Remove all occurrences of the given name
+            names.removeIf(n -> n.equals(name));
+            return true;
+        } else {
+            return false;
+        }
     }
 
     // Method for opening a file.
@@ -97,6 +91,7 @@ public class NameManager {
 
 
 
+    // Writes all names from the names list to the name filePath
     public boolean writeNames() {
         if (fileWriter == null) {
             return false;
@@ -113,7 +108,7 @@ public class NameManager {
         }
     }
 
-    // Reads grades from the opened file.
+    // Reads names from the opened file.
     public boolean readNames() {
         if (fileReader == null) {
             return false;
@@ -125,6 +120,7 @@ public class NameManager {
         return true;
     }
 
+    // Creates names file and adds a default set of names to the file.
     public boolean createNamesFile() {
         if (!openFile("write") && !writeNames()) {
             return false;

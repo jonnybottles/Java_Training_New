@@ -2,7 +2,7 @@ package com.jonathan.namemaintenance.datamodel;
 
 public class Utilities {
 
-
+    // Capitalizes the first letter of every word in a string.
     public static String capitalize(String str) {
         if (str == null || str.isEmpty()) {
             return str;

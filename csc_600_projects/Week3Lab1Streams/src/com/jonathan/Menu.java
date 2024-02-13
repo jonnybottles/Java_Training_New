@@ -15,6 +15,7 @@ public class Menu {
     protected LinkedHashMap<String, Menu> menuOptions; // The menu options
     protected boolean isMainMenu; // Used to check if the menu is a main or submenu
     protected String optionSelection;
+    protected String customContent;
 
     public Menu() {
 
@@ -27,6 +28,7 @@ public class Menu {
         this.menuOptionDescription = this.menuName; // Initialize menuOptionDescription with menuName
         this.menuOptions = menuOptions;
         this.isMainMenu = true;
+        this.customContent = "";
 
     }
 
@@ -69,6 +71,10 @@ public class Menu {
 
     public String getMenuOptionDescription() {
         return menuOptionDescription;
+    }
+
+    public void setCustomContent(String customContent) {
+        this.customContent = customContent;
     }
 
     // Checks to make sure that none of the reserved menu option characters are passed as a menu option
@@ -159,7 +165,7 @@ public class Menu {
     // Method that can be overridden by subclasses when there is a need to display custom content
     // in makeASelection after clearing the screen, but before displaying menu optons
     protected void displayCustomContent() {
-        // Empty by default
+        System.out.println(customContent);
     }
 
     protected void displayMenuOptions(String msg) {

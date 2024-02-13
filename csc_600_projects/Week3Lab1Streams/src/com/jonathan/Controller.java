@@ -1,6 +1,10 @@
 package com.jonathan;
 
+import com.jonathan.datamodel.CryptKeeper;
+
 public class Controller {
+
+    private CryptKeeper theCryptKeeper;
 
     private MainMenu theMainMenu;
     private ReadFileMenu theReadFileMenu;
@@ -9,10 +13,11 @@ public class Controller {
     private ExitMenu theExitMenu;
 
     public Controller() {
-        this.theMainMenu = new MainMenu("CRYPT KEEPER", "Main Menu");
-        this.theReadFileMenu = new ReadFileMenu(theMainMenu, "Read File");
-        this.theEncodeStringMenu = new EncodeStringMenu(theMainMenu, "Encode String");
-        this.theDecodeStringMenu = new DecodeStringMenu(theMainMenu, "Decode String");
+        this.theCryptKeeper = new CryptKeeper();
+        this.theMainMenu = new MainMenu("CRYPT KEEPER", "Main Menu", theCryptKeeper);
+        this.theReadFileMenu = new ReadFileMenu(theMainMenu, "Read File", theCryptKeeper);
+        this.theEncodeStringMenu = new EncodeStringMenu(theMainMenu, "Encode String", theCryptKeeper);
+        this.theDecodeStringMenu = new DecodeStringMenu(theMainMenu, "Decode String", theCryptKeeper);
         this.theExitMenu = new ExitMenu(theMainMenu, "");
 
         theMainMenu.addMenuOption("1", theReadFileMenu);
