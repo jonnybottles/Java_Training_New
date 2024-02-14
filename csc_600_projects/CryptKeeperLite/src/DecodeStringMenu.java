@@ -17,16 +17,10 @@ public class DecodeStringMenu extends MainMenu {
             System.out.println("Returning to main menu...");
         } else {
             if (!theTempCryptKeeper.getIsEncrypted()) {
-                System.out.println("File: " + fileName + " does not contain encrypted data");
+                System.out.println("File: " + fileName + " does not contain encrypted data.");
             } else {
 
-                System.out.println("Decryption would occur here...");
                 theTempCryptKeeper.writeDataToXMLFile(fileName, false);
-
-                System.out.println("Encrypted String:  " + "some encrypted string");
-                System.out.println("Clear Text String: " + "the converted cleartext string");
-
-
                 System.out.println("String decrypted and successfully written back to " + fileName);
             }
 
@@ -34,7 +28,6 @@ public class DecodeStringMenu extends MainMenu {
         }
     }
 
-//    public void D
 
     @Override
     public void start() {

@@ -99,6 +99,12 @@ public class CryptKeeper {
             // Set the state before writing to file
             this.isEncrypted = encryptData;
 
+            if (encryptData) {
+                this.userData = AES256.encrypt(userData, "mysecret", "123456789");
+            } else {
+                this.userData = AES256.decrypt(userData, "mysecret", "123456789");
+            }
+
             File file = new File(filePath);
             marshaller.marshal(this, file);
             return true;

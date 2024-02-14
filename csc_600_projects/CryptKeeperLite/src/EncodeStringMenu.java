@@ -18,8 +18,6 @@ public class EncodeStringMenu extends MainMenu {
             System.out.println("Returning to main menu...");
 
         } else {
-            System.out.println("Clear Text String: " + theStringToEncrypt);
-            System.out.println("Encrypted String:  " + "some encryted string");
             System.out.println("String encrypted and successfully written to " + fileName);
 
         }
