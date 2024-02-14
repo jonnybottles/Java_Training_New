@@ -12,12 +12,12 @@ import java.io.StringWriter;
 import java.util.Scanner;
 
 @XmlRootElement
-@XmlType(propOrder = {"isEncrypted", "encryptedData"})
+@XmlType(propOrder = {"isEncrypted", "userData"})
 public class CryptKeeper {
 
     private AES256 theAES256;
 
-    private String clearTextData;
+    private String userData;
 
     private String filePath;
 
@@ -27,16 +27,10 @@ public class CryptKeeper {
 
     private boolean isEncrypted;
 
-    private String encryptedData;
-
     public CryptKeeper() {
         this.theAES256 = new AES256();
     }
 
-    @XmlTransient
-    public String getCleartextData() {
-        return clearTextData;
-    }
 
     public String getFileData() {
         return fileData;
@@ -47,13 +41,13 @@ public class CryptKeeper {
         return filePath;
     }
 
-    public void setCleartextData(String cleartextData) {
-        this.clearTextData = cleartextData;
+    public void setUserData(String userData) {
+        this.userData = userData;
     }
 
-    @XmlElement(name = "encryptedData")
-    public String getEncryptedData() {
-        return encryptedData;
+    @XmlElement(name = "userData")
+    public String getUserData() {
+        return userData;
     }
 
     @XmlElement(name = "isEncrypted")
@@ -65,9 +59,6 @@ public class CryptKeeper {
         this.isEncrypted = isEncrypted;
     }
 
-    public void setEncryptedData(String encryptedData) {
-        this.encryptedData = encryptedData;
-    }
 
     public void setFilePath(String filePath) {
         this.filePath = filePath;

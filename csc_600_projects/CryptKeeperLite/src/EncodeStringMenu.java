@@ -11,14 +11,17 @@ public class EncodeStringMenu extends MainMenu {
     public void writeEncryptedStringPrompt() {
         String fileName = getString("Please enter a file name to save your encoded string to");
         String theStringToEncrypt = getString("Please enter a string to encode and write to file: ");
-        theCryptKeeper.setEncryptedData(theStringToEncrypt);
+        theCryptKeeper.setUserData(theStringToEncrypt);
 
         if (!theCryptKeeper.writeDataToXMLFile(fileName, true)) {
             System.out.println("Error writing encrypted string to file.");
             System.out.println("Returning to main menu...");
 
         } else {
+            System.out.println("Clear Text String: " + theStringToEncrypt);
+            System.out.println("Encrypted String:  " + "some encryted string");
             System.out.println("String encrypted and successfully written to " + fileName);
+
         }
     }
 
