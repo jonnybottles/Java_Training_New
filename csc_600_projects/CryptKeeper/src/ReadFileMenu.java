@@ -11,7 +11,7 @@ public class ReadFileMenu extends MainMenu {
     public void displayFileContents() {
         theCryptKeeper.readFile();
         printMenuName();
-        System.out.println("File: " + "'" + theCryptKeeper.getFilePath() + "'" + " contents:\n");
+        System.out.println("File " + "'" + theCryptKeeper.getFilePath() + "'" + " contents:\n");
         System.out.println(theCryptKeeper.getFileData());
 
         try {

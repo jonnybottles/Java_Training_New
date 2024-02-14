@@ -3,7 +3,7 @@ import java.io.InputStreamReader;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-
+// Custom CLI Menu Class containing all attributes / methods for a simple CLI menu
 public class Menu {
 
     protected String programName; // The program name.
@@ -12,11 +12,10 @@ public class Menu {
     protected String menuOptionDescription; // Description displayed next to menu option
     protected LinkedHashMap<String, Menu> menuOptions; // The menu options
     protected boolean isMainMenu; // Used to check if the menu is a main or submenu
-    protected String optionSelection;
     protected String customContent;
 
+    // Default constructor
     public Menu() {
-
     }
 
     // Constructor for MainMenu objects with menu options
@@ -40,9 +39,6 @@ public class Menu {
         this(parentMenu.programName, menuName, menuOptions);
         this.parentMenu = parentMenu;
         this.isMainMenu = false;
-
-        // Adds "Return to [parent menu]" as second to last option for submenus.
-        // Adds "Exit Menu" as last option for submenus.
     }
 
     // Constructor for SubMenu objects without menu options
@@ -50,6 +46,7 @@ public class Menu {
         this(parentMenu, menuName, new LinkedHashMap<>());
     }
 
+    // Getters
     public String getProgramName() {
         return programName;
     }
@@ -62,23 +59,19 @@ public class Menu {
         return menuName;
     }
 
-    // Method to set the menu option description
-    public void setMenuOptionDescription(String menuOptionDescription) {
-        this.menuOptionDescription = menuOptionDescription;
-    }
-
     public String getMenuOptionDescription() {
         return menuOptionDescription;
+    }
+
+    // Setters
+    public void setMenuOptionDescription(String menuOptionDescription) {
+        this.menuOptionDescription = menuOptionDescription;
     }
 
     public void setCustomContent(String customContent) {
         this.customContent = customContent;
     }
 
-    // Checks to make sure that none of the reserved menu option characters are passed as a menu option
-    private boolean isValidMenuOption(String optionSelection) {
-        return !(optionSelection.equals("Q") || optionSelection.equals("R"));
-    }
 
     // Prints error message and exits program if invalid menu options are passed.
     private void handleInvalidOption(String option, String... errorMessages) {
@@ -89,13 +82,15 @@ public class Menu {
         System.exit(0);
     }
 
-    // Method to add a menu option dynamically
+    // Method to add a menu option, menuOption Description is set to the Menu name by default.
     public void addMenuOption(String optionSelection, Menu menu) {
-        if (isValidMenuOption(optionSelection)) {
-            menuOptions.put(optionSelection, menu);
-        } else {
-            handleInvalidOption(optionSelection, "Invalid option selection.");
-        }
+        menuOptions.put(optionSelection, menu);
+    }
+
+    // Overloaded addMenuOption to specify the menuOptionDescription
+    public void addMenuOption(String optionSelection, Menu menu, String menuOptionDescription) {
+        menuOptions.put(optionSelection, menu);
+        menu.setMenuOptionDescription(menuOptionDescription);
     }
 
     // Instantiates an exitMenu object
@@ -103,9 +98,6 @@ public class Menu {
         ExitMenu theExitMenu = new ExitMenu(this, "Exit Menu");
         theExitMenu.start();
     }
-
-    // TODO modify code to use printPrompt and inputPrompt from here
-    // https://chat.openai.com/c/00075186-1067-462e-b520-9c4a3b58c148
 
     // Prints menu name centered to the console width with dashes on each side of menu name
     public void printMenuName() {
@@ -128,21 +120,25 @@ public class Menu {
 
 
     // Prints a list of menu options for the user to select from, obtains input and instantiates // calls
-// selected menu.
+    // the associated menu for the user selected option.
     public void makeASelection(String msg) {
         Scanner scanner = new Scanner(System.in);
         String userSelection;
 
         printMenuName();
+
+        // Being while loop showing menu selections
         while (true) {
+            // Display custom content is an empty string by default.
+            // This is here to allow the user to display custom content in the while loop menu if necessary
+            // such as errors or other feedback
             displayCustomContent();
             displayMenuOptions(msg);
 
             try {
                 userSelection = scanner.nextLine().trim().toUpperCase();
-                if (userSelection.equals("R") || userSelection.equals("Q")) {
-                    handleSelection(userSelection);
-                } else if (menuOptions.containsKey(userSelection)) {
+
+                if (menuOptions.containsKey(userSelection)) {
                     // Call the start method of the selected menu
                     Menu selectedMenu = menuOptions.get(userSelection);
                     selectedMenu.start();
@@ -161,7 +157,7 @@ public class Menu {
 
 
     // Method that can be overridden by subclasses when there is a need to display custom content
-    // in makeASelection after clearing the screen, but before displaying menu optons
+    // in makeASelection after clearing the screen, but before displaying menu options
     protected void displayCustomContent() {
         System.out.println(customContent);
     }
@@ -182,28 +178,6 @@ public class Menu {
 
         System.out.println("\n" + msg);  // Print the message passed to the method
     }
-
-
-
-    // Method to handle the user's selection
-    protected void handleSelection(String selection) {
-        // Implement actions based on the selection here
-        // For example, if the selection is "Q", you may want to quit the program
-
-            // Handle other selections
-            Menu selectedMenu = menuOptions.get(selection);
-            if (selectedMenu != null) {
-                selectedMenu.start();
-            } else {
-                printMenuName();
-                System.out.println("Invalid selection, please enter a valid option.\n");
-            }
-
-    }
-
-
-
-
 
     // Obtains a single string from the user.
     public String getString(String msg) {
@@ -277,12 +251,12 @@ public class Menu {
         }
     }
 
-    public void initialize() {
-    }
 
+    // Method used by all menus to define start actions for a menu.
     public void start() {
     }
 
+    // Validates that a string is valid or not
     private static boolean isValidString(String userString) {
         // Trim the string to remove leading and trailing whitespaces to include \n\t\r etc.
         String trimmedString = userString.trim();
@@ -395,9 +369,6 @@ public class Menu {
         // Returns the obtained or default console width.
         return defaultWidth;
     }
-
-
-
 
 }
 

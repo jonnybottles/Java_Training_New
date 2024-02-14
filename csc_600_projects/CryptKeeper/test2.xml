@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <cryptKeeper>
-    <encryptedData>encrypted data would go here</encryptedData>
-    <filePath>test.txt</filePath>
     <isEncrypted>true</isEncrypted>
+    <userData>KDKT/05eK45BB5rpAf/0ltwu61iD7oISAjKV+SiUUBc=</userData>
 </cryptKeeper>

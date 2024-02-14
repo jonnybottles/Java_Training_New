@@ -120,7 +120,6 @@ public class CryptKeeper {
             Unmarshaller unmarshaller = context.createUnmarshaller();
             return (CryptKeeper) unmarshaller.unmarshal(new File(filePath));
         } catch (JAXBException e) {
-            System.err.println("Unmarshalling data error **** NOTE DELETE LATER FOR DEBUGGING PURPOSES ONLY");
             return null;
         }
     }

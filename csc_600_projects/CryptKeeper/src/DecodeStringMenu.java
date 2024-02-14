@@ -19,7 +19,6 @@ public class DecodeStringMenu extends MainMenu {
             if (!theTempCryptKeeper.getIsEncrypted()) {
                 System.out.println("File: " + fileName + " does not contain encrypted data.");
             } else {
-
                 theTempCryptKeeper.writeDataToXMLFile(fileName, false);
                 System.out.println("String decrypted and successfully written back to " + fileName);
             }
