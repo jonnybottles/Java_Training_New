@@ -33,18 +33,10 @@ class Controller {
         theMainMenu.addMenuOption("4", theExitMenu, "Exit Program");
     }
 
-//    // Sets menu option descriptions for all menus.
-//    public void setMenuOptionDescriptions() {
-//        theReadFileMenu.setMenuOptionDescription("Read File");
-//        theEncodeStringMenu.setMenuOptionDescription("Encode String");
-//        theDecodeStringMenu.setMenuOptionDescription("Decode String");
-//        theExitMenu.setMenuOptionDescription("Exit Program");
-//    }
-
+    // Calls all Controller methods in appropriate order.
     public void start() {
         initializeMenus();
         addMenuOptions();
-//        setMenuOptionDescriptions();
         theMainMenu.start();
     }
 

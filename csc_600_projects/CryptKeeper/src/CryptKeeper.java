@@ -8,9 +8,13 @@ import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.StringWriter;
 import java.util.Scanner;
 
+// The CryptKeeper contains all the methods and attributes required for
+// serialization / deserialization and encryption.
+
+// Annotates root element and establishes order which Xml data should be
+// written to the xml file.
 @XmlRootElement
 @XmlType(propOrder = {"isEncrypted", "userData"})
 public class CryptKeeper {
@@ -25,13 +29,16 @@ public class CryptKeeper {
 
     private Scanner fileReader;
 
+    // Used to track if the userData is encrypted.
     private boolean isEncrypted;
 
+    // Constructor
     public CryptKeeper() {
         this.theAES256 = new AES256();
     }
 
 
+    // Getters
     public String getFileData() {
         return fileData;
     }
@@ -41,9 +48,6 @@ public class CryptKeeper {
         return filePath;
     }
 
-    public void setUserData(String userData) {
-        this.userData = userData;
-    }
 
     @XmlElement(name = "userData")
     public String getUserData() {
@@ -55,16 +59,20 @@ public class CryptKeeper {
         return isEncrypted;
     }
 
+    // Setters
+    public void setUserData(String userData) {
+        this.userData = userData;
+    }
+
     public void setIsEncrypted(boolean isEncrypted) {
         this.isEncrypted = isEncrypted;
     }
-
 
     public void setFilePath(String filePath) {
         this.filePath = filePath;
     }
 
-    // Method for opening a file.
+    // Method for opening a file // seeing if it exists.
     public boolean openReadFile(String filePath) {
         try {
             fileReader = new Scanner(new File(filePath));
@@ -74,6 +82,7 @@ public class CryptKeeper {
         }
     }
 
+    // Reads a file and saves data to the fileData member variable for later use.
     public void readFile() {
         // Set file data to empty string each time through as
         // files are read multiple times during the program operations.
@@ -90,20 +99,27 @@ public class CryptKeeper {
             return;
         }
     }
+
+    // Encrypts or decrypts data based upon value passed.
+    public void encryptOrDecryptUserData(boolean encryptData) {
+        // Sets isEncrypted state prior to writing to file
+        this.isEncrypted = encryptData;
+        if (encryptData) {
+            this.userData = AES256.encrypt(userData, "mysecret", "123456789");
+        } else {
+            this.userData = AES256.decrypt(userData, "mysecret", "123456789");
+        }
+    }
+
+
+    // Writes appropriate CryptKeeper attributes to an XML file.
     public boolean writeDataToXMLFile(String filePath, boolean encryptData) {
         try {
             JAXBContext context = JAXBContext.newInstance(CryptKeeper.class);
             Marshaller marshaller = context.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 
-            // Set the state before writing to file
-            this.isEncrypted = encryptData;
-
-            if (encryptData) {
-                this.userData = AES256.encrypt(userData, "mysecret", "123456789");
-            } else {
-                this.userData = AES256.decrypt(userData, "mysecret", "123456789");
-            }
+            encryptOrDecryptUserData(encryptData);
 
             File file = new File(filePath);
             marshaller.marshal(this, file);
@@ -114,6 +130,7 @@ public class CryptKeeper {
         }
     }
 
+    // Reads marshalled data from an XML file
     public static CryptKeeper readDataFromXMLFile(String filePath) {
         try {
             JAXBContext context = JAXBContext.newInstance(CryptKeeper.class);
