@@ -1,4 +1,6 @@
 package com.jonathan.week3individualhealthassessmentprogram.datamodel;
 
-public class CholesterolData {
+import java.io.Serializable;
+
+public class CholesterolData implements Serializable {
 }
