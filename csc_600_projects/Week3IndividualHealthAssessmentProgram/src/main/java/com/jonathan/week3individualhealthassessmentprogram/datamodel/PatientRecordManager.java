@@ -23,12 +23,10 @@ public class PatientRecordManager {
             try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
                 return (PatientData) in.readObject();
             } catch (IOException | ClassNotFoundException e) {
-                // Log the exception, handle it, or rethrow it if you cannot recover from it
                 System.out.println("Error reading patient object: " + e.getMessage());
                 throw e;
             }
         } else {
-            // If the file doesn't exist, you might want to handle this case separately
             return null;
         }
     }
