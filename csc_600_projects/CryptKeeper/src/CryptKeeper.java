@@ -29,6 +29,7 @@ public class CryptKeeper {
 
     private Scanner fileReader;
 
+
     // Used to track if the userData is encrypted.
     private boolean isEncrypted;
 
@@ -105,6 +106,8 @@ public class CryptKeeper {
         // Sets isEncrypted state prior to writing to file
         this.isEncrypted = encryptData;
         if (encryptData) {
+            // Notes in a real world application I would ask the user
+            // for their secretKey and use something random for the Salt like unix epoch time or a UUID, etc.
             this.userData = AES256.encrypt(userData, "mysecret", "123456789");
         } else {
             this.userData = AES256.decrypt(userData, "mysecret", "123456789");

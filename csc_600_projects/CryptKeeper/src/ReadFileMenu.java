@@ -1,4 +1,5 @@
 
+// Menu class that provides the attributes and methods for reading a specified user file.
 public class ReadFileMenu extends MainMenu {
 
     public ReadFileMenu(MainMenu parentMenu, String menuName, CryptKeeper theCryptKeeper) {
@@ -8,23 +9,20 @@ public class ReadFileMenu extends MainMenu {
     }
 
 
+    // Prints file contents to screen after obtaining file name.
     public void displayFileContents() {
         theCryptKeeper.readFile();
         printMenuName();
         System.out.println("File " + "'" + theCryptKeeper.getFilePath() + "'" + " contents:\n");
         System.out.println(theCryptKeeper.getFileData());
 
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            System.err.println("Sleep interrupted: " + e.getMessage());
-        }
+        pauseMenu(5000);
 
     }
 
+    // Executes all methods required for the Read File Menu
     @Override
     public void start() {
-
         getFileNamePrompt();
         displayFileContents();
         this.parentMenu.start();

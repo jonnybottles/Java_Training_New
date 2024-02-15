@@ -1,11 +1,13 @@
 import java.io.IOException;
 
-
+// Class containing various utilities across various programs.
 public class Utilities {
 
     //TODO create prompt / auto coloring for error logs
 
     // Clears the screen based upon OS type
+    // Currently set to a fixed to for loop to simulate clearing the screen
+    // as I need to debug this to allow it to work in IDEs appropriately
     public static void clearScreen() {
         // Attempt to clear the screen for terminal environments
         try {
@@ -33,6 +35,7 @@ public class Utilities {
         }
     }
 
+    // Capitalizes first letter of every word in a given string
     public static String capitalize(String str) {
         if (str == null || str.isEmpty()) {
             return str;

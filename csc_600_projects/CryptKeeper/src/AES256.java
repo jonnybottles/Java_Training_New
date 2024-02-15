@@ -7,13 +7,14 @@ import javax.crypto.spec.SecretKeySpec;
 import java.security.SecureRandom;
 import java.security.spec.KeySpec;
 import java.util.Base64;
-import java.io.UnsupportedEncodingException;
 
+// Class containing the methods / attributes for encrypt / decrypting a given string
 public class AES256 {
 
     private static final int KEY_LENGTH = 256;
     private static final int ITERATION_COUNT = 65536;
 
+    // Encrypts a given string using a secret key and salt.
     public static String encrypt(String strToEncrypt, String secretKey, String salt) {
 
         try {
@@ -44,6 +45,7 @@ public class AES256 {
         }
     }
 
+    // Decrypts a given string using a secret key and salt.
     public static String decrypt(String strToDecrypt, String secretKey, String salt) {
 
         try {

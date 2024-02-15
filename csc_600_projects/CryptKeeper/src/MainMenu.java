@@ -1,7 +1,6 @@
 
-
+// Menu class that provides the attributes and methods for the Main Menu of Crypt Keeper
 public class MainMenu extends Menu {
-
 
     protected CryptKeeper theCryptKeeper;
 
@@ -14,16 +13,13 @@ public class MainMenu extends Menu {
 
     }
 
+    // Prompts user for file name and sets the attribute appropriately in CryptKeeper object
     public boolean getFileNamePrompt() {
         while (true) {
             String filePath = getString("Please enter path of file to read: ");
             if (!theCryptKeeper.openReadFile(filePath)) {
                 System.out.println("File '" + filePath + "' not found.");
-                try {
-                    Thread.sleep(5000);
-                } catch (InterruptedException e) {
-                    System.err.println("Sleep interrupted: " + e.getMessage());
-                }
+                pauseMenu(5000);
                 continue;
             } else {
                 theCryptKeeper.setFilePath(filePath);
@@ -32,6 +28,7 @@ public class MainMenu extends Menu {
         }
     }
 
+    // Executes all methods required for the Main Menu
     @Override
     public void start() {
         makeASelection("Please Make a Selection");

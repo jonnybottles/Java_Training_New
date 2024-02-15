@@ -251,6 +251,17 @@ public class Menu {
         }
     }
 
+    // Pauses menu for a given time
+    public void pauseMenu(long milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException e) {
+            System.err.println("Sleep interrupted: " + e.getMessage());
+            // Restore interrupted status
+            Thread.currentThread().interrupt();
+        }
+    }
+
 
     // Method used by all menus to define start actions for a menu.
     public void start() {
