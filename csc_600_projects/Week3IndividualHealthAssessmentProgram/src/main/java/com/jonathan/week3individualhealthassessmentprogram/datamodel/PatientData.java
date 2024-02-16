@@ -15,11 +15,11 @@ public class PatientData implements Serializable {
     private static int lastPatientID = 1;
     private HealthMetricsData theHealthMetricsData;
 
-    public PatientData(String firstName, String lastName) {
+    public PatientData(String firstName, String lastName, HealthMetricsData healthMetricsData) {
         this.firstName = firstName;
         this.lastName = lastName;
-        patientID = lastPatientID++;
-        theHealthMetricsData = new HealthMetricsData();
+        this.patientID = lastPatientID++;
+        this.theHealthMetricsData = healthMetricsData;
     }
 
     public String getFirstName() {

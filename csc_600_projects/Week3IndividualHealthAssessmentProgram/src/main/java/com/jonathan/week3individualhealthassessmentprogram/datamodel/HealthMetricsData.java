@@ -11,10 +11,14 @@ public class HealthMetricsData implements Serializable {
     private CholesterolData theCholesterolData;
     private GlucoseData theGlucoseData;
 
-    public HealthMetricsData() {
+    public HealthMetricsData(BMIData bmiData) {
         theBloodPressureData = new BloodPressureData();
-        theBMIData = new BMIData();
+        theBMIData = bmiData;
         theCholesterolData = new CholesterolData();
         theGlucoseData = new GlucoseData();
+    }
+
+    public BMIData getBMIData() {
+        return theBMIData;
     }
 }
