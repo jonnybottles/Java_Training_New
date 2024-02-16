@@ -32,17 +32,20 @@ public class Main extends Application {
         PatientData patientData = new PatientData("Doe", "John");
         // For demonstration purposes, we're assuming you have appropriate getters and setters to manipulate patientData
 
+        // The filename for saving and loading the patient data
+        String filename = "patientDataFile"; // You can make this more dynamic or user-defined
+
         // Save the patient data
-        manager.savePatientData(patientData);
+        manager.savePatientData(patientData, filename);
 
         // Load the patient data
         try {
-            PatientData loadedPatientData = manager.loadPatientData("patient" + patientData.getPatientID());
+            PatientData loadedPatientData = manager.loadPatientData(filename);
             if (loadedPatientData != null) {
                 System.out.println("Patient data loaded successfully for patient ID: " + loadedPatientData.getPatientID());
                 // Further code to verify the loaded data would go here.
             } else {
-                System.out.println("No data found for patient ID: " + patientData.getPatientID());
+                System.out.println("No data found for file: " + filename);
             }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -50,15 +53,17 @@ public class Main extends Application {
 
         // Attempt to load a non-existent patient data
         try {
-            PatientData nonExistentPatientData = manager.loadPatientData("patient9999"); // Assuming this file doesn't exist
+            String nonExistentFilename = "nonExistentFile";
+            PatientData nonExistentPatientData = manager.loadPatientData(nonExistentFilename); // Assuming this file doesn't exist
             if (nonExistentPatientData != null) {
-                System.out.println("Loaded data for a non-existent patient, this should not happen.");
+                System.out.println("Loaded data for a non-existent file, this should not happen.");
             } else {
-                System.out.println("No data found for a non-existent patient, as expected.");
+                System.out.println("No data found for file: " + nonExistentFilename + ", as expected.");
             }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
+
 
 }
