@@ -82,7 +82,10 @@ public class Controller {
     }
 
     private boolean isAllInputValid() {
-        return isValidNameInputs() && isValidBMIInputs();
+        boolean namesValid = isValidNameInputs();
+        boolean BMIValid = isValidBMIInputs();
+
+        return namesValid && BMIValid;
     }
 
     private boolean isValidNameInputs() {
