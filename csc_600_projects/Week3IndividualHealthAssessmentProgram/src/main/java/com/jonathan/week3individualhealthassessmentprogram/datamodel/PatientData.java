@@ -13,32 +13,71 @@ public class PatientData implements Serializable {
     private static final long serialVersionUID = 1L;
     private int patientID;
     private static int lastPatientID = 1;
-    private HealthMetricsData theHealthMetricsData;
 
-    public PatientData(String firstName, String lastName, HealthMetricsData healthMetricsData) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    private BloodPressureData theBloodPressureData;
+    private BMIData theBMIData;
+    private CholesterolData theCholesterolData;
+    private GlucoseData theGlucoseData;
+
+
+    public PatientData(BMIData BMIData, BloodPressureData bloodPressureData,
+                       CholesterolData cholesterolData, GlucoseData glucoseData) {
+
         this.patientID = lastPatientID++;
-        this.theHealthMetricsData = healthMetricsData;
+        this.theBMIData = BMIData;
+
+        this.theBloodPressureData = bloodPressureData;
+        this.theCholesterolData = cholesterolData;
+        this.theGlucoseData = glucoseData;
+
+
     }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public boolean setFirstName(String firstName) {
+        if (firstName == null || firstName.isEmpty()) {
+            return false;
+        }
         this.firstName = firstName;
+        return true;
     }
 
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public boolean setLastName(String lastName) {
+        if (lastName == null || lastName.isEmpty()) {
+            return false;
+        }
         this.lastName = lastName;
+        return true;
     }
 
     public int getPatientID() {
         return patientID;
+    }
+
+    public BMIData getBMIData() {
+        return theBMIData;
+    }
+
+    public BloodPressureData getTheBloodPressureData() {
+        return theBloodPressureData;
+    }
+
+    public BMIData getTheBMIData() {
+        return theBMIData;
+    }
+
+    public CholesterolData getTheCholesterolData() {
+        return theCholesterolData;
+    }
+
+    public GlucoseData getTheGlucoseData() {
+        return theGlucoseData;
     }
 }

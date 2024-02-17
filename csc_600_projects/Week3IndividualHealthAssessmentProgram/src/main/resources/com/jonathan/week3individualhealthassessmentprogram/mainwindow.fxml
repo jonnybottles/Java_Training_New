@@ -5,7 +5,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+            prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.jonathan.week3individualhealthassessmentprogram.controllers.Controller">
    <top>
       <Label text="Individual Health Assessment" BorderPane.alignment="CENTER">
          <font>
@@ -45,16 +47,16 @@
             <Label text="LDL:" GridPane.rowIndex="8" />
             <Label text="Patient Last Name:" GridPane.rowIndex="1" />
             <Label text="Patient First Name:" />
-            <TextField GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+             <TextField fx:id="firstNameTextField" GridPane.columnIndex="1"/>
+             <TextField fx:id="lastNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
             <Label text="Auto Generated" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="Height (m):" GridPane.columnIndex="2">
                <GridPane.margin>
                   <Insets left="20.0" />
                </GridPane.margin>
             </Label>
-            <TextField maxWidth="50.0" GridPane.columnIndex="3" />
-            <TextField maxWidth="50.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+             <TextField fx:id="heightTextField" maxWidth="50.0" GridPane.columnIndex="3"/>
+             <TextField fx:id="weightTextField" maxWidth="50.0" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
             <Label GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField maxWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField maxWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
@@ -96,7 +98,7 @@
                   <Insets left="20.0" />
                </padding>
             </Label>
-            <Label text="- " GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Label fx:id="BMILabel" text="- " GridPane.columnIndex="3" GridPane.rowIndex="3" />
             <Label text="-" GridPane.columnIndex="3" GridPane.rowIndex="4" />
             <Label text="-" GridPane.columnIndex="3" GridPane.rowIndex="5" />
             <Label text="-" GridPane.columnIndex="3" GridPane.rowIndex="6" />
@@ -145,7 +147,9 @@
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="2" />
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="143.0" text="Evaluate Health Metrics" GridPane.columnIndex="1" />
+                  <Button fx:id="evaluateHealthMetricsButton" mnemonicParsing="false" prefHeight="25.0"
+                          prefWidth="143.0" text="Evaluate Health Metrics" GridPane.columnIndex="1"
+                            onAction="#onEvaluateHealthMetricsClicked"/>
                </children>
             </GridPane>
          </children></HBox>

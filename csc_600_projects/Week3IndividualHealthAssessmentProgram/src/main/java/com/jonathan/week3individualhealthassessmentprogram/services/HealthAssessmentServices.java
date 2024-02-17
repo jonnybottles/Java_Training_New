@@ -1,7 +1,7 @@
 package com.jonathan.week3individualhealthassessmentprogram.services;
 
 import com.jonathan.week3individualhealthassessmentprogram.datamodel.BMIData;
-import com.jonathan.week3individualhealthassessmentprogram.datamodel.HealthMetricsData;
+import com.jonathan.week3individualhealthassessmentprogram.datamodel.PatientData;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,15 +21,17 @@ public class HealthAssessmentServices {
         this.adviceNotification = new StringBuilder();
     }
 
-    public void assessAllHealthMetrics(HealthMetricsData healthMetricsData) {
-        calculateBMICategory(healthMetricsData.getBMIData());
+    public void calculateAllHealthMetrics(PatientData patientData) {
+        // Set any previous messages to zero / nothing.
+        adviceNotification.setLength(0);
+        calculateBMICategory(patientData.getBMIData());
         // Include calls to other health metric assessment methods as they are implemented
         // For example:
         // calculateBloodPressureAndAppendAdvice(healthMetricsData.getBloodPressureData());
     }
 
-    public void calculateBMICategory(BMIData bmiData) {
-        float bmiValue = calculateBMI(bmiData.getWeight(), bmiData.getHeight());
+    public void calculateBMICategory(BMIData theBMIData) {
+        float bmiValue = calculateBMI(theBMIData.getWeight(), theBMIData.getHeight());
         String category;
 
         if (bmiValue < 18.5) {
@@ -46,6 +48,7 @@ public class HealthAssessmentServices {
 
         // Optionally log or print the category for debugging or UI display
         System.out.println("BMI Category: " + category);
+        theBMIData.setBMICategory(category);
     }
 
 
