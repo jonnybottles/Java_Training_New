@@ -1,6 +1,7 @@
 package com.jonathan.week3individualhealthassessmentprogram.services;
 
 import com.jonathan.week3individualhealthassessmentprogram.datamodel.BMIData;
+import com.jonathan.week3individualhealthassessmentprogram.datamodel.BloodPressureData;
 import com.jonathan.week3individualhealthassessmentprogram.datamodel.PatientData;
 
 import java.util.Arrays;
@@ -17,6 +18,15 @@ public class HealthAssessmentServices {
             "Obese" // BMI > 30
     );
 
+    private static final List<String> BLOOD_PRESSURE_CATEGORIES = Arrays.asList(
+            "Low",
+            "Normal",
+            "Mild",
+            "Moderate",
+            "Severe",
+            "Very Severe"
+    );
+
     public HealthAssessmentServices() {
         this.adviceNotification = new StringBuilder();
     }
@@ -28,6 +38,14 @@ public class HealthAssessmentServices {
         // Include calls to other health metric assessment methods as they are implemented
         // For example:
         // calculateBloodPressureAndAppendAdvice(healthMetricsData.getBloodPressureData());
+    }
+
+    public void calculateBloodPressureCategory(BloodPressureData theBloodPressureData) {
+        int bloodPressure = theBloodPressureData.getBloodPressure();
+        String category;
+
+//        if (bloodPressure <= )
+
     }
 
     public void calculateBMICategory(BMIData theBMIData) {
