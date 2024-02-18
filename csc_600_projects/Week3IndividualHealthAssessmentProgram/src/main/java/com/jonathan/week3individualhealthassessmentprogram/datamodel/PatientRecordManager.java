@@ -22,14 +22,14 @@ public class PatientRecordManager {
     }
 
     // Deserializes / loads PatientData objects.
-    public PatientData loadPatientData(String filename) throws IOException, ClassNotFoundException {
+    public PatientData loadPatientData(String filename) throws Exception {
         // Ensure the filename ends with .ser
         String serializedFileName = filename.endsWith(".ser") ? filename : filename + ".ser";
         File file = new File(serializedFileName);
         if (file.exists()) {
             try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
                 return (PatientData) ois.readObject();
-            } catch (IOException | ClassNotFoundException e) {
+            } catch (Exception e) {
                 System.out.println("Error reading patient object from " + serializedFileName + ": " + e.getMessage());
                 throw e;
             }

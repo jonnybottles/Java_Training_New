@@ -107,7 +107,7 @@ public class Controller {
         try {
             thePatientData = thePatientRecordManager.loadPatientData(fileName);
             onEvaluateHealthMetricsClicked(true);
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (Exception e) {
             displayErrorAlert("Report Load Failed", "Failed to load health assessment report.");
         }
 
