@@ -106,8 +106,8 @@ public class HealthAssessmentServices {
         healthEvaluationReport.append("> BMI: \t\t\t\t\t" + String.format("%.2f", BMI) + " ("+ BMICategory + ")\n");
         healthEvaluationReport.append("> BLOOD PRESSURE:\t\t" + bloodPressure + " ("+ bloodPressureCategory + ")\n");
         healthEvaluationReport.append("> BLOOD GLUCOSE:\t\t" + glucose + " ("+ glucoseCategory + ")\n");
-        healthEvaluationReport.append("> HDL (Good):\t\t\t\t" + hdl + " ("+ hdlCategory + ")\n");
-        healthEvaluationReport.append("> LDL (Bad):\t\t\t\t" + ldl + " ("+ ldlCategory + ")\n");
+        healthEvaluationReport.append("> HDL:\t\t\t\t\t" + hdl + " ("+ hdlCategory + ")\n");
+        healthEvaluationReport.append("> LDL:\t\t\t\t\t" + ldl + " ("+ ldlCategory + ")\n");
         healthEvaluationReport.append("> TRIGLYCERIDES:\t\t\t" + triglycerides + " ("+ triglyceridesCategory + ")\n");
         healthEvaluationReport.append("> TOTAL CHOLESTEROL:\t\t" + totalCholesterol + " ("+ cholesterolCategory + ")");
 

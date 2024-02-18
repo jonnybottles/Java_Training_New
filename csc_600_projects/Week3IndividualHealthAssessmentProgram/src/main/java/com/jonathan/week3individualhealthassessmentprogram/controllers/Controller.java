@@ -55,9 +55,6 @@ public class Controller {
     public void initialize() {
         this.theHealthAssessmentServices = new HealthAssessmentServices();
 
-        this.thePatientData = new PatientData(new BMIData(), new BloodPressureData(),
-                new CholesterolData(), new GlucoseData());
-
         this.theInformationalAlertMsg = new StringBuilder();
 
         this.thePatientRecordManager = new PatientRecordManager();
@@ -68,21 +65,21 @@ public class Controller {
 
 
         if (!evaluateHealthMetricsButtonWasClicked) {
-            displayInformationalAlert("Metrics Not Calculated",
+            displayInformationalAlert("File Save Issue","Metrics Not Calculated",
                     "Health metrics must calculated before report can be saved.\n");
             return;
         }
         String fileName = filenameTextField.getText().trim();
 
         if (!isValidFileName(fileName)) {
-            displayInformationalAlert("Invalid File Name", "File name cannot be blank.");
+            displayInformationalAlert("File Save Issue","Invalid File Name", "File name cannot be blank.");
             return;
         }
 
         if (!thePatientRecordManager.savePatientData(thePatientData, fileName)) {
-            displayInformationalAlert("File Save Failed","Failed to save patient report.\n");
+            displayInformationalAlert("File Save Issue","File Save Failed","Failed to save patient report.\n");
         } else {
-            displayInformationalAlert("File Save Success", "Saved patient report to: " + "'" +
+            displayInformationalAlert("File Save Success","File Save Success", "Saved patient report to: " + "'" +
                     fileName + ".ser" + "'\n");
         }
 
@@ -99,7 +96,7 @@ public class Controller {
         String fileName = filenameTextField.getText().trim();
 
         if (!isValidFileName(fileName)) {
-            displayInformationalAlert("Invalid File Name", "File name cannot be blank.");
+            displayInformationalAlert("File Load Issue","Invalid File Name", "File name cannot be blank.");
             return;
         }
 
@@ -138,11 +135,16 @@ public class Controller {
         theInformationalAlertMsg.setLength(0);
 
         if (!wasCalledInternally) {
+            thePatientData = new PatientData(new BMIData(), new BloodPressureData(),
+                    new CholesterolData(), new GlucoseData());
+
             boolean isAllDataValid = isAllInputValid();
+
+
 
             // Check if all inputs are valid and if any error messages were generated
             if (!isAllDataValid || !theInformationalAlertMsg.isEmpty()) {
-                displayInformationalAlert("Invalid Input", theInformationalAlertMsg.toString());
+                displayInformationalAlert("Invalid Input","Invalid Input", theInformationalAlertMsg.toString());
                 return;
             }
         }
@@ -335,9 +337,9 @@ public class Controller {
     }
 
     // Display informational popup for bad input.
-    public void displayInformationalAlert(String header, String msg) {
+    public void displayInformationalAlert(String title, String header, String msg) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Invalid Input");
+        alert.setTitle(title);
         alert.setHeaderText(header);
         alert.setContentText(msg);
         alert.showAndWait();
