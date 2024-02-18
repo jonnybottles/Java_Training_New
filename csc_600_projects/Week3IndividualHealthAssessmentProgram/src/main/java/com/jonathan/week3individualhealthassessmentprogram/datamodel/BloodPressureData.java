@@ -2,6 +2,7 @@ package com.jonathan.week3individualhealthassessmentprogram.datamodel;
 
 import java.io.Serializable;
 
+// Data class for blood pressure related information
 public class BloodPressureData implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -12,6 +13,7 @@ public class BloodPressureData implements Serializable {
 
     }
 
+    // Getters / setters
     public int getBloodPressure() {
         return bloodPressure;
     }
@@ -24,7 +26,7 @@ public class BloodPressureData implements Serializable {
         this.bloodPressureCategory = bloodPressureCategory;
     }
 
-    // Setter for blood pressure
+    // Checks to make sure blood pressure is within reasonable range
     public boolean setBloodPressure(int bloodPressure) {
         if (bloodPressure > 0 && bloodPressure < 250) {
             this.bloodPressure = bloodPressure;

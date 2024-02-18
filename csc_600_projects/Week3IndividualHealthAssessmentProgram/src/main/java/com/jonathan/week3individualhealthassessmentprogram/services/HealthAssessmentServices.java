@@ -228,7 +228,6 @@ public class HealthAssessmentServices {
             category = GLUCOSE_CATEGORIES.get(0); // Excellent
         }
 
-        System.out.println("Blood Glucose Category: " + category);
         theGlucoseData.setGlucoseCategory(category); // Assuming there's a method setGlucoseCategory() to save the category
     }
 
@@ -253,7 +252,6 @@ public class HealthAssessmentServices {
             adviceNotification.append("Your blood pressure is below 50 (low).\n");
         }
 
-        System.out.println("Blood Pressure Category: " + category);
         theBloodPressureData.setBloodPressureCategory(category); // Assuming there's a method setBloodPressureCategory() to save the category
     }
 
@@ -276,7 +274,6 @@ public class HealthAssessmentServices {
             adviceNotification.append("Your BMI is above 30 (obese).\n");
         }
 
-        System.out.println("BMI Category: " + category);
         theBMIData.setBMICategory(category);
     }
 

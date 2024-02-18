@@ -2,6 +2,7 @@ package com.jonathan.week3individualhealthassessmentprogram.datamodel;
 
 import java.io.Serializable;
 
+// Data class for BMI related information
 public class BMIData implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -16,6 +17,7 @@ public class BMIData implements Serializable {
         this.height = height;
     }
 
+    // Getters / setters
     public float getWeight() {
         return weight;
     }

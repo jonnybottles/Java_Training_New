@@ -1,11 +1,9 @@
 package com.jonathan.week3individualhealthassessmentprogram.datamodel;
 
-import com.jonathan.week3individualhealthassessmentprogram.services.HealthAssessmentServices;
-
-import java.io.Serial;
 import java.io.Serializable;
 import java.util.Random;
 
+// Data class for patient data related information
 public class PatientData implements Serializable {
 
     private String firstName;
@@ -13,8 +11,11 @@ public class PatientData implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private long patientID;
+
+    // Stores unique patient ID
     private static long lastPatientID = PatientData.createPatientID();
 
+    // References to all health metric data
     private BloodPressureData theBloodPressureData;
     private BMIData theBMIData;
     private CholesterolData theCholesterolData;
@@ -26,14 +27,12 @@ public class PatientData implements Serializable {
 
         this.patientID = lastPatientID++;
         this.theBMIData = BMIData;
-
         this.theBloodPressureData = bloodPressureData;
         this.theCholesterolData = cholesterolData;
         this.theGlucoseData = glucoseData;
-
-
     }
 
+    // Getters / setters
     public String getFirstName() {
         return firstName;
     }
@@ -82,6 +81,7 @@ public class PatientData implements Serializable {
         return theGlucoseData;
     }
 
+    // Generates a random 10 digit patient ID
     private static long createPatientID() {
         Random theRandom = new Random();
         // Generate a random 10-digit long number

@@ -2,24 +2,26 @@ package com.jonathan.week3individualhealthassessmentprogram.datamodel;
 
 import java.io.*;
 
+// Class used for serializing / deserializing PatientData objects
 public class PatientRecordManager {
 
     public PatientRecordManager() {
     }
 
+    // Serializes / saves PatientData objects.
     public boolean savePatientData(PatientData patientData, String filename) {
         // Ensure the filename ends with .ser
         String serializedFileName = filename.endsWith(".ser") ? filename : filename + ".ser";
+
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(serializedFileName))) {
             oos.writeObject(patientData);
-            return true; // Return true if the operation is successful
+            return true;
         } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Error writing patient object to " + serializedFileName + ": " + e.getMessage());
-            return false; // Return false if an exception occurs
+            return false;
         }
     }
 
+    // Deserializes / loads PatientData objects.
     public PatientData loadPatientData(String filename) throws IOException, ClassNotFoundException {
         // Ensure the filename ends with .ser
         String serializedFileName = filename.endsWith(".ser") ? filename : filename + ".ser";
@@ -32,7 +34,6 @@ public class PatientRecordManager {
                 throw e;
             }
         } else {
-            System.out.println("File " + serializedFileName + " does not exist.");
             return null;
         }
     }

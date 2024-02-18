@@ -2,6 +2,7 @@ package com.jonathan.week3individualhealthassessmentprogram.datamodel;
 
 import java.io.Serializable;
 
+// Data class for cholesterol related information
 public class CholesterolData implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -18,6 +19,7 @@ public class CholesterolData implements Serializable {
     public CholesterolData() {
     }
 
+    // Setters check to make sure data is within in a reasonable range
     public boolean setCholesterol(int cholesterol) {
         if (cholesterol > 0 && cholesterol < 600) {
             this.cholesterol = cholesterol;
