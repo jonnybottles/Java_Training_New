@@ -22,8 +22,8 @@ public class Controller {
     private TextField weightTextField;
     @FXML
     private TextField bloodPressureTextField;
-//    @FXML
-//    private TextField bloodGlucoseTextField;
+    @FXML
+    private TextField bloodGlucoseTextField;
 //    @FXML
 //    private TextField triglyceridesTextField;
 //    @FXML
@@ -88,9 +88,10 @@ public class Controller {
     private boolean isAllInputValid() {
         boolean namesValid = isValidNameInputs();
         boolean BMIValid = isValidBMIInputs();
-        boolean bloodPressureValid = isValidBloodPressureInputs();
+        boolean bloodPressureValid = isValidBloodPressureInput();
+        boolean bloodGlucoseValid = isValidBloodGlucoseInput();
 
-        return namesValid && BMIValid && bloodPressureValid;
+        return namesValid && BMIValid && bloodPressureValid && bloodGlucoseValid;
     }
 
     private boolean isValidNameInputs() {
@@ -111,7 +112,28 @@ public class Controller {
         return isValid;
     }
 
-    private boolean isValidBloodPressureInputs() {
+    private boolean isValidBloodGlucoseInput() {
+        boolean isValid = true;
+        String glucose = bloodGlucoseTextField.getText().trim();
+
+        if (!isValidInt(glucose)) {
+            theInformationalAlertMsg.append("Invalid blood glucose level.\n");
+            isValid = false;
+        }
+
+        if (isValid) {
+            int glucoseInt = Integer.parseInt(glucose);
+            GlucoseData glucoseData = thePatientData.getTheGlucoseData();
+            if(!glucoseData.setGlucose(glucoseInt)) {
+                theInformationalAlertMsg.append("Blood glucose must be between 1 and 399.");
+                isValid = false;
+            }
+        }
+        return isValid;
+    }
+
+
+    private boolean isValidBloodPressureInput() {
         boolean isValid = true;
         String bloodPressure = bloodPressureTextField.getText().trim();
 
@@ -129,7 +151,6 @@ public class Controller {
             }
 
         }
-
         return isValid;
 
     }
@@ -206,8 +227,10 @@ public class Controller {
         ButtonType ok = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
         alert.getButtonTypes().setAll(ok);
 
-        alert.showAndWait();
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.setPrefWidth(400);
 
+        alert.showAndWait();
 
     }
 
