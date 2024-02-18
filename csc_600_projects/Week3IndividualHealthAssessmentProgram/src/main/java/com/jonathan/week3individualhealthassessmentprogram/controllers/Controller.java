@@ -34,24 +34,16 @@ public class Controller {
     private TextField ldlTextField;
     @FXML
     private TextField filenameTextField;
-    @FXML
-    private Button saveReportButton;
-    @FXML
-    private Button loadReportButton;
-
-
 
     @FXML
     private TextArea evaluationTextArea;
-
-    @FXML
-    private Button evaluateHealthMetricsButton;
 
     private boolean evaluateHealthMetricsButtonWasClicked;
 
     PatientRecordManager thePatientRecordManager;
 
 
+    // Initializes relevant objects on program startup
     public void initialize() {
         this.theHealthAssessmentServices = new HealthAssessmentServices();
 
@@ -61,9 +53,10 @@ public class Controller {
 
     }
 
+    // Handles save report button click events
     public void onSaveReportButtonClicked() {
 
-
+        // Checks to make sure a report was actually ran before trying to save.
         if (!evaluateHealthMetricsButtonWasClicked) {
             displayInformationalAlert("File Save Issue","Metrics Not Calculated",
                     "Health metrics must calculated before report can be saved.\n");
@@ -71,20 +64,27 @@ public class Controller {
         }
         String fileName = filenameTextField.getText().trim();
 
+        // Validates filename input
         if (!isValidFileName(fileName)) {
-            displayInformationalAlert("File Save Issue","Invalid File Name", "File name cannot be blank.");
+            displayInformationalAlert("File Save Issue","Invalid File Name",
+                    "File name cannot be blank.");
             return;
         }
 
+        // If the thePatientData object failed to save to disk, notify user
+        // otherwise if successful, notify user as well.
         if (!thePatientRecordManager.savePatientData(thePatientData, fileName)) {
-            displayInformationalAlert("File Save Issue","File Save Failed","Failed to save patient report.\n");
+            displayInformationalAlert("File Save Issue","File Save Failed",
+                    "Failed to save patient report.\n");
         } else {
-            displayInformationalAlert("File Save Success","File Save Success", "Saved patient report to: " + "'" +
+            displayInformationalAlert("File Save Success","File Save Success",
+                    "Saved patient report to: " + "'" +
                     fileName + ".ser" + "'\n");
         }
 
     }
 
+    // Validates file name input
     public boolean isValidFileName(String fileName) {
         if (fileName.isEmpty()) {
             return false;
@@ -92,14 +92,18 @@ public class Controller {
         return true;
     }
 
+    // Handles load report button events, loading PatientData objects from disk into memory.
     public void onLoadReportButtonClicked() {
         String fileName = filenameTextField.getText().trim();
 
+        // Checks for valid filename
         if (!isValidFileName(fileName)) {
-            displayInformationalAlert("File Load Issue","Invalid File Name", "File name cannot be blank.");
+            displayInformationalAlert("File Load Issue","Invalid File Name",
+                    "File name cannot be blank.");
             return;
         }
 
+        // Attempts to load the serialized object.
         try {
             thePatientData = thePatientRecordManager.loadPatientData(fileName);
             onEvaluateHealthMetricsClicked(true);
@@ -107,10 +111,12 @@ public class Controller {
             displayErrorAlert("Report Load Failed", "Failed to load health assessment report.");
         }
 
+        // Clears all text fields after loading a report, as they would not be associated with the report.
         clearTextFields();
 
     }
 
+    // Clears all text fields, except for the filename text field.
     public void clearTextFields() {
         firstNameTextField.clear();
         lastNameTextField.clear();
@@ -130,21 +136,25 @@ public class Controller {
     }
 
 
+    // Event handler for Evaluate Health Metrics button being clicked
     public void onEvaluateHealthMetricsClicked(boolean wasCalledInternally) {
+
         // Clear previous AlertMSg messages
         theInformationalAlertMsg.setLength(0);
 
+        // If this method was not called internally (e.g. from onLoadReportButtonClicked)
+        // then instantiate a new object and validate all user input from the text fields.
         if (!wasCalledInternally) {
             thePatientData = new PatientData(new BMIData(), new BloodPressureData(),
                     new CholesterolData(), new GlucoseData());
 
             boolean isAllDataValid = isAllInputValid();
 
-
-
-            // Check if all inputs are valid and if any error messages were generated
+            // Check if all inputs are valid or if any error messages were generated
+            // if so display alter to user.
             if (!isAllDataValid || !theInformationalAlertMsg.isEmpty()) {
-                displayInformationalAlert("Invalid Input","Invalid Input", theInformationalAlertMsg.toString());
+                displayInformationalAlert("Invalid Input","Invalid Input",
+                        theInformationalAlertMsg.toString());
                 return;
             }
         }
@@ -160,10 +170,14 @@ public class Controller {
             displayHealthAdvisory(advice);
         }
 
+        // Used to track if this button was clicked.
+        // Used elsewhere in program because this button have to be clicked
+        // and reports ran for the user to then save the report to disk
         evaluateHealthMetricsButtonWasClicked = true;
 
     }
 
+    // Adds health evaluation report to the text area
     private void fillEvaluationTextArea(PatientData thePatientData) {
         evaluationTextArea.clear();
         evaluationTextArea.appendText(theHealthAssessmentServices.generateHealthEvaluationReport(thePatientData));
@@ -172,16 +186,18 @@ public class Controller {
         evaluationTextArea.setScrollTop(Double.MAX_VALUE);
     }
 
+    // Calls all individual input validaiton methods
     private boolean isAllInputValid() {
         boolean namesValid = isValidNameInputs();
         boolean BMIValid = isValidBMIInputs();
         boolean bloodPressureValid = isValidBloodPressureInput();
         boolean bloodGlucoseValid = isValidBloodGlucoseInput();
-        boolean cholesteroldInputsValid = isValidCholesterolInputs();
+        boolean cholesterolInputsValid = isValidCholesterolInputs();
 
-        return namesValid && BMIValid && bloodPressureValid && bloodGlucoseValid && cholesteroldInputsValid;
+        return namesValid && BMIValid && bloodPressureValid && bloodGlucoseValid && cholesterolInputsValid;
     }
 
+    // Validates first / last name user input
     private boolean isValidNameInputs() {
 
         String firstName = firstNameTextField.getText().trim();
@@ -200,6 +216,7 @@ public class Controller {
         return isValid;
     }
 
+    // Validates cholesterol related input
     private boolean isValidCholesterolInputs() {
         boolean isValid = true;
 
@@ -231,6 +248,7 @@ public class Controller {
     }
 
 
+    // Validates glucose input
     private boolean isValidBloodGlucoseInput() {
         boolean isValid = true;
         String glucose = bloodGlucoseTextField.getText().trim();
@@ -240,6 +258,7 @@ public class Controller {
             isValid = false;
         }
 
+        // Attempt to setGlucose.
         if (isValid) {
             int glucoseInt = Integer.parseInt(glucose);
             GlucoseData glucoseData = thePatientData.getTheGlucoseData();
@@ -251,7 +270,7 @@ public class Controller {
         return isValid;
     }
 
-
+    // Validates blood pressure input.
     private boolean isValidBloodPressureInput() {
         boolean isValid = true;
         String bloodPressure = bloodPressureTextField.getText().trim();
@@ -261,6 +280,7 @@ public class Controller {
             isValid = false;
         }
 
+        // If it's a valid int, attempt to set the blood pressure
         if (isValid) {
             int bloodPressureInt = Integer.parseInt(bloodPressure);
             BloodPressureData bloodPressureData = thePatientData.getTheBloodPressureData();
@@ -274,6 +294,7 @@ public class Controller {
 
     }
 
+    // Validate height / weight input
     private boolean isValidBMIInputs() {
         boolean isValid = true;
         String weight = weightTextField.getText().trim();
@@ -289,6 +310,7 @@ public class Controller {
             isValid = false;
         }
 
+        // If height and weight is valid, attempt to set it
         if (isValid) {
             float weightFloat = Float.parseFloat(weight);
             float heightFloat = Float.parseFloat(height);
@@ -309,6 +331,7 @@ public class Controller {
     }
 
 
+    // Validates that user input is a float
     public boolean isValidFloat(String input) {
         try {
             Float.parseFloat(input);
@@ -318,6 +341,7 @@ public class Controller {
         }
     }
 
+    // Validates that user input is an int
     public boolean isValidInt(String input) {
         try {
             Integer.parseInt(input);
@@ -327,7 +351,7 @@ public class Controller {
         }
     }
 
-    // Display error popup.
+    // Displays error popup.
     public void displayErrorAlert(String header, String msg) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Invalid Input");
@@ -336,7 +360,7 @@ public class Controller {
         alert.showAndWait();
     }
 
-    // Display informational popup for bad input.
+    // Displays informational popup.
     public void displayInformationalAlert(String title, String header, String msg) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
@@ -345,7 +369,7 @@ public class Controller {
         alert.showAndWait();
     }
 
-    // Displays health advisory pop up to user if outside BMI thresholds.
+    // Displays health advisory pop up to user if any health metrics are far out of range.
     public void displayHealthAdvisory(String msg) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Health Advisory");
