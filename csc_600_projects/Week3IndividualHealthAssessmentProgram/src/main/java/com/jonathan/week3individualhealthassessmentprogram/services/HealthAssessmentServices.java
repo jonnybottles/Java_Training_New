@@ -9,7 +9,6 @@ public class HealthAssessmentServices {
 
     private StringBuilder adviceNotification;
 
-
     private static final List<String> BMI_CATEGORIES = Arrays.asList(
             "Underweight", // BMI < 18.5
             "Normal Weight", // BMI = 18.5 – 24.9
@@ -104,7 +103,7 @@ public class HealthAssessmentServices {
         healthEvaluationReport.append("> PATIENT ID: \t\t\t\t" + patientID + "\n");
         healthEvaluationReport.append("> HEIGHT (m): \t\t\t" + height + "\n");
         healthEvaluationReport.append("> WEIGHT (kg):\t\t\t" + weight + "\n");
-        healthEvaluationReport.append("> BMI: \t\t\t\t\t" + BMI + " ("+ BMICategory + ")\n");
+        healthEvaluationReport.append("> BMI: \t\t\t\t\t" + String.format("%.2f", BMI) + " ("+ BMICategory + ")\n");
         healthEvaluationReport.append("> BLOOD PRESSURE:\t\t" + bloodPressure + " ("+ bloodPressureCategory + ")\n");
         healthEvaluationReport.append("> BLOOD GLUCOSE:\t\t" + glucose + " ("+ glucoseCategory + ")\n");
         healthEvaluationReport.append("> HDL (Good):\t\t\t\t" + hdl + " ("+ hdlCategory + ")\n");
@@ -130,6 +129,7 @@ public class HealthAssessmentServices {
         calculateLDLCategory(theCholesterolData);
         calculateTriglyceridesCategory(theCholesterolData);
         calculateCholesterolCategory(theCholesterolData);
+
     }
 
     public void calculateTotalCholesterol(CholesterolData theCholesterolData) {

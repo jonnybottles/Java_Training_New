@@ -5,6 +5,8 @@ import com.jonathan.week3individualhealthassessmentprogram.services.HealthAssess
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import java.io.IOException;
+
 public class Controller {
 
     private HealthAssessmentServices theHealthAssessmentServices;
@@ -30,8 +32,13 @@ public class Controller {
     private TextField hdlTextField;
     @FXML
     private TextField ldlTextField;
-//    @FXML
-//    private TextField filenameTextField;
+    @FXML
+    private TextField filenameTextField;
+    @FXML
+    private Button saveReportButton;
+    @FXML
+    private Button loadReportButton;
+
 
 
     @FXML
@@ -39,6 +46,10 @@ public class Controller {
 
     @FXML
     private Button evaluateHealthMetricsButton;
+
+    private boolean evaluateHealthMetricsButtonWasClicked;
+
+    PatientRecordManager thePatientRecordManager;
 
 
     public void initialize() {
@@ -49,19 +60,91 @@ public class Controller {
 
         this.theInformationalAlertMsg = new StringBuilder();
 
+        this.thePatientRecordManager = new PatientRecordManager();
+
+    }
+
+    public void onSaveReportButtonClicked() {
+
+
+        if (!evaluateHealthMetricsButtonWasClicked) {
+            displayInformationalAlert("Metrics Not Calculated",
+                    "Health metrics must calculated before report can be saved.\n");
+            return;
+        }
+        String fileName = filenameTextField.getText().trim();
+
+        if (!isValidFileName(fileName)) {
+            displayInformationalAlert("Invalid File Name", "File name cannot be blank.");
+            return;
+        }
+
+        if (!thePatientRecordManager.savePatientData(thePatientData, fileName)) {
+            displayInformationalAlert("File Save Failed","Failed to save patient report.\n");
+        } else {
+            displayInformationalAlert("File Save Success", "Saved patient report to: " + "'" +
+                    fileName + ".ser" + "'\n");
+        }
+
+    }
+
+    public boolean isValidFileName(String fileName) {
+        if (fileName.isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
+    public void onLoadReportButtonClicked() {
+        String fileName = filenameTextField.getText().trim();
+
+        if (!isValidFileName(fileName)) {
+            displayInformationalAlert("Invalid File Name", "File name cannot be blank.");
+            return;
+        }
+
+        try {
+            thePatientData = thePatientRecordManager.loadPatientData(fileName);
+            onEvaluateHealthMetricsClicked(true);
+        } catch (IOException | ClassNotFoundException e) {
+            displayErrorAlert("Report Load Failed", "Failed to load health assessment report.");
+        }
+
+        clearTextFields();
+
+    }
+
+    public void clearTextFields() {
+        firstNameTextField.clear();
+        lastNameTextField.clear();
+        heightTextField.clear();
+        weightTextField.clear();
+        bloodPressureTextField.clear();
+        bloodGlucoseTextField.clear();
+        triglyceridesTextField.clear();
+        hdlTextField.clear();
+        ldlTextField.clear();
+    }
+
+    // Overloaded version of this method to allow for discerning between the user
+    // actually clicking the button or calling this method internally
+    public void onEvaluateHealthMetricsClicked() {
+        onEvaluateHealthMetricsClicked(false);
     }
 
 
-    public void onEvaluateHealthMetricsClicked() {
+    public void onEvaluateHealthMetricsClicked(boolean wasCalledInternally) {
         // Clear previous AlertMSg messages
         theInformationalAlertMsg.setLength(0);
 
-        boolean isAllDataValid = isAllInputValid();
+        if (!wasCalledInternally) {
+            boolean isAllDataValid = isAllInputValid();
 
-        // Check if all inputs are valid and if any error messages were generated
-        if (!isAllDataValid || !theInformationalAlertMsg.isEmpty()) {
-            displayInformationalAlert("Invalid Input", theInformationalAlertMsg.toString());
-            return;
+            // Check if all inputs are valid and if any error messages were generated
+            if (!isAllDataValid || !theInformationalAlertMsg.isEmpty()) {
+                displayInformationalAlert("Invalid Input", theInformationalAlertMsg.toString());
+                return;
+            }
         }
 
 
@@ -74,6 +157,8 @@ public class Controller {
         if (!advice.isEmpty()) {
             displayHealthAdvisory(advice);
         }
+
+        evaluateHealthMetricsButtonWasClicked = true;
 
     }
 
@@ -238,6 +323,15 @@ public class Controller {
         } catch (NumberFormatException e) {
             return false;
         }
+    }
+
+    // Display error popup.
+    public void displayErrorAlert(String header, String msg) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Invalid Input");
+        alert.setHeaderText(header);
+        alert.setContentText(msg);
+        alert.showAndWait();
     }
 
     // Display informational popup for bad input.
