@@ -24,12 +24,12 @@ public class Controller {
     private TextField bloodPressureTextField;
     @FXML
     private TextField bloodGlucoseTextField;
-//    @FXML
-//    private TextField triglyceridesTextField;
-//    @FXML
-//    private TextField hdlTextField;
-//    @FXML
-//    private TextField ldlTextField;
+    @FXML
+    private TextField triglyceridesTextField;
+    @FXML
+    private TextField hdlTextField;
+    @FXML
+    private TextField ldlTextField;
 //    @FXML
 //    private TextField filenameTextField;
 
@@ -90,8 +90,9 @@ public class Controller {
         boolean BMIValid = isValidBMIInputs();
         boolean bloodPressureValid = isValidBloodPressureInput();
         boolean bloodGlucoseValid = isValidBloodGlucoseInput();
+        boolean cholesteroldInputsValid = isValidCholesterolInputs();
 
-        return namesValid && BMIValid && bloodPressureValid && bloodGlucoseValid;
+        return namesValid && BMIValid && bloodPressureValid && bloodGlucoseValid && cholesteroldInputsValid;
     }
 
     private boolean isValidNameInputs() {
@@ -111,6 +112,37 @@ public class Controller {
 
         return isValid;
     }
+
+    private boolean isValidCholesterolInputs() {
+        boolean isValid = true;
+
+        String triglycerides = triglyceridesTextField.getText().trim();
+        String hdl = hdlTextField.getText().trim();
+        String ldl = ldlTextField.getText().trim();
+
+        CholesterolData cholesterolData = thePatientData.getTheCholesterolData();
+
+        // Attempt to set Triglycerides and validate
+        if (!isValidInt(triglycerides) || !cholesterolData.setTriglycerides(Integer.parseInt(triglycerides))) {
+            theInformationalAlertMsg.append("Invalid triglycerides level. Must be between 0 and 999.\n");
+            isValid = false;
+        }
+
+        // Attempt to set HDL and validate
+        if (!isValidInt(hdl) || !cholesterolData.setHDL(Integer.parseInt(hdl))) {
+            theInformationalAlertMsg.append("Invalid HDL level. Must be between 0 and 100.\n");
+            isValid = false;
+        }
+
+        // Attempt to set LDL and validate
+        if (!isValidInt(ldl) || !cholesterolData.setLDL(Integer.parseInt(ldl))) {
+            theInformationalAlertMsg.append("Invalid LDL level. Must be between 0 and 199.\n");
+            isValid = false;
+        }
+
+        return isValid;
+    }
+
 
     private boolean isValidBloodGlucoseInput() {
         boolean isValid = true;

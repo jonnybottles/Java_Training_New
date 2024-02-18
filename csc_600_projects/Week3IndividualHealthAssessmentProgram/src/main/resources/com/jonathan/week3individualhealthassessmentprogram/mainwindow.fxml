@@ -56,9 +56,9 @@
                 <Label GridPane.columnIndex="1" GridPane.rowIndex="3" />
                 <TextField fx:id="bloodPressureTextField" maxWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                 <TextField fx:id="bloodGlucoseTextField" maxWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                <TextField maxWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                <TextField maxWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                <TextField maxWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                <TextField fx:id="triglyceridesTextField" maxWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                <TextField fx:id="hdlTextField" maxWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                <TextField fx:id="ldlTextField" maxWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                 <Label text="Weight (kg):" GridPane.columnIndex="2" GridPane.rowIndex="1">
                     <GridPane.margin>
                         <Insets left="20.0" />
