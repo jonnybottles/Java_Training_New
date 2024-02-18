@@ -6,6 +6,7 @@ public class BloodPressureData implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private int bloodPressure;
+    private String bloodPressureCategory;
 
     public BloodPressureData() {
 
@@ -15,9 +16,17 @@ public class BloodPressureData implements Serializable {
         return bloodPressure;
     }
 
+    public String getBloodPressureCategory() {
+        return bloodPressureCategory;
+    }
+
+    public void setBloodPressureCategory(String bloodPressureCategory) {
+        this.bloodPressureCategory = bloodPressureCategory;
+    }
+
     // Setter for blood pressure
-    public boolean setSystolic(int bloodPressure) {
-        if (bloodPressure > 50 && bloodPressure < 250) {
+    public boolean setBloodPressure(int bloodPressure) {
+        if (bloodPressure > 0 && bloodPressure < 250) {
             this.bloodPressure = bloodPressure;
             return true;
         } else {

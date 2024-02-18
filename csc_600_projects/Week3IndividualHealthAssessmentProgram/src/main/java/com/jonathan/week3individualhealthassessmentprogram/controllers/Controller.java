@@ -20,12 +20,8 @@ public class Controller {
     private TextField heightTextField;
     @FXML
     private TextField weightTextField;
-
     @FXML
-    private Label BMILabel;
-
-//    @FXML
-//    private TextField bloodPressureTextField;
+    private TextField bloodPressureTextField;
 //    @FXML
 //    private TextField bloodGlucoseTextField;
 //    @FXML
@@ -36,6 +32,10 @@ public class Controller {
 //    private TextField ldlTextField;
 //    @FXML
 //    private TextField filenameTextField;
+
+
+    @FXML
+    private TextArea evaluationTextArea;
 
     @FXML
     private Button evaluateHealthMetricsButton;
@@ -67,7 +67,7 @@ public class Controller {
 
         // Proceed with calculating health metrics since all data is valid
         theHealthAssessmentServices.calculateAllHealthMetrics(thePatientData);
-        setLabels();
+        fillEvaluationTextArea(thePatientData);
 
         // Only display the health advisory if there is advice to show
         String advice = theHealthAssessmentServices.getAdviceNotification();
@@ -77,15 +77,20 @@ public class Controller {
 
     }
 
-    private void setLabels() {
-        BMILabel.setText(thePatientData.getBMIData().getBMICategory());
+    private void fillEvaluationTextArea(PatientData thePatientData) {
+        evaluationTextArea.clear();
+        evaluationTextArea.appendText(theHealthAssessmentServices.generateHealthEvaluationReport(thePatientData));
+        // Scrolls the text area to the bottom, removing the users from having to do so each time
+        // a new log is generated
+        evaluationTextArea.setScrollTop(Double.MAX_VALUE);
     }
 
     private boolean isAllInputValid() {
         boolean namesValid = isValidNameInputs();
         boolean BMIValid = isValidBMIInputs();
+        boolean bloodPressureValid = isValidBloodPressureInputs();
 
-        return namesValid && BMIValid;
+        return namesValid && BMIValid && bloodPressureValid;
     }
 
     private boolean isValidNameInputs() {
@@ -104,6 +109,29 @@ public class Controller {
         }
 
         return isValid;
+    }
+
+    private boolean isValidBloodPressureInputs() {
+        boolean isValid = true;
+        String bloodPressure = bloodPressureTextField.getText().trim();
+
+        if (!isValidInt(bloodPressure)) {
+            theInformationalAlertMsg.append("Invalid blood pressure.\n");
+            isValid = false;
+        }
+
+        if (isValid) {
+            int bloodPressureInt = Integer.parseInt(bloodPressure);
+            BloodPressureData bloodPressureData = thePatientData.getTheBloodPressureData();
+            if(!bloodPressureData.setBloodPressure(bloodPressureInt)) {
+                theInformationalAlertMsg.append("Blood pressure must be between 1 and 251");
+                isValid = false;
+            }
+
+        }
+
+        return isValid;
+
     }
 
     private boolean isValidBMIInputs() {

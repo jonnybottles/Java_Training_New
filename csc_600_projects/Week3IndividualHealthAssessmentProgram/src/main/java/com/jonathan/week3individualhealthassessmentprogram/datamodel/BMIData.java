@@ -7,6 +7,7 @@ public class BMIData implements Serializable {
 
     private float weight;
     private float height;
+    private float BMI;
 
     private String BMICategory;
 
@@ -39,6 +40,14 @@ public class BMIData implements Serializable {
         } else {
             return false;
         }
+    }
+
+    public void setBMI(float BMI) {
+        this.BMI = BMI;
+    }
+
+    public float getBMI() {
+        return BMI;
     }
 
     public void setBMICategory(String BMICategory) {

@@ -4,6 +4,7 @@ import com.jonathan.week3individualhealthassessmentprogram.services.HealthAssess
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.Random;
 
 public class PatientData implements Serializable {
 
@@ -11,8 +12,8 @@ public class PatientData implements Serializable {
     private String lastName;
 
     private static final long serialVersionUID = 1L;
-    private int patientID;
-    private static int lastPatientID = 1;
+    private long patientID;
+    private static long lastPatientID = PatientData.createPatientID();
 
     private BloodPressureData theBloodPressureData;
     private BMIData theBMIData;
@@ -57,7 +58,7 @@ public class PatientData implements Serializable {
         return true;
     }
 
-    public int getPatientID() {
+    public long getPatientID() {
         return patientID;
     }
 
@@ -79,5 +80,13 @@ public class PatientData implements Serializable {
 
     public GlucoseData getTheGlucoseData() {
         return theGlucoseData;
+    }
+
+    private static long createPatientID() {
+        Random theRandom = new Random();
+        // Generate a random 10-digit long number
+        return (long) (theRandom.nextDouble() * (9999999999L - 1000000000L + 1)) + 1000000000L;
+
+
     }
 }

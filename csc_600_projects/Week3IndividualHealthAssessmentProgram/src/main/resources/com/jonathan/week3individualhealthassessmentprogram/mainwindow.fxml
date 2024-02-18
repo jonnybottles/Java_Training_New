@@ -34,11 +34,9 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Label text="Patient ID:" GridPane.rowIndex="2" />
-                <Label text="BMI:" GridPane.rowIndex="3" />
                 <Label text="Blood Pressure:" GridPane.rowIndex="4" />
                 <Label text="Blood Glucose:" GridPane.rowIndex="5" />
                 <Label text="Triglycerides:" GridPane.rowIndex="6" />
@@ -48,7 +46,6 @@
                 <Label text="Patient First Name:" />
                 <TextField fx:id="firstNameTextField" GridPane.columnIndex="1" />
                 <TextField fx:id="lastNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <Label text="Auto Generated" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <Label text="Height (m):" GridPane.columnIndex="2">
                     <GridPane.margin>
                         <Insets left="20.0" />
@@ -57,7 +54,7 @@
                 <TextField fx:id="heightTextField" maxWidth="50.0" GridPane.columnIndex="3" />
                 <TextField fx:id="weightTextField" maxWidth="50.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                 <Label GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                <TextField maxWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <TextField fx:id="bloodPressureTextField" maxWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                 <TextField maxWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                 <TextField maxWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                 <TextField maxWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
@@ -67,49 +64,15 @@
                         <Insets left="20.0" />
                     </GridPane.margin>
                 </Label>
-                <Label text="Evaluation:" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                    <padding>
-                        <Insets left="20.0" />
-                    </padding>
-                </Label>
-                <Label text="Evaluation:" GridPane.columnIndex="2" GridPane.rowIndex="4">
-                    <padding>
-                        <Insets left="20.0" />
-                    </padding>
-                </Label>
-                <Label text="Evaluation:" GridPane.columnIndex="2" GridPane.rowIndex="5">
-                    <padding>
-                        <Insets left="20.0" />
-                    </padding>
-                </Label>
-                <Label text="Evaluation:" GridPane.columnIndex="2" GridPane.rowIndex="6">
-                    <padding>
-                        <Insets left="20.0" />
-                    </padding>
-                </Label>
-                <Label text="Evaluation:" GridPane.columnIndex="2" GridPane.rowIndex="7">
-                    <padding>
-                        <Insets left="20.0" />
-                    </padding>
-                </Label>
-                <Label text="Evaluation:" GridPane.columnIndex="2" GridPane.rowIndex="8">
-                    <padding>
-                        <Insets left="20.0" />
-                    </padding>
-                </Label>
-                <Label fx:id="BMILabel" text="- " GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                <Label text="-" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                <Label text="-" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-                <Label text="-" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-                <Label text="-" GridPane.columnIndex="3" GridPane.rowIndex="7" />
-                <Label text="-" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+                <TextArea fx:id="evaluationTextArea" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.rowSpan="6" GridPane.vgrow="ALWAYS" />
             </children>
             <padding>
-                <Insets left="10.0" right="10.0" top="10.0" />
+                <Insets left="15.0" right="10.0" top="10.0" />
             </padding>
             <BorderPane.margin>
                 <Insets />
             </BorderPane.margin>
+<!--            <Separator GridPane.columnSpan="4" GridPane.rowIndex="9" GridPane.vgrow="NEVER"/>-->
         </GridPane>
     </center>
     <bottom>
@@ -125,14 +88,14 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <padding>
-                        <Insets left="10.0" top="10.0" />
+                        <Insets left="15.0" top="10.0" />
                     </padding>
                     <children>
                         <HBox prefHeight="30.0" prefWidth="518.0" spacing="10.0">
                             <children>
                                 <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="101.0" text="Save Report" />
                                 <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Load Report" />
-                              <Button fx:id="evaluateHealthMetricsButton" mnemonicParsing="false" onAction="#onEvaluateHealthMetricsClicked" prefHeight="25.0" prefWidth="151.0" text="Evaluate Health Metrics" />
+                                <Button fx:id="evaluateHealthMetricsButton" mnemonicParsing="false" onAction="#onEvaluateHealthMetricsClicked" prefHeight="25.0" prefWidth="151.0" text="Evaluate Health Metrics" />
                             </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="551.0" spacing="10.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
