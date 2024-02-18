@@ -5,64 +5,69 @@ import com.jonathan.week3individualhealthassessmentprogram.datamodel.*;
 import java.util.Arrays;
 import java.util.List;
 
+// Contains all the methods for interacting with datamodel objects and calculating associated
+// health metric information
 public class HealthAssessmentServices {
 
+    // Used for accumulating health advisory notifications
     private StringBuilder adviceNotification;
 
     private static final List<String> BMI_CATEGORIES = Arrays.asList(
-            "Underweight", // BMI < 18.5
-            "Normal Weight", // BMI = 18.5 – 24.9
-            "Overweight", // BMI = 25.0 -  29.9
-            "Obese" // BMI > 30
+            "Underweight", //  < 18.5
+            "Normal Weight", // 18.5 – 24.9
+            "Overweight", // 25.0 -  29.9
+            "Obese" // > 30
     );
 
     private static final List<String> BLOOD_PRESSURE_CATEGORIES = Arrays.asList(
-            "Low",
-            "Normal",
-            "Mild",
-            "Moderate",
-            "Severe",
-            "Very Severe"
+            "Low", // < 50
+            "Normal", // 50 - 90
+            "Mild", // 91 - 139
+            "Moderate", // 140 - 159
+            "Severe", // 160 - 179
+            "Very Severe" // >= 180
     );
 
     private static final List<String> GLUCOSE_CATEGORIES = Arrays.asList(
-            "Excellent",
-            "Good",
-            "Marginal",
-            "Poor",
-            "Out of control"
+            "Excellent", // < 80
+            "Good", // 80 - 149
+            "Marginal", // 150 - 209
+            "Poor", // 210 - 269
+            "Out of control" // >= 270
     );
 
+
     private static final List<String> CHOLESTEROL_CATEGORIES = Arrays.asList(
-            "Excellent", // Total Cholesterol < 200
-            "Borderline", // Total Cholesterol 200-239
-            "High" // Total Cholesterol >= 240
+            "Excellent", // < 200
+            "Borderline", // 200-239
+            "High" // >= 240
     );
 
     private static final List<String> TRIGLYCERIDE_CATEGORIES = Arrays.asList(
-            "Normal", // Triglycerides < 150
-            "Borderline", // Triglycerides 150-199
-            "High", // Triglycerides 200-499
-            "Very High" // Triglycerides >= 500
+            "Normal", // < 150
+            "Borderline", // 150-199
+            "High", // 200-499
+            "Very High" // >= 500
     );
 
     private static final List<String> HDL_CATEGORIES = Arrays.asList(
-            "Poor", // HDL < 40
-            "Good" // HDL >= 40
+            "Poor", // < 40
+            "Good" // >= 40
     );
 
     private static final List<String> LDL_CATEGORIES = Arrays.asList(
-            "Optimal", // LDL < 100
-            "Near Optimal", // LDL 100-129
-            "Borderline", // LDL 130-159
-            "High", // LDL 160-189
-            "Very High" // LDL >= 190
+            "Optimal", // < 100
+            "Near Optimal", // 100-129
+            "Borderline", // 130-159
+            "High", // 160-189
+            "Very High" // >= 190
     );
 
     public HealthAssessmentServices() {
         this.adviceNotification = new StringBuilder();
     }
 
+    // Creates a health assessment report using all data entered / calculated.
     public String generateHealthEvaluationReport(PatientData thePatientData) {
         StringBuilder healthEvaluationReport = new StringBuilder();
 
@@ -96,6 +101,7 @@ public class HealthAssessmentServices {
         int triglycerides = theCholesterolData.getTriglycerides();
         String triglyceridesCategory = theCholesterolData.getTriglyceridesCategory();
 
+        // Creates report
         healthEvaluationReport.append(" =============================================================\n");
         healthEvaluationReport.append("                                                    HEALTH EVALUATION REPORT\n");
         healthEvaluationReport.append(" =============================================================\n\n");
@@ -115,6 +121,7 @@ public class HealthAssessmentServices {
 
     }
 
+    // Calls all health metric calculation methods
     public void calculateAllHealthMetrics(PatientData patientData) {
         // Set any previous messages to zero / nothing.
         adviceNotification.setLength(0);
@@ -132,6 +139,7 @@ public class HealthAssessmentServices {
 
     }
 
+    // Calculates total cholesterol
     public void calculateTotalCholesterol(CholesterolData theCholesterolData) {
         int ldl = theCholesterolData.getLdl();
         int hdl = theCholesterolData.getHdl();
@@ -142,6 +150,7 @@ public class HealthAssessmentServices {
 
     }
 
+    // Assesses cholesterol levels and assigns associated category
     public void calculateCholesterolCategory(CholesterolData theCholesterolData) {
         int cholesterol = theCholesterolData.getCholesterol();
         String category;
@@ -152,12 +161,14 @@ public class HealthAssessmentServices {
             category = CHOLESTEROL_CATEGORIES.get(1);
         } else {
             category = CHOLESTEROL_CATEGORIES.get(2);
+            // If levels are very high, append advice notification
             adviceNotification.append("Your total cholesterol is " + cholesterol + "("+ category + ").\n");
         }
 
         theCholesterolData.setCholesterolCategory(category);
     }
 
+    // Assesses triglyceride levels and assigns associated category
     public void calculateTriglyceridesCategory(CholesterolData theCholesterolData) {
         int triglycerides = theCholesterolData.getTriglycerides();
         String category;
@@ -170,12 +181,14 @@ public class HealthAssessmentServices {
             category = TRIGLYCERIDE_CATEGORIES.get(2);
         } else {
             category = TRIGLYCERIDE_CATEGORIES.get(3);
+            // If levels are very high, append advice notification
             adviceNotification.append("Your triglycerides are " + triglycerides + "("+ category + ").\n");
         }
 
         theCholesterolData.setTriglyceridesCategory(category);
     }
 
+    // Assesses HDL levels and assigns associated category
     public void calculateHDLCategory(CholesterolData theCholesterolData) {
         int hdl = theCholesterolData.getHdl();
         String category;
@@ -184,12 +197,14 @@ public class HealthAssessmentServices {
             category = HDL_CATEGORIES.get(1);
         } else {
             category = HDL_CATEGORIES.get(0);
+            // If levels are out of range, append advice notification
             adviceNotification.append("Your HDL is " + hdl + "("+ category + ").\n");
         }
 
         theCholesterolData.setHdlCategory(category);
     }
 
+    // Assesses LDL levels and assigns associated category
     public void calculateLDLCategory(CholesterolData theCholesterolData) {
         int ldl = theCholesterolData.getLdl();
         String category;
@@ -204,6 +219,7 @@ public class HealthAssessmentServices {
             category = LDL_CATEGORIES.get(3);
         } else {
             category = LDL_CATEGORIES.get(4);
+            // If levels are very high, append advice notification
             adviceNotification.append("Your LDL is " + ldl + "("+ category + ").\n");
         }
 
@@ -211,51 +227,56 @@ public class HealthAssessmentServices {
     }
 
 
+    // Assesses glucose levels and assigns associated category
     public void calculateGlucoseCategory(GlucoseData theGlucoseData) {
         int glucoseLevel = theGlucoseData.getGlucose();
         String category = "";
 
         if (glucoseLevel >= 340) {
-            category = GLUCOSE_CATEGORIES.get(4); // Out of control
+            category = GLUCOSE_CATEGORIES.get(4);
+            // If levels are very high, append advice notification
             adviceNotification.append("Your blood glucose level is " + glucoseLevel + " (out of control).\n");
         } else if (glucoseLevel >= 270) {
-            category = GLUCOSE_CATEGORIES.get(3); // Poor
+            category = GLUCOSE_CATEGORIES.get(3);
         } else if (glucoseLevel >= 210) {
-            category = GLUCOSE_CATEGORIES.get(2); // Marginal
+            category = GLUCOSE_CATEGORIES.get(2);
         } else if (glucoseLevel >= 150) {
-            category = GLUCOSE_CATEGORIES.get(1); // Good
+            category = GLUCOSE_CATEGORIES.get(1);
         } else if (glucoseLevel >= 80) {
-            category = GLUCOSE_CATEGORIES.get(0); // Excellent
+            category = GLUCOSE_CATEGORIES.get(0);
         }
 
-        theGlucoseData.setGlucoseCategory(category); // Assuming there's a method setGlucoseCategory() to save the category
+        theGlucoseData.setGlucoseCategory(category);
     }
 
-
+    // Assesses blood pressure and assigns associated category
     public void calculateBloodPressureCategory(BloodPressureData theBloodPressureData) {
         int systolicBP = theBloodPressureData.getBloodPressure();
         String category = "";
 
         if (systolicBP >= 210) {
-            category = BLOOD_PRESSURE_CATEGORIES.get(5); // Very Severe
+            category = BLOOD_PRESSURE_CATEGORIES.get(5);
+            // If levels are very high, append advice notification
             adviceNotification.append("Your blood pressure is above 210 (very severe).\n");
         } else if (systolicBP >= 180) {
-            category = BLOOD_PRESSURE_CATEGORIES.get(4); // Severe
+            category = BLOOD_PRESSURE_CATEGORIES.get(4);
         } else if (systolicBP >= 160) {
-            category = BLOOD_PRESSURE_CATEGORIES.get(3); // Moderate
+            category = BLOOD_PRESSURE_CATEGORIES.get(3);
         } else if (systolicBP >= 140) {
-            category = BLOOD_PRESSURE_CATEGORIES.get(2); // Mild
+            category = BLOOD_PRESSURE_CATEGORIES.get(2);
         } else if (systolicBP >= 90) {
-            category = BLOOD_PRESSURE_CATEGORIES.get(1); // Normal
+            category = BLOOD_PRESSURE_CATEGORIES.get(1);
         } else if (systolicBP >= 50) {
-            category = BLOOD_PRESSURE_CATEGORIES.get(0); // Low
+            category = BLOOD_PRESSURE_CATEGORIES.get(0);
+            // If levels are very low, append advice notification
             adviceNotification.append("Your blood pressure is below 50 (low).\n");
         }
 
-        theBloodPressureData.setBloodPressureCategory(category); // Assuming there's a method setBloodPressureCategory() to save the category
+        theBloodPressureData.setBloodPressureCategory(category);
     }
 
 
+    // Assesses BMI and assigns associated category
     public void calculateBMICategory(BMIData theBMIData) {
         float bmiValue = calculateBMI(theBMIData.getWeight(), theBMIData.getHeight());
         theBMIData.setBMI(bmiValue);
@@ -264,13 +285,15 @@ public class HealthAssessmentServices {
 
         if (bmiValue < 18.5) {
             category = BMI_CATEGORIES.get(0);
+            // If BMI is very low, append advice notification
             adviceNotification.append("Your BMI is below 18.5 (underweight).\n");
         } else if (bmiValue <= 24.9) {
             category = BMI_CATEGORIES.get(1);
         } else if (bmiValue <= 29.9) {
             category = BMI_CATEGORIES.get(2);
-        } else { // BMI > 30 is considered Obese
+        } else {
             category = BMI_CATEGORIES.get(3);
+            // If BMI is very high, append advice notification
             adviceNotification.append("Your BMI is above 30 (obese).\n");
         }
 
@@ -278,6 +301,7 @@ public class HealthAssessmentServices {
     }
 
 
+    // Calculates BMI
     private float calculateBMI(float weight, float height) {
         return weight / (height * height);
     }
@@ -285,11 +309,6 @@ public class HealthAssessmentServices {
     // Method to get the accumulated advice
     public String getAdviceNotification() {
         return adviceNotification.toString();
-    }
-
-    // Method to reset the adviceNotification for a new patient or assessment
-    public void resetAdviceNotification() {
-        adviceNotification.setLength(0);
     }
 
 
