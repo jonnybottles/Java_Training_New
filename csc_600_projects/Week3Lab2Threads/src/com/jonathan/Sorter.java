@@ -3,16 +3,17 @@ package com.jonathan;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Sorter implements Runnable{
 
-    private List<BlockingQueue> theQueues;
+    private List<ArrayBlockingQueue> theQueues;
     private List<Integer> theQueueSizeList;
 
 
-    public Sorter(List<BlockingQueue> theQueues, List<Integer> theQueueSizeList) {
+    public Sorter(List<ArrayBlockingQueue> theQueues, List<Integer> theQueueSizeList) {
         this.theQueues = theQueues;
         this.theQueueSizeList = theQueueSizeList;
     }
@@ -44,7 +45,7 @@ public class Sorter implements Runnable{
 
         List<Double> theList = new ArrayList<>();
 
-        for (BlockingQueue<Double> queue : theQueues) {
+        for (ArrayBlockingQueue<Double> queue : theQueues) {
             // Put all items in the queue into a list, as queues do not support draining operations
             queue.drainTo(theList);
 

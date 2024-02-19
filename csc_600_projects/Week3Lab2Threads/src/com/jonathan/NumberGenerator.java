@@ -1,6 +1,7 @@
 package com.jonathan;
 
 import java.util.Random;
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -9,9 +10,9 @@ public class NumberGenerator implements Runnable {
     private int rangeMin;
     private int rangeMax;
     private int sleepTime;
-    private BlockingQueue<Double> numQueue;
+    private ArrayBlockingQueue<Double> numQueue;
 
-    public NumberGenerator(int rangeMin, int rangeMax, int sleepTime, BlockingQueue<Double> numQueue) {
+    public NumberGenerator(int rangeMin, int rangeMax, int sleepTime, ArrayBlockingQueue<Double> numQueue) {
         this.rangeMin = rangeMin;
         this.rangeMax = rangeMax;
         this.sleepTime = sleepTime;
