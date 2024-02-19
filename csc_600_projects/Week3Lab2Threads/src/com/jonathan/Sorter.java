@@ -4,18 +4,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Sorter implements Runnable{
 
-    private List<ArrayBlockingQueue> theQueues;
-    private List<Integer> theQueueSizeList;
+    private List<ArrayBlockingQueue<Double>> theQueues;
+    private List<List<Integer>> theQueueSizeHistory;
 
 
-    public Sorter(List<ArrayBlockingQueue> theQueues, List<Integer> theQueueSizeList) {
+    public Sorter(List<ArrayBlockingQueue<Double>> theQueues, List<List<Integer>> theQueueSizeHistory) {
         this.theQueues = theQueues;
-        this.theQueueSizeList = theQueueSizeList;
+        this.theQueueSizeHistory = theQueueSizeHistory;
     }
 
     @Override
@@ -27,12 +26,32 @@ public class Sorter implements Runnable{
 
                 int minSleep = 1000;
                 int maxSleep = 5000;
-
                 // Using ThreadLocalRandom is the thread safe / better option
                 // for random number generation with threads.
                 int sleepTime = ThreadLocalRandom.current().nextInt(minSleep, maxSleep);
 
                 Thread.sleep(sleepTime);
+
+                for (int i = 0; i < 5; i++) {
+
+                    // iterate over the queues list and get each queue
+                    ArrayBlockingQueue<Double> queue = theQueues.get(i);
+
+                    // Create a new list that contains the contents of the queue to allow for sorting
+                    List<Double> theList = new ArrayList<>(queue);
+                    Collections.sort(theList);
+
+                    // Clear the queue
+                    queue.clear();
+
+                    // After the queue is cleared, add the new sorted contents back into the queue
+                    queue.addAll(theList);
+
+                    // Add the current size to the history
+                    theQueueSizeHistory.get(i).add(queue.size());
+
+
+                }
 
 
             } catch (InterruptedException e) {
@@ -43,22 +62,8 @@ public class Sorter implements Runnable{
 
         }
 
-        List<Double> theList = new ArrayList<>();
 
-        for (ArrayBlockingQueue<Double> queue : theQueues) {
-            // Put all items in the queue into a list, as queues do not support draining operations
-            queue.drainTo(theList);
 
-            // Sort the list
-            Collections.sort(theList);
-
-            // Added sorted items back to list
-            queue.addAll(theList);
-
-            // Clears the list for the next iteration of the loop
-            theList.clear();
-
-        }
 
     }
 }
