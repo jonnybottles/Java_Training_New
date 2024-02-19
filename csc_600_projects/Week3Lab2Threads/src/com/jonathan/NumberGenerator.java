@@ -27,12 +27,14 @@ public class NumberGenerator implements Runnable {
     @Override
     public void run() {
 
+        System.out.println("Starting Number Generator: Thread: " + Thread.currentThread().getName());
         while (!Thread.currentThread().isInterrupted()) {
             try {
                 double randomDouble = generateRandomDouble();
                 numQueue.put(randomDouble);
                 Thread.sleep(sleepTime);
             } catch (InterruptedException e) {
+                System.out.println("Stopping Number Generator: Thread: " + Thread.currentThread().getName());
                 Thread.currentThread().interrupt();
             }
         }

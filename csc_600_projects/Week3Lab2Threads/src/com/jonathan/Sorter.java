@@ -19,7 +19,7 @@ public class Sorter implements Runnable{
 
     @Override
     public void run() {
-
+        System.out.println("Starting Sorter Thread.");
         while (!Thread.currentThread().isInterrupted()) {
 
             try {
@@ -56,6 +56,7 @@ public class Sorter implements Runnable{
 
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
+                System.out.println("Sorter thread interrupted. Stopping sorter thread.");
                 break;
             }
 

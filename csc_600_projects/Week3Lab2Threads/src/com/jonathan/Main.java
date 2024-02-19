@@ -11,6 +11,7 @@ import java.util.concurrent.BlockingQueue;
 public class Main {
     public static void main(String[] args) {
 
+        printStartMsg();
         List<ArrayBlockingQueue<Double>> queueList = createArrayBlockingQueues();
         List<NumberGenerator> theNumberGenerators = createNumberGenerators(queueList);
         List<Thread> theNumberGeneratorThreads = createThreads(theNumberGenerators);
@@ -31,6 +32,10 @@ public class Main {
 
         reportQueueSizeHistory(queueList, theQueueSizeHistory);
 
+    }
+
+    public static void printStartMsg() {
+        System.out.println("Week 3 Lab 2 has started. Running for 5 minutes...");
     }
 
     public static void reportQueueSizeHistory(List<ArrayBlockingQueue<Double>> queueList, List<List<Integer>> theQueueSizeHistory) {
@@ -55,17 +60,19 @@ public class Main {
     }
 
     public static void sleepForFiveMinutes() {
-        // Sets program stop time 5 minutes from now
-        long stopTime = System.currentTimeMillis() + (5 * 60 * 1000);
-
-        while (System.currentTimeMillis() < stopTime) {
+        // Sets program to sleep for 1 minute at a time, up to 5 minutes, printing a status message after each minute.
+        for (int i = 1; i <= 5; i++) {
             try {
-                Thread.sleep(1000);
+                Thread.sleep(60000); // Sleep for 1 minute
+                System.out.println(i + " minute(s) passed...");
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                System.out.println("Sleep interrupted.");
+                Thread.currentThread().interrupt(); // Preserve interrupt status
+                break; // Exit the loop if the sleep was interrupted
             }
         }
     }
+
 
     public static void startAllThreads(List<Thread> theNumberGeneratorThreads, Thread sorterThread) {
         for (Thread theNumberGeneratorThread : theNumberGeneratorThreads) {
@@ -80,6 +87,7 @@ public class Main {
             theNumberGeneratorThread.interrupt();
         }
         sorterThread.interrupt();
+        System.out.println("Waiting for all threads to finish...");
     }
 
     // Creates a List containing five ArrayBlockingQueues of doubles
