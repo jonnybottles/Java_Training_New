@@ -1,8 +1,18 @@
 package com.jonathan.gradedistribution.services;
 
+import com.jonathan.gradedistribution.datamodel.Grade;
+import com.jonathan.gradedistribution.datamodel.GradeData;
+
 public class GradeService {
 
+    private GradeData gradeData;
+
     public GradeService() {
+        this.gradeData = new GradeData();
+    }
+
+    public GradeData getGradeData() {
+        return gradeData;
     }
 
     public boolean isValidGrade(String gradeStr) {
@@ -27,6 +37,11 @@ public class GradeService {
         } else {
             return "F";
         }
+    }
 
+    public void addGrade(int score) {
+        String letterGrade = calculateLetterGrade(score);
+        Grade grade = new Grade(score, letterGrade);
+        gradeData.getGrades().add(grade);
     }
 }

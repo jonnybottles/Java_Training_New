@@ -47,8 +47,7 @@ public class FileHandler {
                 if (gradeService.isValidGrade(scoreString)) {
                     int score = Integer.parseInt(scoreString);
 
-                    String letterGrade = gradeService.calculateLetterGrade(score);
-                    grades.add(new Grade(score, letterGrade));
+                    gradeService.addGrade(score);
                 }
             }
         }
