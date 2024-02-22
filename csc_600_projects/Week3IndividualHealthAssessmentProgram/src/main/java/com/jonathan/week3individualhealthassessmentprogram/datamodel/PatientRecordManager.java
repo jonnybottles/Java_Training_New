@@ -2,28 +2,35 @@ package com.jonathan.week3individualhealthassessmentprogram.datamodel;
 
 import java.io.*;
 
+// Class used for serializing / deserializing PatientData objects
 public class PatientRecordManager {
 
     public PatientRecordManager() {
     }
 
-    public void savePatientData(PatientData patientData) {
-        try (ObjectOutputStream f = new ObjectOutputStream
-                (new FileOutputStream("patient" + patientData.getPatientID() + ".ser"))) {
-            f.writeObject(patientData);
+    // Serializes / saves PatientData objects.
+    public boolean savePatientData(PatientData patientData, String filename) {
+        // Ensure the filename ends with .ser
+        String serializedFileName = filename.endsWith(".ser") ? filename : filename + ".ser";
+
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(serializedFileName))) {
+            oos.writeObject(patientData);
+            return true;
         } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Error writing patient object: " + e.getMessage());
+            return false;
         }
     }
 
-    public PatientData loadPatientData(String filename) throws IOException, ClassNotFoundException {
-        File file = new File(filename + ".ser");
+    // Deserializes / loads PatientData objects.
+    public PatientData loadPatientData(String filename) throws Exception {
+        // Ensure the filename ends with .ser
+        String serializedFileName = filename.endsWith(".ser") ? filename : filename + ".ser";
+        File file = new File(serializedFileName);
         if (file.exists()) {
-            try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
-                return (PatientData) in.readObject();
-            } catch (IOException | ClassNotFoundException e) {
-                System.out.println("Error reading patient object: " + e.getMessage());
+            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+                return (PatientData) ois.readObject();
+            } catch (Exception e) {
+                System.out.println("Error reading patient object from " + serializedFileName + ": " + e.getMessage());
                 throw e;
             }
         } else {
@@ -31,3 +38,4 @@ public class PatientRecordManager {
         }
     }
 }
+

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:controller="com.jonathan.gradedistribution.controllers.Controller" maxHeight="-Infinity" maxWidth="-Infinity"
+            minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
+  <top>
+    <VBox>
+    <HBox prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <children>
+        <Button mnemonicParsing="false" prefWidth="125.0" text="Load Grades">
+          <HBox.margin>
+            <Insets right="20.0" />
+          </HBox.margin></Button>
+        <Button mnemonicParsing="false" prefWidth="125.0" text="Assign Letter Grades">
+          <HBox.margin>
+            <Insets right="20.0" />
+          </HBox.margin></Button>
+        <Button mnemonicParsing="false" prefWidth="125.0" text="Calc Mean / Std Dev">
+          <HBox.margin>
+            <Insets right="20.0" />
+          </HBox.margin></Button>
+        <Button  mnemonicParsing="false" prefWidth="125.0" text="Show Distribution" onAction="#onShowDistributionClicked"/>
+
+      </children>
+      <padding>
+        <Insets bottom="10.0" left="20.0" top="20.0" />
+      </padding>
+      <BorderPane.margin>
+        <Insets left="40.0" />
+      </BorderPane.margin>
+    </HBox>
+      <HBox alignment="CENTER_LEFT">
+        <children>
+          <Label text="Filename:"/>
+          <TextField fx:id="filenameTextField" HBox.hgrow="SOMETIMES" prefWidth="200" maxWidth="200">
+            <HBox.margin>
+              <Insets left="10" right="25"/> <!-- Right margin for the TextField -->
+            </HBox.margin>
+          </TextField>
+          <Label text="Mean:" HBox.hgrow="NEVER">
+            <HBox.margin>
+              <Insets left="5" right="5"/> <!-- Left and right margins for the Mean Label -->
+            </HBox.margin>
+          </Label>
+          <Label fx:id="meanLabel" text="0.0" HBox.hgrow="NEVER">
+            <HBox.margin>
+              <Insets right="15"/> <!-- Right margin for the Mean Value Label -->
+            </HBox.margin>
+          </Label>
+          <Label text="Std Dev:" HBox.hgrow="NEVER">
+            <HBox.margin>
+              <Insets left="5" right="5"/> <!-- Left and right margins for the Std Dev Label -->
+            </HBox.margin>
+          </Label>
+          <Label fx:id="stdDevLabel" text="0.0" HBox.hgrow="NEVER"/>
+        </children>
+        <padding>
+          <Insets top="10.0" bottom="10.0" left="20.0" right="20.0"/>
+        </padding>
+      </HBox>
+
+    </VBox>
+  </top>
+  <center>
+    <SplitPane dividerPositions="0.5" prefHeight="80.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <items>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <children>
+            <VBox layoutX="-1.0" layoutY="-1.0" prefWidth="298.0" VBox.vgrow="ALWAYS">
+              <children>
+                <Label text="Loaded Grades">
+                  <VBox.margin>
+                    <Insets top="5.0" bottom="5.0" left="5.0" right="5.0"/>
+                  </VBox.margin>
+                </Label>
+                <ListView fx:id="originalArrayListView" VBox.vgrow="ALWAYS" prefHeight="380"/>
+              </children>
+            </VBox>
+          </children></AnchorPane>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <children>
+            <VBox layoutX="-1.0" layoutY="-1.0" prefWidth="298.0" VBox.vgrow="ALWAYS">
+              <children>
+                <Label text="Letter Grades">
+                  <VBox.margin>
+                    <Insets top="5.0" bottom="5.0" left="5.0" right="5.0"/>
+                  </VBox.margin>
+                </Label>
+                <ListView fx:id="sortableArrayListView" VBox.vgrow="ALWAYS" prefHeight="380"/>
+              </children>
+            </VBox>
+
+          </children></AnchorPane>
+      </items>
+    </SplitPane>
+  </center>
+  <bottom>
+    <VBox prefHeight="300.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <children>
+        <TextArea fx:id="gradeDistributionTextArea" prefHeight="300.0" prefWidth="600.0" VBox.vgrow="ALWAYS" />
+      </children>
+      <padding>
+        <Insets top="10.0" />
+      </padding>
+    </VBox>
+  </bottom>
+</BorderPane>

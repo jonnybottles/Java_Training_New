@@ -1,4 +1,4 @@
-package com.jonathan.week3individualhealthassessmentprogram;
+package com.jonathan.gradedistribution;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,13 +7,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-// Entry point into the Individual Health Assessment program.
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("mainwindow.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
-        stage.setTitle("Individual Health Assessment");
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-window.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 650, 768);
+        stage.setTitle("Grade Distribution");
         stage.setScene(scene);
         stage.show();
     }
