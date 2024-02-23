@@ -1,4 +1,7 @@
+
+// Contains the methods / attributes for the Packet class
 public class Packet {
+    // String member variable representing the packet data.
     private String data;
 
     public Packet(String data) {
@@ -14,6 +17,7 @@ public class Packet {
         this.data = data;
     }
 
+    // Ovride super toString to print off packet data.
     @Override
     public String toString() {
         return "Packet{" +
