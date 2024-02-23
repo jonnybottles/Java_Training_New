@@ -1,6 +1,8 @@
 package com.jonathan.gradedistribution.services;
 
 import com.jonathan.gradedistribution.datamodel.Grade;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,9 +18,9 @@ public class FileHandler {
 
     // This constructor is an artifact from part one of the program
     // I left it here to show that I completed it.
-    public FileHandler(String readFile) {
+    public FileHandler(String readFile, GradeService gradeService) {
         this.readFile = readFile;
-        this.gradeService = new GradeService();
+        this.gradeService = gradeService;
 
     }
 
@@ -34,8 +36,7 @@ public class FileHandler {
     }
 
     // Reads grades from a flat file
-    public List<Grade> readGrades() throws FileNotFoundException {
-        List<Grade> grades = new ArrayList<>();
+    public void readGrades() throws FileNotFoundException, NumberFormatException  {
 
         // Using try with resources as not to have to manage file closing
         // manually
@@ -48,10 +49,13 @@ public class FileHandler {
                     int score = Integer.parseInt(scoreString);
 
                     gradeService.addGrade(score);
+                } else {
+                    throw new NumberFormatException("Invalid grade " + "'" + scoreString + "'");
                 }
+
+
             }
         }
-        return grades;
     }
 
 

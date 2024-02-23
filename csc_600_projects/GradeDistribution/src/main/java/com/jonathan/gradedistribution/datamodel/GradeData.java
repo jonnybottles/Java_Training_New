@@ -1,17 +1,20 @@
 package com.jonathan.gradedistribution.datamodel;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class GradeData {
 
-    private List<Grade> grades;
+    private ObservableList<Grade> grades;
 
     public GradeData() {
-        this.grades = new ArrayList<>();
+        this.grades = FXCollections.observableArrayList();
     }
 
-    public List<Grade> getGrades() {
+    public ObservableList<Grade> getGrades() {
         return grades;
     }
 }

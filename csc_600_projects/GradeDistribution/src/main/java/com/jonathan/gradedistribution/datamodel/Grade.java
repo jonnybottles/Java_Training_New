@@ -24,4 +24,10 @@ public class Grade {
     public void setLetterGrade(String letterGrade) {
         this.letterGrade = letterGrade;
     }
+
+
+    @Override
+    public String toString() {
+        return String.valueOf(score);
+    }
 }
