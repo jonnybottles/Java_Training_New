@@ -29,10 +29,12 @@ public class Controller {
     @FXML
     private Label stdDevLabel;
 
+    @FXML
+    private ListView<String> letterGradeListView;
+
     private boolean hasGradesBeenLoaded;
 
-
-
+    private boolean hasMeanStdDevBeenCalculated;
 
     public void initialize() {
         theGradeService = new GradeService();
@@ -74,10 +76,31 @@ public class Controller {
             return;
         }
 
-        meanLabel.setText(String.valueOf(theGradeService.mean()));
-        stdDevLabel.setText(String.format("%.2f", theGradeService.standardDeviation()));
+        theGradeService.mean();
+        meanLabel.setText(String.valueOf(theGradeService.getMean()));
+
+        theGradeService.standardDeviation();
+        stdDevLabel.setText(String.format("%.2f", theGradeService.getStandardDeviation()));
+        hasMeanStdDevBeenCalculated = true;
     }
 
+    public void onAssignLetterGradesClicked() {
+        if (!hasGradesBeenLoaded) {
+            displayInformationalAlert("Grades Not Loaded", "Grades Not Loaded",
+                    "Please load grades and calculate mean / standard deviation first.");
+            return;
+        }
+
+        if (!hasMeanStdDevBeenCalculated) {
+            displayInformationalAlert("Calculation Not Completed", "Calculation Not Completed.",
+                    "Please calculate mean / standard deviation to display letter grades first.");
+            return;
+        }
+
+        theGradeService.populateGradesWithLetters();
+        letterGradeListView.setItems(theGradeService.getGradeData().getGradesWithLetters());
+
+    }
 
     // Displays informational popup.
     public void displayInformationalAlert(String title, String header, String msg) {

@@ -15,7 +15,7 @@
           <HBox.margin>
             <Insets right="20.0" />
           </HBox.margin></Button>
-        <Button mnemonicParsing="false" prefWidth="125.0" text="Assign Letter Grades">
+        <Button mnemonicParsing="false" prefWidth="125.0" text="Assign Letter Grades" onAction="#onAssignLetterGradesClicked">
           <HBox.margin>
             <Insets right="20.0" />
           </HBox.margin></Button>
@@ -90,7 +90,7 @@
                     <Insets top="5.0" bottom="5.0" left="5.0" right="5.0"/>
                   </VBox.margin>
                 </Label>
-                <ListView fx:id="sortableArrayListView" VBox.vgrow="ALWAYS" prefHeight="380"/>
+                <ListView fx:id="letterGradeListView" VBox.vgrow="ALWAYS" prefHeight="380"/>
               </children>
             </VBox>
 
