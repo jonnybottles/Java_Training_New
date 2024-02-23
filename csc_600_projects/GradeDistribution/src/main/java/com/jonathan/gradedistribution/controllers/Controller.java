@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 public class Controller {
 
     private FileHandler theFileHandler;
+
     private GradeService theGradeService;
 
     @FXML
@@ -21,6 +22,14 @@ public class Controller {
 
     @FXML
     private ListView<Grade> gradesListView;
+
+    @FXML
+    private Label meanLabel;
+
+    @FXML
+    private Label stdDevLabel;
+
+    private boolean hasGradesBeenLoaded;
 
 
 
@@ -47,14 +56,26 @@ public class Controller {
             theFileHandler = new FileHandler(fileName, theGradeService);
             theFileHandler.readGrades();
             gradesListView.setItems(theGradeService.getGradeData().getGrades());
+            hasGradesBeenLoaded = true;
 
         } catch (FileNotFoundException e) {
             displayInformationalAlert("File Not Found", "File Not Found",
                     "Please enter a valid file name.");
         } catch (NumberFormatException e) {
             displayInformationalAlert("Invalid Grade", "Invalid Grade",
-                    e.toString());
+                    e.getMessage());
         }
+    }
+
+    public void onCalcMeanStdDevClicked() {
+        if (!hasGradesBeenLoaded) {
+            displayInformationalAlert("Grades Not Loaded", "Grades Not Loaded",
+                    "Please load grades to calculate mean / standard deviation.");
+            return;
+        }
+
+        meanLabel.setText(String.valueOf(theGradeService.mean()));
+        stdDevLabel.setText(String.format("%.2f", theGradeService.standardDeviation()));
     }
 
 

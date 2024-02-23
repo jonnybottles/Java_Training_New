@@ -24,6 +24,36 @@ public class GradeService {
         }
     }
 
+    public double mean() {
+        double mean = gradeData.getGrades()
+                // Convert grade list into a stream of Grades
+                .stream()
+                // Convert each grade into a score (int)
+                .mapToInt(Grade::getScore)
+                // Get mean of all scores
+                .average()
+                // Retrieve the double from the OptionalDouble return by .average()
+                .getAsDouble();
+
+        return mean;
+
+    }
+
+    public double standardDeviation() {
+        double mean = mean();
+        double theStandardDeviation = gradeData.getGrades()
+                .stream()
+                // Using a lambda expression as per requirements to calculate the standard deviation
+                // using maptodouble to convert eachinto a double then preform the calculation for std dev
+                .mapToDouble(grade-> Math.pow(grade.getScore() - mean, 2))
+                .average()
+                .getAsDouble();
+
+        // final portion of the standard deviation calculation
+        theStandardDeviation = Math.sqrt(theStandardDeviation);
+        return  theStandardDeviation;
+    }
+
     // You can add methods to calculate the letter grade based on the numerical score here
     public String calculateLetterGrade(int score) {
         if (score >= 90) {

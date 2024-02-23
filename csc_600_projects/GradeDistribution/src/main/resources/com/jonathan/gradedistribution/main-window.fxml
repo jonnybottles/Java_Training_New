@@ -19,7 +19,7 @@
           <HBox.margin>
             <Insets right="20.0" />
           </HBox.margin></Button>
-        <Button mnemonicParsing="false" prefWidth="125.0" text="Calc Mean / Std Dev">
+        <Button mnemonicParsing="false" prefWidth="125.0" text="Calc Mean / Std Dev" onAction="#onCalcMeanStdDevClicked">
           <HBox.margin>
             <Insets right="20.0" />
           </HBox.margin></Button>

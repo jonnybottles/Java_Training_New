@@ -50,7 +50,7 @@ public class FileHandler {
 
                     gradeService.addGrade(score);
                 } else {
-                    throw new NumberFormatException("Invalid grade " + "'" + scoreString + "'");
+                    throw new NumberFormatException("Invalid grade " + "'" + scoreString + "'.");
                 }
 
 
