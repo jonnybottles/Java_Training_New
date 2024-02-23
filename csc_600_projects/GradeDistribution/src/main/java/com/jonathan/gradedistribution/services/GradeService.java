@@ -64,21 +64,33 @@ public class GradeService {
 
     // You can add methods to calculate the letter grade based on the numerical score here
     public String calculateLetterGrade(int score) {
-        if (score > theMean + 1.5 * theStandardDeviation) {
-            return "A";
-        } else if (score > theMean + 0.5 * theStandardDeviation) {
-            return "B";
-        } else if (score > theMean - 0.5 * theStandardDeviation) {
-            return "C";
-        } else if (score > theMean - 1.5 * theStandardDeviation) {
-            return "D";
+        String letterGrade;
+        if (score >= theMean + 1.2 * theStandardDeviation) {
+            letterGrade = "A";
+        } else if (score >= theMean + 0.6 * theStandardDeviation) {
+            letterGrade = "B";
+        } else if (score >= theMean && score < theMean + 0.6 * theStandardDeviation) {
+            letterGrade = "C";
+        } else if (score < theMean && score >= theMean - 0.6 * theStandardDeviation) {
+            letterGrade =  "D";
         } else {
-            return "F";
+            letterGrade =  "F";
         }
+
+        gradeData.incrementGradeCount(letterGrade);
+
+        return letterGrade;
     }
+
 
     // Method to populate and update the formattedGrades list in GradeData
     public void populateGradesWithLetters() {
+
+        // Clear the previous counts if this method can be called multiple times
+        gradeData.initializeGradeCounts();
+
+        // Also clear the previous letter grades list
+        gradeData.getGradesWithLetters().clear();
 
         for (Grade grade : gradeData.getGrades()) {
             String letterGrade = calculateLetterGrade(grade.getScore());

@@ -15,11 +15,11 @@
           <HBox.margin>
             <Insets right="20.0" />
           </HBox.margin></Button>
-        <Button mnemonicParsing="false" prefWidth="125.0" text="Assign Letter Grades" onAction="#onAssignLetterGradesClicked">
+        <Button mnemonicParsing="false" prefWidth="125.0" text="Calc Mean / Std Dev" onAction="#onCalcMeanStdDevClicked">
           <HBox.margin>
             <Insets right="20.0" />
           </HBox.margin></Button>
-        <Button mnemonicParsing="false" prefWidth="125.0" text="Calc Mean / Std Dev" onAction="#onCalcMeanStdDevClicked">
+        <Button mnemonicParsing="false" prefWidth="125.0" text="Assign Letter Grades" onAction="#onAssignLetterGradesClicked">
           <HBox.margin>
             <Insets right="20.0" />
           </HBox.margin></Button>
@@ -66,7 +66,7 @@
     </VBox>
   </top>
   <center>
-    <SplitPane dividerPositions="0.5" prefHeight="80.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+    <SplitPane dividerPositions="0.5" prefHeight="80.0" prefWidth="200.0" BorderPane.alignment="CENTER" VBox.vgrow="ALWAYS">
       <items>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
           <children>
@@ -99,9 +99,10 @@
     </SplitPane>
   </center>
   <bottom>
-    <VBox prefHeight="300.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+    <VBox prefHeight="160.0" prefWidth="600.0" BorderPane.alignment="CENTER">
       <children>
-        <TextArea fx:id="gradeDistributionTextArea" prefHeight="300.0" prefWidth="600.0" VBox.vgrow="ALWAYS" />
+        <TextArea fx:id="gradeDistributionTextArea" prefHeight="300.0" prefWidth="600.0" VBox.vgrow="ALWAYS"
+                  style="-fx-font-size: 10pt;"/>
       </children>
       <padding>
         <Insets top="10.0" />
