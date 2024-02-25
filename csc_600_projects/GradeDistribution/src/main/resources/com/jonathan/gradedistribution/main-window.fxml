@@ -4,8 +4,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:controller="com.jonathan.gradedistribution.controllers.Controller" maxHeight="-Infinity" maxWidth="-Infinity"
-            minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
+<BorderPane fx:controller="com.jonathan.gradedistribution.controllers.Controller" maxHeight="-Infinity"
+            maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
             xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
   <top>
     <VBox>
@@ -15,15 +15,18 @@
           <HBox.margin>
             <Insets right="20.0" />
           </HBox.margin></Button>
-        <Button mnemonicParsing="false" prefWidth="125.0" text="Calc Mean / Std Dev" onAction="#onCalcMeanStdDevClicked">
+        <Button mnemonicParsing="false" prefWidth="125.0" text="Calc Mean / Std Dev"
+                onAction="#onCalcMeanStdDevClicked">
           <HBox.margin>
             <Insets right="20.0" />
           </HBox.margin></Button>
-        <Button mnemonicParsing="false" prefWidth="125.0" text="Assign Letter Grades" onAction="#onAssignLetterGradesClicked">
+        <Button mnemonicParsing="false" prefWidth="125.0" text="Assign Letter Grades"
+                onAction="#onAssignLetterGradesClicked">
           <HBox.margin>
             <Insets right="20.0" />
           </HBox.margin></Button>
-        <Button  mnemonicParsing="false" prefWidth="125.0" text="Show Distribution" onAction="#onShowDistributionClicked"/>
+        <Button  mnemonicParsing="false" prefWidth="125.0" text="Show Distribution"
+                 onAction="#onShowDistributionClicked"/>
 
       </children>
       <padding>
@@ -38,22 +41,22 @@
           <Label text="Filename:"/>
           <TextField fx:id="filenameTextField" HBox.hgrow="SOMETIMES" prefWidth="200" maxWidth="200">
             <HBox.margin>
-              <Insets left="10" right="25"/> <!-- Right margin for the TextField -->
+              <Insets left="10" right="25"/>
             </HBox.margin>
           </TextField>
           <Label text="Mean:" HBox.hgrow="NEVER">
             <HBox.margin>
-              <Insets left="5" right="5"/> <!-- Left and right margins for the Mean Label -->
+              <Insets left="5" right="5"/>
             </HBox.margin>
           </Label>
           <Label fx:id="meanLabel" text="0.0" HBox.hgrow="NEVER">
             <HBox.margin>
-              <Insets right="15"/> <!-- Right margin for the Mean Value Label -->
+              <Insets right="15"/>
             </HBox.margin>
           </Label>
           <Label text="Std Dev:" HBox.hgrow="NEVER">
             <HBox.margin>
-              <Insets left="5" right="5"/> <!-- Left and right margins for the Std Dev Label -->
+              <Insets left="5" right="5"/>
             </HBox.margin>
           </Label>
           <Label fx:id="stdDevLabel" text="0.0" HBox.hgrow="NEVER"/>
@@ -66,7 +69,8 @@
     </VBox>
   </top>
   <center>
-    <SplitPane dividerPositions="0.5" prefHeight="80.0" prefWidth="200.0" BorderPane.alignment="CENTER" VBox.vgrow="ALWAYS">
+    <SplitPane dividerPositions="0.5" prefHeight="80.0" prefWidth="200.0" BorderPane.alignment="CENTER"
+               VBox.vgrow="ALWAYS">
       <items>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
           <children>

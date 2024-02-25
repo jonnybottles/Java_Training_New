@@ -3,15 +3,16 @@ package com.jonathan.gradedistribution.datamodel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class GradeData {
 
+    // ObservableList for Grade objects to be used in ListView
     private ObservableList<Grade> grades;
+    // ObservableList for Strings of score to grade letter mapping to be used in ListView
     private ObservableList<String> gradesWithLetters;
+    // Map used to associated grades to counts
     private Map<String, Integer> gradeCounts;
 
     public GradeData() {
@@ -22,6 +23,7 @@ public class GradeData {
 
     }
 
+    // Getters
     public ObservableList<Grade> getGrades() {
         return grades;
     }
@@ -30,19 +32,17 @@ public class GradeData {
         return gradesWithLetters;
     }
 
-    public void updateGradesWithLetters(ObservableList<String> formattedGrades) {
-        this.gradesWithLetters.setAll(formattedGrades);
-    }
 
     public Map<String, Integer> getGradeCounts() {
         return gradeCounts;
     }
 
-    // Increments the count for each letter grade.
+    // Increments the count for each letter grade
     public void incrementGradeCount(String letterGrade) {
         gradeCounts.merge(letterGrade, 1, Integer::sum);
     }
 
+    // Initializes all grade counts to zero
     public void initializeGradeCounts() {
         gradeCounts.put("A", 0);
         gradeCounts.put("B", 0);
