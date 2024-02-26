@@ -15,21 +15,20 @@ public class Drainer implements Runnable {
 
     @Override
     public void run() {
-        synchronized (theLock) {
-            try {
-                // Wait until the list is sorted and not empty.
-                // Assuming the list is sorted by Sorter before Drainer is called,
-                // this could wait indefinitely without a proper signaling mechanism.
-                // This example assumes the Sorter notifies after sorting.
-                while (theIntegerList.isEmpty() || !isSorted()) {
-                    theLock.wait();
+        while (!Thread.currentThread().isInterrupted()) {
+            synchronized (theLock) {
+                try {
+                    while (theIntegerList.isEmpty() || !isSorted()) {
+                        theLock.wait();
+                    }
+                    theIntegerList.clear();
+                    System.out.println("List drained by Drainer.");
+                    thePrintRunnable.run();
+                    theLock.notifyAll();
+                    Thread.sleep(5);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt(); // Preserve interrupt status
                 }
-                // Clear the list after confirming it's sorted
-                theIntegerList.clear();
-                System.out.println("List cleared by Drainer.");
-                theLock.notifyAll(); // Notify the Generator to fill the list again.
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
             }
         }
     }

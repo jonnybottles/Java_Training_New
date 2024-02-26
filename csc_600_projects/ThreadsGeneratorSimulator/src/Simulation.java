@@ -7,9 +7,9 @@ public class Simulation {
     private List<Integer> theIntegerList;
     private final Object theLock;
 
-    public Simulation(List<Integer> theIntegerList, Object theLock) {
+    public Simulation() {
         this.theIntegerList = new ArrayList<>();
-        this.theLock = theLock = new Object();
+        this.theLock = new Object();
     }
 
     public synchronized void print() {
@@ -20,10 +20,19 @@ public class Simulation {
     }
 
     public void runSim() {
-        ExecutorService executor = Executors.newFixedThreadPool(3);
+        ExecutorService theExecutor = Executors.newFixedThreadPool(3);
 
-        Generator theGenerator = new Generator(theIntegerList, theLock, )
+        Generator theGenerator = new Generator(theIntegerList, theLock, this::print);
+        Sorter theSorter = new Sorter(theIntegerList, theLock, this::print);
+        Drainer theDrainer = new Drainer(theIntegerList, theLock, this::print);
 
+        for (int i =0; i < 10; i++) {
+            theExecutor.execute(theGenerator);
+            theExecutor.execute(theSorter);
+            theExecutor.execute(theDrainer);
+        }
+
+        theExecutor.shutdown();
 
     }
 

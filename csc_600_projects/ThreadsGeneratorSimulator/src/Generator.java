@@ -27,10 +27,21 @@ public class Generator implements Runnable{
 
     @Override
     public void run() {
-        synchronized (theLock) {
-            // Assuming the Generator runs first, it doesn't need to wait.
-            fillList();
-            theLock.notifyAll(); // Notify the next process, which is sorting.
+        while (!Thread.currentThread().isInterrupted()) {
+            synchronized (theLock) {
+                try {
+                    while (!theIntegerList.isEmpty()) {
+                        theLock.wait();
+                    }
+                    fillList();
+                    System.out.println("List filled by Generator.");
+                    thePrintRunnable.run();
+                    theLock.notifyAll();
+                    Thread.sleep(5);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt(); // Preserve interrupt status
+                }
+            }
         }
     }
 

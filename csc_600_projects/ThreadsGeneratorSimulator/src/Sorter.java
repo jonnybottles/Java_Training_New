@@ -15,15 +15,20 @@ public class Sorter implements  Runnable{
 
     @Override
     public void run() {
-        synchronized (theLock) {
-            try {
-                while (theIntegerList.isEmpty()) { // Wait until the list is filled
-                    theLock.wait();
+        while (!Thread.currentThread().isInterrupted()) {
+            synchronized (theLock) {
+                try {
+                    while (theIntegerList.size() != 10) {
+                        theLock.wait();
+                    }
+                    Collections.sort(theIntegerList);
+                    System.out.println("List sorted by Sorter.");
+                    thePrintRunnable.run();
+                    theLock.notifyAll();
+                    Thread.sleep(5);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt(); // Preserve interrupt status
                 }
-                Collections.sort(theIntegerList);
-                theLock.notifyAll(); // Notify the next process, which could be draining or refilling.
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
             }
         }
     }
