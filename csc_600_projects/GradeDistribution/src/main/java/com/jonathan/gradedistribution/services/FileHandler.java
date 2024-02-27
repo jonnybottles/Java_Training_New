@@ -1,57 +1,42 @@
 package com.jonathan.gradedistribution.services;
 
-import com.jonathan.gradedistribution.datamodel.Grade;
-
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
+// Class that provides the methods and attributes for reading a file with grades
 public class FileHandler {
 
     private String readFile;
     private GradeService gradeService;
 
-
-    // This constructor is an artifact from part one of the program
-    // I left it here to show that I completed it.
-    public FileHandler(String readFile) {
+    public FileHandler(String readFile, GradeService gradeService) {
         this.readFile = readFile;
-        this.gradeService = new GradeService();
+        this.gradeService = gradeService;
 
     }
 
+    // Reads grades from a flat file and adds to the GradeData grades list
+    public void readGrades() throws FileNotFoundException, NumberFormatException  {
 
-    // Another artifact from the first portion of the program
-    // Not sure if I should leave artifacts from previous requirements in the program
-    public String getReadFile() {
-        return readFile;
-    }
-
-    public void setReadFile(String readFile) {
-        this.readFile = readFile;
-    }
-
-    // Reads grades from a flat file
-    public List<Grade> readGrades() throws FileNotFoundException {
-        List<Grade> grades = new ArrayList<>();
-
-        // Using try with resources as not to have to manage file closing
-        // manually
+        // Using try with resources as not to have to manage file closing manually
         try (Scanner fileReader = new Scanner(new File(readFile))) {
 
             while (fileReader.hasNextLine()) {
                 String scoreString = fileReader.nextLine().trim();
 
+                // Checks if grade is valid prior to adding to list
                 if (gradeService.isValidGrade(scoreString)) {
                     int score = Integer.parseInt(scoreString);
 
                     gradeService.addGrade(score);
+                } else {
+                    // If grade is invalid, throw an exception
+                    throw new NumberFormatException("Invalid grade " + "'" + scoreString + "'.");
                 }
+
             }
         }
-        return grades;
     }
 
 
