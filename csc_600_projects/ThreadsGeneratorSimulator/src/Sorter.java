@@ -13,21 +13,29 @@ public class Sorter implements  Runnable{
         this.thePrintRunnable = thePrintRunnable;
     }
 
+    // Sorts theIntegerList after the Generator has populated it appropriately
     @Override
     public void run() {
+        // Thread runs in a while loop until it is interrupted
         while (!Thread.currentThread().isInterrupted()) {
+            // Obtain theLock
             synchronized (theLock) {
                 try {
+                    // Loop while waiting for Generator to fill the list with 10 random digits
                     while (theIntegerList.size() != 10) {
+                        // Release the lock and wait to be notified to be awoken
                         theLock.wait();
                     }
+                    // Sort theIntegerList
                     Collections.sort(theIntegerList);
                     System.out.println("List sorted by Sorter.");
+                    // Execute the print runnable passed by the Simulation class
                     thePrintRunnable.run();
+                    // Notify the other threads that the Sorters work is done.
                     theLock.notifyAll();
                     Thread.sleep(5);
                 } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt(); // Preserve interrupt status
+                    Thread.currentThread().interrupt();
                 }
             }
         }
