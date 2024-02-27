@@ -6,13 +6,11 @@ import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
-        // Sizes array for the experiment
-        int[] sizes = {100, 1000, 100000, 1000000};
 
         calculateAndDisplayIntegerStats(100);
         calculateAndDisplayIntegerStats(1000);
         calculateAndDisplayIntegerStats(100000);
-        calculateAndDisplayIntegerStats(11000000);
+        calculateAndDisplayIntegerStats(10000000);
 
     }
 
